@@ -412,7 +412,7 @@ class ExpenseTrackerApp:
         tracker = self.user_trackers[current_user.user_id]
         tracker.list_expenses()
 
-    def set_budget(self):
+    def set_budget(self): # added separate budget
         # Handle setting or updating a budget
         current_user = self.auth.get_current_user()
         if current_user.user_id not in self.user_trackers:
