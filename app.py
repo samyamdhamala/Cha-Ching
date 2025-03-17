@@ -108,7 +108,7 @@ def user_menu(auth, user_trackers):
             amount = float(input("Enter expense amount: ").strip())
             category = input("Enter category: ").strip()
             description = input("Enter description: ").strip()
-            tracker.add_expense(Expense(amount, category, description))
+            tracker.add_expense(Expense(amount, category, description, user.user_id))
         elif choice == "2":
             tracker.list_expenses()
         elif choice == "3":
