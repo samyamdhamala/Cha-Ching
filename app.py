@@ -4,11 +4,34 @@ from auth import Authentication
 from expenses import ExpenseTracker
 from file_manager import load_data, save_data
 from models import User, Expense, Category
+from file_manager import hash_password
+
 
 def create_admin(auth):
-    if not any(user.username == "admin" for user in auth.users):
-        auth.register("admin", "adminpass", role="admin")
-        print("[i] Admin account created.")
+    data = load_data()
+
+    for user in data["users"]:
+        if user["username"] == "admin":
+            # If admin password is in plain text, hash it
+            if len(user["password"]) != 64:  # SHA-256 hashes are always 64 characters long
+                print("[!] Admin password found in plain text. Converting to hash...")
+                user["password"] = hash_password(user["password"])  # Convert to hash
+                save_data(data)
+                print("[✔] Admin password has been secured.")
+            return
+
+    # If no admin exists, create one with a hashed password
+    print("[i] No admin found. Creating a new one...")
+    admin_user = {
+        "user_id": 1,
+        "username": "admin",
+        "password": hash_password("adminpass"),  # Store hashed password
+        "role": "admin"
+    }
+    data["users"].append(admin_user)
+    save_data(data)
+    print("[✔] Admin account created with hashed password.")
+
 
 def main_menu(auth):
     while True:
@@ -33,9 +56,13 @@ def main_menu(auth):
         else:
             print("[!] Invalid choice.")
 
+
 def admin_menu():
     data = load_data()
-    categories = [Category(**cat) for cat in data["categories"]]
+
+    # Ensure "categories" exists and is a dictionary
+    if "categories" not in data or not isinstance(data["categories"], dict):
+        data["categories"] = {}
 
     while True:
         print("\n=== Admin Menu ===")
@@ -49,45 +76,53 @@ def admin_menu():
         if choice == "1":
             name = input("Enter new category name: ").strip()
             if name:
-                new_cat = Category(name)
-                categories.append(new_cat)
-                data["categories"].append(vars(new_cat))
+                category_id = len(data["categories"]) + 1  # Auto-incrementing category ID
+                new_cat = Category(name=name, user_id=1, category_id=category_id)  # Admin ID assumed as 1
+
+                # Store category as a dictionary entry instead of using append()
+                data["categories"][category_id] = vars(new_cat)
+
                 save_data(data)
                 print("[+] Category created.")
         elif choice == "2":
             print("\nAvailable Categories:")
-            for cat in categories:
-                print(cat)
+            for cat_id, cat in data["categories"].items():
+                print(f"{cat_id}: {cat['name']}")
         elif choice == "3":
             print("\nAvailable Categories:")
-            for idx, cat in enumerate(categories, start=1):
-                print(f"{idx}. {cat.name}")
+            for cat_id, cat in data["categories"].items():
+                print(f"{cat_id}: {cat['name']}")
             try:
-                cat_index = int(input("Enter category number to edit: ")) - 1
-                new_name = input("Enter new category name: ").strip()
-                categories[cat_index].name = new_name
-                data["categories"][cat_index]["name"] = new_name
-                save_data(data)
-                print("[+] Category updated.")
-            except (IndexError, ValueError):
-                print("[!] Invalid selection.")
+                cat_id = int(input("Enter category ID to edit: ").strip())
+                if cat_id in data["categories"]:
+                    new_name = input("Enter new category name: ").strip()
+                    data["categories"][cat_id]["name"] = new_name
+                    save_data(data)
+                    print("[+] Category updated.")
+                else:
+                    print("[!] Invalid Category ID.")
+            except ValueError:
+                print("[!] Invalid input. Please enter a number.")
         elif choice == "4":
             print("\nAvailable Categories:")
-            for idx, cat in enumerate(categories, start=1):
-                print(f"{idx}. {cat.name}")
+            for cat_id, cat in data["categories"].items():
+                print(f"{cat_id}: {cat['name']}")
             try:
-                cat_index = int(input("Enter category number to delete: ")) - 1
-                del categories[cat_index]
-                del data["categories"][cat_index]
-                save_data(data)
-                print("[+] Category deleted.")
-            except (IndexError, ValueError):
-                print("[!] Invalid selection.")
+                cat_id = int(input("Enter category ID to delete: ").strip())
+                if cat_id in data["categories"]:
+                    del data["categories"][cat_id]
+                    save_data(data)
+                    print("[+] Category deleted.")
+                else:
+                    print("[!] Invalid Category ID.")
+            except ValueError:
+                print("[!] Invalid input. Please enter a number.")
         elif choice == "5":
             print("Logging out...")
             break
         else:
             print("[!] Invalid choice.")
+
 
 def user_menu(auth, user_trackers):
     user = auth.get_current_user()
@@ -105,10 +140,9 @@ def user_menu(auth, user_trackers):
         choice = input("Enter choice: ").strip()
 
         if choice == "1":
-            amount = float(input("Enter expense amount: ").strip())
-            category = input("Enter category: ").strip()
-            description = input("Enter description: ").strip()
-            tracker.add_expense(Expense(amount, category, description, user.user_id))
+            # ❌ Removed duplicate category listing from here
+            tracker.add_expense()  # ✅ Let `add_expense()` handle category selection
+
         elif choice == "2":
             tracker.list_expenses()
         elif choice == "3":
@@ -121,6 +155,7 @@ def user_menu(auth, user_trackers):
             auth.logout()
             break
 
+
 def run_app():
     auth = Authentication()
     create_admin(auth)
@@ -131,6 +166,7 @@ def run_app():
             admin_menu()
         else:
             user_menu(auth, user_trackers)
+
 
 if __name__ == "__main__":
     run_app()
