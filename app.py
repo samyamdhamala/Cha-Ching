@@ -134,26 +134,37 @@ def user_menu(auth, user_trackers):
         print("\n=== User Menu ===")
         print("1. Add Expense")
         print("2. View Expenses")
-        print("3. Set Budget")
-        print("4. View Summary")
-        print("5. Logout")
+        print("3. Edit Expense")
+        print("4. Delete Expense")
+        print("5. Set Budget")
+        print("6. View Summary")
+        print("7. Logout")
         choice = input("Enter choice: ").strip()
 
         if choice == "1":
-            # ❌ Removed duplicate category listing from here
-            tracker.add_expense()  # ✅ Let `add_expense()` handle category selection
-
+            tracker.add_expense()
         elif choice == "2":
             tracker.list_expenses()
         elif choice == "3":
-            period = input("Enter budget period (YYYY-MM): ").strip()
-            amount = float(input("Enter budget amount: ").strip())
-            tracker.set_budget(period, amount)
+            tracker.edit_expense()
         elif choice == "4":
-            tracker.view_summary()
+            tracker.delete_expense()
         elif choice == "5":
+            period = input("Enter budget period (YYYY-MM): ").strip()
+            try:
+                amount = float(input("Enter budget amount: ").strip())
+                tracker.set_budget(period, amount)
+            except ValueError:
+                print("[!] Invalid budget amount. Please enter a numeric value.")
+        elif choice == "6":
+            tracker.view_summary()
+        elif choice == "7":
+            print("[-] Logging out...")
             auth.logout()
             break
+        else:
+            print("[!] Invalid choice. Please select a valid option.")
+
 
 
 def run_app():

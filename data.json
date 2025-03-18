@@ -32,14 +32,24 @@
                 "amount": 30.0,
                 "category": "Food",
                 "description": "Grocery 2nd Week",
-                "user_id": 3
+                "user_id": 3,
+                "expense_id": 1
             },
             {
                 "date": "2025-03-01",
                 "amount": 400.0,
                 "category": "Rent",
                 "description": "Rent March",
-                "user_id": 3
+                "user_id": 3,
+                "expense_id": 2
+            },
+            {
+                "expense_id": 3,
+                "amount": 10.0,
+                "category": "Food",
+                "description": "Fettucine Alfredo in Olive Garden",
+                "user_id": 3,
+                "date": "2025-03-18"
             }
         ],
         "1": [
@@ -48,21 +58,32 @@
                 "amount": 350.0,
                 "category": "Rent",
                 "description": "Rent for month of MARCH",
-                "user_id": 1
+                "user_id": 1,
+                "expense_id": 3
             },
             {
                 "date": "2025-03-04",
                 "amount": 78.0,
                 "category": "Transport",
                 "description": "Heating And Eleectric MARCH",
-                "user_id": 1
+                "user_id": 1,
+                "expense_id": 4
             },
             {
-                "date": "2025-03-18",
-                "amount": 20.0,
-                "category": "Food",
-                "description": "Pizza Party",
-                "user_id": 1
+                "expense_id": 6,
+                "amount": 30.0,
+                "category": "Horror",
+                "description": "fsf",
+                "user_id": 1,
+                "date": "afaf"
+            },
+            {
+                "expense_id": 7,
+                "amount": 10.0,
+                "category": "Utilities",
+                "description": "Test",
+                "user_id": 1,
+                "date": "2025-03-18"
             }
         ]
     },
@@ -96,6 +117,11 @@
             "category_id": 6,
             "name": "Miscellaneous",
             "user_id": 1
+        },
+        "7": {
+            "category_id": 7,
+            "name": "Horror",
+            "user_id": 1
         }
     },
     "budgets": {
@@ -103,7 +129,7 @@
             "2025-03": 1000.0
         },
         "3": {
-            "2025-03": 800.0
+            "2025-03": 100.0
         }
     }
 }
