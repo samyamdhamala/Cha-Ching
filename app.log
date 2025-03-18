@@ -191,3 +191,10 @@
 2025-03-18 14:49:33,452 - INFO - User 'admin' logged in successfully.
 2025-03-18 14:49:50,520 - INFO - Data saved successfully.
 2025-03-18 14:49:57,766 - INFO - Data saved successfully.
+2025-03-18 15:17:39,027 - INFO - User 'samyam' logged in successfully.
+2025-03-18 15:18:00,446 - INFO - Data saved successfully.
+2025-03-18 15:18:00,447 - INFO - Expense added: 10.0, Rent, Librabry Snacl, 2025-03-18, ID: 8 by user 1.
+2025-03-18 15:28:33,166 - INFO - User 'samyam' logged in successfully.
+2025-03-18 15:28:52,073 - INFO - Data saved successfully.
+2025-03-18 15:28:52,073 - INFO - Expense added: 20.0, Tessttt, test description, 2025-03-16, ID: 9 by user 1.
+2025-03-18 15:37:40,945 - INFO - Data saved successfully.
