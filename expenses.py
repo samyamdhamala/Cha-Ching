@@ -23,24 +23,25 @@ class ExpenseTracker:
     def add_expense(self):
         """Prompts the user to select a category and adds an expense."""
         data = load_data()
-        categories = [cat["name"] for cat in data.get("categories", {}).values()]
+        categories = {int(k): v["name"] for k, v in
+                      data.get("categories", {}).items()}  # Ensure category IDs are integers
 
         if not categories:
             print("[!] No categories available. Please ask the admin to create categories first.")
             return
 
         print("\nAvailable Categories:")
-        for i, cat in enumerate(categories, start=1):
-            print(f"{i}. {cat}")
+        for cat_id, cat_name in categories.items():
+            print(f"{cat_id}: {cat_name}")
 
         while True:
             try:
-                category_index = int(input("Select category number: ").strip()) - 1
-                if category_index < 0 or category_index >= len(categories):
+                category_id = int(input("Select category ID: ").strip())
+                if category_id not in categories:
                     raise ValueError
-                category = categories[category_index]
+                category_name = categories[category_id]
                 break
-            except (ValueError, IndexError):
+            except ValueError:
                 print("[!] Invalid category selection. Please enter a valid number from the list.")
 
         while True:
@@ -64,25 +65,26 @@ class ExpenseTracker:
             if not date:
                 date = datetime.datetime.now().strftime("%Y-%m-%d")
                 break
-            elif re.match(r"^\\d{4}-\\d{2}-\\d{2}$", date):
+            elif re.match(r"^\d{4}-\d{2}-\d{2}$", date):  # ✅ Fixed regex
                 try:
-                    datetime.datetime.strptime(date, "%Y-%m-%d")  # Validate date format
+                    datetime.datetime.strptime(date, "%Y-%m-%d")  # ✅ Validate actual date
                     break
                 except ValueError:
-                    print("[!] Invalid date format. Please enter a valid date in YYYY-MM-DD format.")
+                    print("[!] Invalid date. Please enter a valid date in YYYY-MM-DD format.")
             else:
                 print("[!] Invalid date format. Please enter in YYYY-MM-DD format.")
 
         expense_id = next(ExpenseTracker.expense_id_counter)  # Assign unique ID
-
-        expense = Expense(amount, category, description, self.user.user_id, date, expense_id)
+        expense = Expense(amount, category_name, description, self.user.user_id, date, expense_id)
 
         if str(self.user.user_id) not in data["expenses"]:
             data["expenses"][str(self.user.user_id)] = []
         data["expenses"][str(self.user.user_id)].append(vars(expense))
         save_data(data)
+
         logging.info(
-            f"Expense added: {expense.amount}, {expense.category}, {expense.description}, {expense.date}, ID: {expense.expense_id} by user {self.user.user_id}.")
+            f"Expense added: {expense.amount}, {expense.category}, {expense.description}, {expense.date}, ID: {expense.expense_id} by user {self.user.user_id}."
+        )
         print(f"[+] Expense added successfully with ID: {expense.expense_id}.")
 
     def list_expenses(self):
