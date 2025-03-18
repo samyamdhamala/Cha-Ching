@@ -1,0 +1,109 @@
+{
+    "users": [
+        {
+            "user_id": 0,
+            "username": "admin",
+            "password": "713bfda78870bf9d1b261f565286f85e97ee614efe5f0faf7c34e7ca4f65baca",
+            "role": "admin"
+        },
+        {
+            "user_id": 1,
+            "username": "samyam",
+            "password": "d888d94c0056df2f1431fa92a93445654a820e4f711433388bc4797c333f10d0",
+            "role": "user"
+        },
+        {
+            "user_id": 2,
+            "username": "chaching",
+            "password": "e94bf0f3ffbde0887a84e23be04b38f8214f19aae35fe8bf5dcfea46e39323ec",
+            "role": "user"
+        },
+        {
+            "user_id": 3,
+            "username": "sam",
+            "password": "e3e9fc033c2647b79bac54f75d0965c0715c6856e662fd02da8742100e5cda22",
+            "role": "user"
+        }
+    ],
+    "expenses": {
+        "3": [
+            {
+                "date": "2025-03-11",
+                "amount": 30.0,
+                "category": "Food",
+                "description": "Grocery 2nd Week",
+                "user_id": 3
+            },
+            {
+                "date": "2025-03-01",
+                "amount": 400.0,
+                "category": "Rent",
+                "description": "Rent March",
+                "user_id": 3
+            }
+        ],
+        "1": [
+            {
+                "date": "2025-03-01",
+                "amount": 350.0,
+                "category": "Rent",
+                "description": "Rent for month of MARCH",
+                "user_id": 1
+            },
+            {
+                "date": "2025-03-04",
+                "amount": 78.0,
+                "category": "Transport",
+                "description": "Heating And Eleectric MARCH",
+                "user_id": 1
+            },
+            {
+                "date": "2025-03-18",
+                "amount": 20.0,
+                "category": "Food",
+                "description": "Pizza Party",
+                "user_id": 1
+            }
+        ]
+    },
+    "categories": {
+        "1": {
+            "category_id": 1,
+            "name": "Food",
+            "user_id": 1
+        },
+        "2": {
+            "category_id": 2,
+            "name": "Rent",
+            "user_id": 1
+        },
+        "3": {
+            "category_id": 3,
+            "name": "Utilities",
+            "user_id": 1
+        },
+        "4": {
+            "category_id": 4,
+            "name": "Transport",
+            "user_id": 1
+        },
+        "5": {
+            "category_id": 5,
+            "name": "Entertainment",
+            "user_id": 1
+        },
+        "6": {
+            "category_id": 6,
+            "name": "Miscellaneous",
+            "user_id": 1
+        }
+    },
+    "budgets": {
+        "1": {
+            "2025-03": 1000.0
+        },
+        "3": {
+            "2025-03": 800.0
+        }
+    }
+}
