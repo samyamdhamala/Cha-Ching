@@ -59,10 +59,7 @@ def main_menu(auth):
 
 def admin_menu():
     data = load_data()
-
-    # Ensure "categories" exists and is a dictionary
-    if "categories" not in data or not isinstance(data["categories"], dict):
-        data["categories"] = {}
+    data["categories"] = {int(k): v for k, v in data.get("categories", {}).items()}  # Ensure keys are integers
 
     while True:
         print("\n=== Admin Menu ===")
@@ -76,18 +73,17 @@ def admin_menu():
         if choice == "1":
             name = input("Enter new category name: ").strip()
             if name:
-                category_id = len(data["categories"]) + 1  # Auto-incrementing category ID
-                new_cat = Category(name=name, user_id=1, category_id=category_id)  # Admin ID assumed as 1
-
-                # Store category as a dictionary entry instead of using append()
+                category_id = max(data["categories"].keys(), default=0) + 1  # Ensure unique category IDs
+                new_cat = Category(name=name, user_id=1, category_id=category_id)
                 data["categories"][category_id] = vars(new_cat)
-
                 save_data(data)
                 print("[+] Category created.")
+
         elif choice == "2":
             print("\nAvailable Categories:")
             for cat_id, cat in data["categories"].items():
                 print(f"{cat_id}: {cat['name']}")
+
         elif choice == "3":
             print("\nAvailable Categories:")
             for cat_id, cat in data["categories"].items():
@@ -103,6 +99,7 @@ def admin_menu():
                     print("[!] Invalid Category ID.")
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
+
         elif choice == "4":
             print("\nAvailable Categories:")
             for cat_id, cat in data["categories"].items():
@@ -117,6 +114,7 @@ def admin_menu():
                     print("[!] Invalid Category ID.")
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
+
         elif choice == "5":
             print("Logging out...")
             break

@@ -23,6 +23,12 @@
             "username": "sam",
             "password": "e3e9fc033c2647b79bac54f75d0965c0715c6856e662fd02da8742100e5cda22",
             "role": "user"
+        },
+        {
+            "user_id": 4,
+            "username": "gamvi",
+            "password": "37eae3d57f703f9f0e98b68b44607e42fb2a0a25b33d1d6af16959bcf7a6219c",
+            "role": "user"
         }
     ],
     "expenses": {
@@ -75,7 +81,7 @@
                 "category": "Horror",
                 "description": "fsf",
                 "user_id": 1,
-                "date": "afaf"
+                "date": "2025-03-18"
             },
             {
                 "expense_id": 7,
@@ -118,9 +124,14 @@
             "name": "Miscellaneous",
             "user_id": 1
         },
-        "7": {
-            "category_id": 7,
-            "name": "Horror",
+        "8": {
+            "category_id": 8,
+            "name": "New Test",
+            "user_id": 1
+        },
+        "9": {
+            "category_id": 9,
+            "name": "Tessttt",
             "user_id": 1
         }
     },
