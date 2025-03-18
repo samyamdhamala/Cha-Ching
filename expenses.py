@@ -1,134 +1,184 @@
-# expenses.py - Manages Expenses & Budgets with File-Based Storage
 import logging
-import datetime  # 🔥 FIXED: Ensure datetime is imported globally
 from file_manager import load_data, save_data
 from models import Expense
+import itertools
+import datetime
+import re
+
+logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 class ExpenseTracker:
+    expense_id_counter = itertools.count(1)  # Ensures unique expense IDs
+
     def __init__(self, user):
         """Initializes expense tracking for a user."""
         self.user = user
         data = load_data()
-        self.expenses = [Expense(**{k: v for k, v in exp.items() if k in Expense.__init__.__code__.co_varnames})
-                         for exp in data["expenses"].get(str(user.user_id), [])]
-        self.budgets = data["budgets"].get(str(user.user_id), {})
+        user_expenses = data.get("expenses", {}).get(str(user.user_id), [])
+        if user_expenses:
+            max_existing_id = max(exp.get("expense_id", 0) for exp in user_expenses)
+            ExpenseTracker.expense_id_counter = itertools.count(max_existing_id + 1)
 
-    def add_expense(self, expense: Expense = None):
-        """Adds an expense either from user input or directly via an Expense object."""
+    def add_expense(self):
+        """Prompts the user to select a category and adds an expense."""
         data = load_data()
+        categories = [cat["name"] for cat in data.get("categories", {}).values()]
 
-        if expense is None:
-            # ✅ Correct way to load category names
-            categories = [cat["name"] for cat in data["categories"].values()]
+        if not categories:
+            print("[!] No categories available. Please ask the admin to create categories first.")
+            return
 
-            if not categories:
-                print("[!] No categories available. Please ask the admin to create categories first.")
-                return
+        print("\nAvailable Categories:")
+        for i, cat in enumerate(categories, start=1):
+            print(f"{i}. {cat}")
 
-            # Step 1: Select category
-            print("\nAvailable Categories:")
-            for i, cat in enumerate(categories, start=1):
-                print(f"{i}. {cat}")
+        while True:
             try:
                 category_index = int(input("Select category number: ").strip()) - 1
-                category = categories[category_index]  # ✅ Now correctly refers to category names
-            except (IndexError, ValueError):
-                print("[!] Invalid category selection.")
-                return
+                if category_index < 0 or category_index >= len(categories):
+                    raise ValueError
+                category = categories[category_index]
+                break
+            except (ValueError, IndexError):
+                print("[!] Invalid category selection. Please enter a valid number from the list.")
 
-            # Step 2: Enter amount
+        while True:
             try:
                 amount = float(input("Enter expense amount: ").strip())
-            except ValueError:
-                print("[!] Invalid amount. Please enter a numeric value.")
-                return
+                if amount <= 0:
+                    raise ValueError("Amount must be a positive number.")
+                break
+            except ValueError as e:
+                print(f"[!] Invalid amount. {e}")
 
-            # Step 3: Enter description
+        while True:
             description = input("Enter description: ").strip()
+            if not description:
+                print("[!] Description cannot be empty.")
+            else:
+                break
 
-            # Step 4: Enter Date (Ensuring the prompt always appears)
-            date = None
-            while date is None:
-                date_input = input("Enter Date (YYYY-MM-DD) or press Enter for today's date: ").strip()
-                if not date_input:
-                    date = datetime.datetime.now().strftime("%Y-%m-%d")
-                else:
-                    try:
-                        datetime.datetime.strptime(date_input, "%Y-%m-%d")  # Validate format
-                        date = date_input
-                    except ValueError:
-                        print("[!] Invalid date format. Please enter in YYYY-MM-DD format.")
+        while True:
+            date = input("Enter date (YYYY-MM-DD) or press Enter for today: ").strip()
+            if not date:
+                date = datetime.datetime.now().strftime("%Y-%m-%d")
+                break
+            elif re.match(r"^\\d{4}-\\d{2}-\\d{2}$", date):
+                try:
+                    datetime.datetime.strptime(date, "%Y-%m-%d")  # Validate date format
+                    break
+                except ValueError:
+                    print("[!] Invalid date format. Please enter a valid date in YYYY-MM-DD format.")
+            else:
+                print("[!] Invalid date format. Please enter in YYYY-MM-DD format.")
 
-            # Create an Expense object with the correct category name
-            expense = Expense(amount, category, description, self.user.user_id, date)
+        expense_id = next(ExpenseTracker.expense_id_counter)  # Assign unique ID
 
-        # Save the new expense
-        self.expenses.append(expense)
+        expense = Expense(amount, category, description, self.user.user_id, date, expense_id)
+
         if str(self.user.user_id) not in data["expenses"]:
             data["expenses"][str(self.user.user_id)] = []
         data["expenses"][str(self.user.user_id)].append(vars(expense))
         save_data(data)
+        logging.info(
+            f"Expense added: {expense.amount}, {expense.category}, {expense.description}, {expense.date}, ID: {expense.expense_id} by user {self.user.user_id}.")
+        print(f"[+] Expense added successfully with ID: {expense.expense_id}.")
 
-        logging.info(f"Expense added for user '{self.user.username}': {vars(expense)}")
-        print(f"[+] Expense added: {expense.date} {expense.category} {expense.amount:.2f} {expense.description}")
-
-    def set_budget(self, period: str, amount: float):
-        """Sets a budget for the user and saves it."""
-        self.budgets[period] = amount
-
+    def list_expenses(self):
+        """Lists all expenses for the user."""
         data = load_data()
-        if str(self.user.user_id) not in data["budgets"]:
-            data["budgets"][str(self.user.user_id)] = {}
-        data["budgets"][str(self.user.user_id)][period] = amount
-        save_data(data)
-
-        logging.info(f"Budget set for user '{self.user.username}' - {period}: {amount:.2f}")
-        print(f"[+] Budget set for {period}: {amount:.2f}")
-
-    def get_budget_for_period(self, period: str):
-        """Retrieves the budget for a given period."""
-        return self.budgets.get(period, None)
+        user_expenses = data["expenses"].get(str(self.user.user_id), [])
+        if not user_expenses:
+            print("[i] No expenses recorded yet.")
+            return
+        print("\n------ Expense List ------")
+        for exp in user_expenses:
+            print(
+                f"ID: {exp['expense_id']} | {exp['date']} - {exp['category']}: {exp['amount']:.2f} ({exp['description']})")
 
     def view_summary(self):
-        """Displays the user's expense summary, including total expenses and remaining budget."""
-        current_period = datetime.datetime.now().strftime("%Y-%m")
-        total_expenses = sum(exp.amount for exp in self.expenses)
-        budget = self.get_budget_for_period(current_period)
+        """Displays a summary of the user's expenses."""
+        data = load_data()
+        user_expenses = data["expenses"].get(str(self.user.user_id), [])
+        total_expenses = sum(exp["amount"] for exp in user_expenses)
+        budget_data = data.get("budgets", {}).get(str(self.user.user_id), {})
+        current_month = datetime.datetime.now().strftime("%Y-%m")
+        budget = budget_data.get(current_month, None)
 
         print("\n------ Expense Summary ------")
+        print(f"Total Expenses: {total_expenses:.2f}")
+
         if budget is not None:
-            print(f"Budget for {current_period}: {budget:.2f}")
-            print(f"Total Expenses     : {total_expenses:.2f}")
-            print(f"Remaining Budget   : {budget - total_expenses:.2f}")
+            print(f"Budget for {current_month}: {budget:.2f}")
+            remaining_budget = budget - total_expenses
+            print(f"Remaining Budget: {remaining_budget:.2f}")
             if total_expenses > budget:
                 print("[!] Warning: You have exceeded your budget!")
             else:
                 print("[i] You are within your budget.")
         else:
-            print(f"[i] No budget set for {current_period}.")
-            print(f"Total Expenses     : {total_expenses:.2f}")
+            print(f"[i] No budget set for {current_month}.")
 
         print("\nExpenses by Category:")
         category_totals = {}
-        for exp in self.expenses:
-            category_totals[exp.category] = category_totals.get(exp.category, 0) + exp.amount
+        for exp in user_expenses:
+            category_totals[exp["category"]] = category_totals.get(exp["category"], 0) + exp["amount"]
         for cat, amt in category_totals.items():
             print(f"  {cat:<20}: {amt:.2f}")
 
-    def list_expenses(self):
-        """Lists all expenses for the user."""
-        if not self.expenses:
-            print("[i] No expenses recorded yet.")
-            return
-        print("\n------ Expense List ------")
-        for exp in self.expenses:
-            print(f"{exp.date} - {exp.category}: {exp.amount:.2f} ({exp.description})")
+    def set_budget(self, period, amount):
+        """Sets a budget for the user."""
+        data = load_data()
+        if str(self.user.user_id) not in data["budgets"]:
+            data["budgets"][str(self.user.user_id)] = {}
+        data["budgets"][str(self.user.user_id)][period] = amount
+        save_data(data)
+        logging.info(f"Budget set for {period}: {amount} by user {self.user.user_id}.")
+        print(f"[+] Budget set for {period}: {amount:.2f}")
 
-class Expense:
-    def __init__(self, amount: float, category: str, description: str, user_id: int, date: str = None):
-        """Initializes an expense object with a user-inputted date, ensuring valid input."""
-        self.date = date
-        self.amount = amount
-        self.category = category
-        self.description = description
-        self.user_id = user_id
+    def edit_expense(self):
+        """Allows the user to edit an existing expense."""
+        self.list_expenses()
+        try:
+            expense_id = int(input("Enter Expense ID to edit: "))
+        except ValueError:
+            print("[!] Invalid Expense ID.")
+            return
+
+        data = load_data()
+        user_expenses = data["expenses"].get(str(self.user.user_id), [])
+        for expense in user_expenses:
+            if expense["expense_id"] == expense_id:
+                try:
+                    new_amount = float(input("Enter new amount: ").strip())
+                    new_description = input("Enter new description: ").strip()
+                    expense["amount"] = new_amount
+                    expense["description"] = new_description
+                    save_data(data)
+                    print("[+] Expense updated successfully.")
+                    return
+                except ValueError:
+                    print("[!] Invalid input.")
+                    return
+        print("[!] Expense ID not found.")
+
+    def delete_expense(self):
+        """Allows the user to delete an expense."""
+        self.list_expenses()
+        try:
+            expense_id = int(input("Enter Expense ID to delete: "))
+        except ValueError:
+            print("[!] Invalid Expense ID.")
+            return
+
+        data = load_data()
+        user_expenses = data["expenses"].get(str(self.user.user_id), [])
+        updated_expenses = [exp for exp in user_expenses if exp["expense_id"] != expense_id]
+        if len(updated_expenses) == len(user_expenses):
+            print("[!] Expense ID not found.")
+            return
+
+        data["expenses"][str(self.user.user_id)] = updated_expenses
+        save_data(data)
+        print("[+] Expense deleted successfully.")

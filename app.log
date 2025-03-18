@@ -130,3 +130,52 @@
 2025-03-18 01:40:13,657 - INFO - Data saved successfully.
 2025-03-18 01:40:13,657 - INFO - Expense added for user 'samyam': {'date': '2025-03-18', 'amount': 20.0, 'category': 'Food', 'description': 'Pizza Party', 'user_id': 1}
 2025-03-18 01:40:16,927 - INFO - User 'samyam' logged out.
+2025-03-18 01:54:53,192 - INFO - User 'samyam' logged in successfully.
+2025-03-18 01:56:22,223 - INFO - User 'samyam' logged in successfully.
+2025-03-18 01:57:54,263 - INFO - User 'samyam' logged in successfully.
+2025-03-18 01:58:35,844 - INFO - User 'samyam' logged in successfully.
+2025-03-18 01:58:47,694 - INFO - Data saved successfully.
+2025-03-18 01:58:47,694 - INFO - Expense added for user 'samyam': {'date': '2025-03-18', 'amount': 5.0, 'category': 'Food', 'description': 'Cancy', 'user_id': 1}
+2025-03-18 02:00:22,032 - INFO - User 'sam' logged in successfully.
+2025-03-18 02:05:05,329 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:06:50,392 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:10:16,790 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:11:58,560 - INFO - User 'sam' logged in successfully.
+2025-03-18 02:12:18,911 - INFO - Data saved successfully.
+2025-03-18 02:12:18,911 - INFO - Expense added: 20.0, Food, fe, 2025-03-18, ID: 3 by user 3.
+2025-03-18 02:12:33,826 - INFO - User 'sam' logged out.
+2025-03-18 02:13:21,037 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:14:12,158 - INFO - Data saved successfully.
+2025-03-18 02:14:12,158 - INFO - Expense added: 20.0, Dance, dfsdf, 2025-03-18, ID: 5 by user 1.
+2025-03-18 02:14:15,999 - INFO - User 'samyam' logged out.
+2025-03-18 02:15:49,950 - INFO - User 'admin' logged in successfully.
+2025-03-18 02:15:57,290 - INFO - Data saved successfully.
+2025-03-18 02:16:17,496 - WARNING - Failed login attempt for username 'sam123'
+2025-03-18 02:16:26,530 - WARNING - Failed login attempt for username 'samyam123'
+2025-03-18 02:16:32,278 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:17:09,032 - INFO - Data saved successfully.
+2025-03-18 02:17:09,033 - INFO - Expense added: 30.0, Horror, fsf, afaf, ID: 6 by user 1.
+2025-03-18 02:17:18,039 - INFO - User 'samyam' logged out.
+2025-03-18 02:18:44,406 - INFO - User 'sam' logged in successfully.
+2025-03-18 02:19:16,287 - INFO - Data saved successfully.
+2025-03-18 02:19:16,287 - INFO - Expense added: 20.0, Rent, This is test, 2025-03-18, ID: 4 by user 3.
+2025-03-18 02:19:25,914 - INFO - User 'sam' logged out.
+2025-03-18 02:21:58,859 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:22:38,811 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:23:13,351 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:23:34,473 - WARNING - Failed login attempt for username 'samyam'
+2025-03-18 02:23:44,774 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:23:55,425 - INFO - Data saved successfully.
+2025-03-18 02:23:55,425 - INFO - Expense added: 10.0, Utilities, Test, 2025-03-18, ID: 7 by user 1.
+2025-03-18 02:25:30,577 - INFO - User 'samyam' logged in successfully.
+2025-03-18 02:26:23,077 - WARNING - Failed login attempt for username 'samya'
+2025-03-18 02:26:27,287 - INFO - User 'sam' logged in successfully.
+2025-03-18 02:27:53,348 - INFO - User 'sam' logged in successfully.
+2025-03-18 02:28:02,366 - INFO - Data saved successfully.
+2025-03-18 02:28:02,366 - INFO - Budget set for 2025-03: 100.0 by user 3.
+2025-03-18 02:28:38,128 - INFO - User 'sam' logged out.
+2025-03-18 02:30:42,419 - INFO - User 'sam' logged in successfully.
+2025-03-18 02:36:27,860 - INFO - User 'sam' logged in successfully.
+2025-03-18 02:37:26,248 - INFO - Data saved successfully.
+2025-03-18 02:37:59,031 - INFO - Data saved successfully.
+2025-03-18 02:38:04,132 - INFO - Data saved successfully.
