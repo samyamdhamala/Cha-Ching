@@ -23,6 +23,12 @@
             "username": "sam",
             "password": "e3e9fc033c2647b79bac54f75d0965c0715c6856e662fd02da8742100e5cda22",
             "role": "user"
+        },
+        {
+            "user_id": 4,
+            "username": "alvi",
+            "password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+            "role": "user"
         }
     ],
     "expenses": {
@@ -64,6 +70,15 @@
                 "description": "Pizza Party",
                 "user_id": 1
             }
+        ],
+        "4": [
+            {
+                "date": "2025-03-18",
+                "amount": 20.0,
+                "category": "Food",
+                "description": "coffee",
+                "user_id": 4
+            }
         ]
     },
     "categories": {
@@ -104,6 +119,9 @@
         },
         "3": {
             "2025-03": 800.0
+        },
+        "4": {
+            "": 300.0
         }
     }
 }
