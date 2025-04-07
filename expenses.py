@@ -38,11 +38,12 @@ class ExpenseTracker:
             try:
                 category_id = int(input("Select category ID: ").strip())
                 if category_id not in categories:
-                    raise ValueError
+                    raise ValueError("Invalid category ID.")
                 category_name = categories[category_id]
                 break
-            except ValueError:
-                print("[!] Invalid category selection. Please enter a valid number from the list.")
+            except ValueError as e:
+                logging.warning(f"Invalid category input: {e}")
+                print("[!] Invalid category selection. Please enter a valid number.")
 
         while True:
             try:
@@ -51,7 +52,8 @@ class ExpenseTracker:
                     raise ValueError("Amount must be a positive number.")
                 break
             except ValueError as e:
-                print(f"[!] Invalid amount. {e}")
+                logging.warning(f"Invalid amount entered: {e}")
+                print(f"[!] Invalid amount. Please enter a valid positive number.")
 
         while True:
             description = input("Enter description: ").strip()
@@ -65,9 +67,9 @@ class ExpenseTracker:
             if not date:
                 date = datetime.datetime.now().strftime("%Y-%m-%d")
                 break
-            elif re.match(r"^\d{4}-\d{2}-\d{2}$", date):  # ✅ Fixed regex
+            elif re.match(r"^\d{4}-\d{2}-\d{2}$", date):  #date regex
                 try:
-                    datetime.datetime.strptime(date, "%Y-%m-%d")  # ✅ Validate actual date
+                    datetime.datetime.strptime(date, "%Y-%m-%d")  # Validate actual date
                     break
                 except ValueError:
                     print("[!] Invalid date. Please enter a valid date in YYYY-MM-DD format.")
