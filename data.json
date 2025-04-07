@@ -29,6 +29,18 @@
             "username": "gamvi",
             "password": "37eae3d57f703f9f0e98b68b44607e42fb2a0a25b33d1d6af16959bcf7a6219c",
             "role": "user"
+        },
+        {
+            "user_id": 5,
+            "username": "alvi23",
+            "password": "fc563097044d49ff0464e9515e2a6c764c12aad9ca825c7355f6662bccabec96",
+            "role": "user"
+        },
+        {
+            "user_id": 6,
+            "username": "sam123",
+            "password": "e3e9fc033c2647b79bac54f75d0965c0715c6856e662fd02da8742100e5cda22",
+            "role": "user"
         }
     ],
     "expenses": {
@@ -76,14 +88,6 @@
                 "expense_id": 4
             },
             {
-                "expense_id": 6,
-                "amount": 30.0,
-                "category": "Horror",
-                "description": "fsf",
-                "user_id": 1,
-                "date": "2025-03-18"
-            },
-            {
                 "expense_id": 7,
                 "amount": 10.0,
                 "category": "Utilities",
@@ -102,10 +106,18 @@
             {
                 "expense_id": 9,
                 "amount": 20.0,
-                "category": "Tessttt",
-                "description": "test description",
+                "category": "Food",
+                "description": "coffee",
                 "user_id": 1,
-                "date": "2025-03-16"
+                "date": "2025-03-18"
+            },
+            {
+                "expense_id": 10,
+                "amount": 1000.0,
+                "category": "Rent",
+                "description": "buy apartment",
+                "user_id": 1,
+                "date": "2025-03-18"
             }
         ]
     },
@@ -143,11 +155,6 @@
         "8": {
             "category_id": 8,
             "name": "New Test",
-            "user_id": 1
-        },
-        "9": {
-            "category_id": 9,
-            "name": "Tessttt",
             "user_id": 1
         }
     },

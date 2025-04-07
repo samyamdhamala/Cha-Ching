@@ -1,10 +1,19 @@
 # app.py - Main Application Entry Point with File-Based Storage
 import sys
+import logging
+
+# Configure logging
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 from auth import Authentication
 from expenses import ExpenseTracker
 from file_manager import load_data, save_data
 from models import User, Expense, Category
 from file_manager import hash_password
+from app_gui import AppGUI
 
 
 def create_admin(auth):
@@ -31,6 +40,7 @@ def create_admin(auth):
     data["users"].append(admin_user)
     save_data(data)
     print("[✔] Admin account created with hashed password.")
+    logging.info("Admin account created with hashed password.")
 
 
 def main_menu(auth):
@@ -45,20 +55,25 @@ def main_menu(auth):
             username = input("Enter username: ").strip()
             password = input("Enter password: ").strip()
             auth.register(username, password)
+            logging.info(f"User '{username}' attempted to register.")
         elif choice == "2":
             username = input("Username: ").strip()
             password = input("Password: ").strip()
             if auth.login(username, password):
+                logging.info(f"User '{username}' logged in successfully.")
                 return auth.get_current_user()
         elif choice == "3":
             print("Exiting... Goodbye!")
+            logging.info("Application exiting...")
             sys.exit(0)
         else:
             print("[!] Invalid choice.")
+        logging.warning("Invalid main menu choice selected.")
 
 
 def admin_menu():
     data = load_data()
+    # Ensure category keys are integers to avoid key mismatches during access
     data["categories"] = {int(k): v for k, v in data.get("categories", {}).items()}  # Ensure keys are integers
 
     while True:
@@ -78,6 +93,7 @@ def admin_menu():
                 data["categories"][category_id] = vars(new_cat)
                 save_data(data)
                 print("[+] Category created.")
+                logging.info(f"Category '{name}' created by admin.")
 
         elif choice == "2":
             print("\nAvailable Categories:")
@@ -95,10 +111,19 @@ def admin_menu():
                     data["categories"][cat_id]["name"] = new_name
                     save_data(data)
                     print("[+] Category updated.")
+                    logging.info(f"Category ID {cat_id} renamed to '{new_name}' by admin.")
                 else:
                     print("[!] Invalid Category ID.")
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
+                logging.warning("Invalid input while deleting category: expected a number.")
+            except KeyError:
+                print("[!] Category ID not found.")
+                logging.error(f"KeyError while deleting category ID: {cat_id}")
+                logging.warning("Invalid input while editing category: expected a number.")
+            except KeyError:
+                print("[!] Category ID not found.")
+                logging.error(f"KeyError while editing category ID: {cat_id}")
 
         elif choice == "4":
             print("\nAvailable Categories:")
@@ -110,16 +135,22 @@ def admin_menu():
                     del data["categories"][cat_id]
                     save_data(data)
                     print("[+] Category deleted.")
+                    logging.info(f"Category ID {cat_id} deleted by admin.")
                 else:
                     print("[!] Invalid Category ID.")
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
+                logging.warning("Invalid input while editing category: expected a number.")
+            except KeyError:
+                print("[!] Category ID not found.")
+                logging.error(f"KeyError while editing category ID: {cat_id}")
 
         elif choice == "5":
             print("Logging out...")
             break
         else:
             print("[!] Invalid choice.")
+        logging.warning("Invalid main menu choice selected.")
 
 
 def user_menu(auth, user_trackers):
@@ -158,6 +189,7 @@ def user_menu(auth, user_trackers):
             tracker.view_summary()
         elif choice == "7":
             print("[-] Logging out...")
+            logging.info(f"User '{user.username}' logged out.")
             auth.logout()
             break
         else:
@@ -178,4 +210,6 @@ def run_app():
 
 
 if __name__ == "__main__":
-    run_app()
+    logging.info("Application started.")
+    app = AppGUI()
+    app.mainloop()
