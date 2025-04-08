@@ -118,6 +118,14 @@
                 "description": "buy apartment",
                 "user_id": 1,
                 "date": "2025-03-18"
+            },
+            {
+                "expense_id": 11,
+                "amount": 400.0,
+                "category": "Rent",
+                "description": "Rent April",
+                "user_id": 1,
+                "date": "2025-04-08"
             }
         ]
     },
@@ -155,6 +163,10 @@
         "8": {
             "category_id": 8,
             "name": "New Test",
+            "user_id": 1
+        },
+        "9": {
+            "name": "Test",
             "user_id": 1
         }
     },
