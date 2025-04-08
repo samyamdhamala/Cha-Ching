@@ -198,3 +198,98 @@
 2025-03-18 15:28:52,073 - INFO - Data saved successfully.
 2025-03-18 15:28:52,073 - INFO - Expense added: 20.0, Tessttt, test description, 2025-03-16, ID: 9 by user 1.
 2025-03-18 15:37:40,945 - INFO - Data saved successfully.
+2025-03-18 17:36:10,649 - INFO - User 'samyam' logged in successfully.
+2025-03-18 19:03:29,316 - INFO - User 'samyam' logged out.
+2025-03-18 19:04:16,771 - INFO - User 'samyam' logged in successfully.
+2025-03-18 19:04:39,682 - INFO - Data saved successfully.
+2025-03-18 19:06:27,215 - INFO - Data saved successfully.
+2025-03-18 19:06:27,215 - INFO - Expense added: 20.0, Rent, Test, 2025-03-18, ID: 10 by user 1.
+2025-03-18 19:06:32,247 - INFO - Data saved successfully.
+2025-03-18 19:07:09,676 - INFO - Data saved successfully.
+2025-03-18 19:25:02,965 - WARNING - Failed login attempt for username 'samyam'
+2025-03-18 19:26:26,529 - WARNING - Registration failed: Username 'samyam' already exists.
+2025-03-18 19:28:45,569 - INFO - User 'samyam' logged in successfully.
+2025-03-18 19:35:12,390 - INFO - User 'samyam' logged in successfully.
+2025-03-18 19:35:33,841 - INFO - User 'samyam' logged in successfully.
+2025-03-18 19:36:06,835 - INFO - User 'samyam' logged in successfully.
+2025-03-18 20:21:51,647 - INFO - Data saved successfully.
+2025-03-18 20:21:51,648 - INFO - User 'alvi23' registered successfully.
+2025-03-18 20:22:59,600 - INFO - User 'admin' logged in successfully.
+2025-03-18 20:23:29,400 - INFO - Data saved successfully.
+2025-03-18 20:23:55,268 - WARNING - Failed login attempt for username 'alvi23'
+2025-03-18 20:24:09,502 - INFO - User 'samyam' logged in successfully.
+2025-03-18 20:24:30,462 - INFO - Data saved successfully.
+2025-03-18 20:24:30,462 - INFO - Expense added: 10.0, Food, snack, 2025-03-18, ID: 9 by user 1.
+2025-03-18 20:25:36,413 - INFO - Data saved successfully.
+2025-03-18 20:26:13,905 - INFO - Data saved successfully.
+2025-03-18 20:26:13,905 - INFO - Expense added: 1000.0, Rent, buy apartment, 2025-03-18, ID: 10 by user 1.
+2025-04-05 22:25:19,521 - WARNING - Failed login attempt for username 'samyam'
+2025-04-05 22:26:28,110 - WARNING - Failed login attempt for username 'samyam'
+2025-04-05 22:26:40,097 - WARNING - Failed login attempt for username 'samyam'
+2025-04-05 22:26:55,001 - WARNING - Failed login attempt for username 'samyam'
+2025-04-05 22:27:04,974 - INFO - Data saved successfully.
+2025-04-05 22:27:04,975 - INFO - User 'sam123' registered successfully.
+2025-04-07 16:02:55,077 - INFO - Application started.
+2025-04-07 16:04:08,112 - INFO - Application started.
+2025-04-07 16:04:15,500 - WARNING - Failed login attempt for username 'samyam'
+2025-04-07 16:04:15,501 - WARNING - Invalid main menu choice selected.
+2025-04-07 16:04:19,884 - WARNING - Invalid main menu choice selected.
+2025-04-07 16:04:29,231 - INFO - User 'samyam' logged in successfully.
+2025-04-07 16:04:29,231 - INFO - User 'samyam' logged in successfully.
+2025-04-07 16:11:02,545 - WARNING - Registration failed: Username 'sam123' already exists.
+2025-04-07 16:14:59,509 - WARNING - Failed login attempt for username 'Username'
+2025-04-07 16:15:11,217 - INFO - User 'samyam' logged in successfully.
+2025-04-07 16:29:32,215 - INFO - User 'samyam' logged in successfully.
+2025-04-07 16:29:46,202 - INFO - User 'admin' logged in successfully.
+2025-04-07 16:29:58,803 - INFO - User 'admin' logged in successfully.
+2025-04-08 01:04:36,340 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:04:38,395 - INFO - User 'samyam' logged out.
+2025-04-08 01:04:44,767 - INFO - Data saved successfully.
+2025-04-08 01:04:44,767 - INFO - User '' registered successfully.
+2025-04-08 01:05:30,064 - WARNING - Failed login attempt for username 'samyam'
+2025-04-08 01:05:34,034 - WARNING - Failed login attempt for username 'samyam'
+2025-04-08 01:05:39,499 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:06:26,372 - INFO - User 'admin' logged in successfully.
+2025-04-08 01:06:44,883 - INFO - Data saved successfully.
+2025-04-08 01:07:11,860 - INFO - User 'admin' logged out.
+2025-04-08 01:10:12,310 - WARNING - Failed login attempt for username 'Username'
+2025-04-08 01:10:20,941 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:25:31,850 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:26:06,759 - INFO - Data saved successfully.
+2025-04-08 01:28:56,184 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:29:01,564 - INFO - User 'samyam' logged out.
+2025-04-08 01:32:46,013 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:41:00,793 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:41:21,633 - INFO - User 'samyam' logged out.
+2025-04-08 01:41:35,194 - WARNING - Failed login attempt for username 'gamvi'
+2025-04-08 01:44:08,250 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:44:28,412 - INFO - Data saved successfully.
+2025-04-08 01:44:53,807 - INFO - Data saved successfully.
+2025-04-08 01:45:06,473 - INFO - User 'samyam' logged out.
+2025-04-08 01:45:10,701 - INFO - User 'samyam' logged in successfully.
+2025-04-08 01:45:49,548 - INFO - Data saved successfully.
+2025-04-08 01:49:55,831 - INFO - User 'samyam' logged in successfully.
+2025-04-08 02:00:10,607 - INFO - User 'samyam' logged in successfully.
+2025-04-08 02:01:05,691 - INFO - Data saved successfully.
+2025-04-08 02:04:57,853 - WARNING - Failed login attempt for username 'samyam'
+2025-04-08 02:05:04,307 - INFO - User 'samyam' logged in successfully.
+2025-04-08 02:05:17,190 - INFO - Data saved successfully.
+2025-04-08 02:05:39,155 - INFO - Data saved successfully.
+2025-04-08 02:05:52,265 - INFO - Data saved successfully.
+2025-04-08 02:05:58,099 - INFO - Data saved successfully.
+2025-04-08 02:09:33,122 - INFO - Data saved successfully.
+2025-04-08 02:11:36,990 - INFO - User 'samyam' logged in successfully.
+2025-04-08 02:14:19,101 - INFO - User 'samyam' logged in successfully.
+2025-04-08 09:45:36,599 - INFO - Data saved successfully.
+2025-04-08 09:45:36,601 - INFO - User 'richard' registered successfully.
+2025-04-08 09:45:46,665 - WARNING - Failed login attempt for username 'richard'
+2025-04-08 09:45:52,716 - WARNING - Failed login attempt for username 'richard'
+2025-04-08 09:46:17,698 - INFO - Application started.
+2025-04-08 09:46:28,367 - INFO - Data saved successfully.
+2025-04-08 09:46:28,368 - INFO - User 'richard' registered successfully.
+2025-04-08 09:46:37,957 - INFO - User 'richard' logged in successfully.
+2025-04-08 09:47:10,277 - INFO - Data saved successfully.
+2025-04-08 09:47:46,285 - INFO - Data saved successfully.
+2025-04-08 10:13:07,258 - INFO - Application started.
+2025-04-08 10:13:16,527 - INFO - User 'samyam' logged in successfully.
+2025-04-08 10:14:09,046 - INFO - User 'samyam' logged out.
