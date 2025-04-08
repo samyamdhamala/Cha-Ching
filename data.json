@@ -41,6 +41,12 @@
             "username": "sam123",
             "password": "e3e9fc033c2647b79bac54f75d0965c0715c6856e662fd02da8742100e5cda22",
             "role": "user"
+        },
+        {
+            "user_id": 7,
+            "username": "richard",
+            "password": "f883daa16a84769ab403ceb327a7c90b22a331d0447a935f6238b9d6b212ff61",
+            "role": "user"
         }
     ],
     "expenses": {
@@ -118,6 +124,32 @@
                 "description": "buy apartment",
                 "user_id": 1,
                 "date": "2025-03-18"
+            },
+            {
+                "expense_id": 11,
+                "amount": 400.0,
+                "category": "Rent",
+                "description": "Rent April",
+                "user_id": 1,
+                "date": "2025-04-08"
+            },
+            {
+                "expense_id": 14,
+                "amount": 56.0,
+                "category": "Utilities",
+                "description": "Wifi+ Gas + Electricity",
+                "user_id": 1,
+                "date": "2025-04-07"
+            }
+        ],
+        "7": [
+            {
+                "expense_id": 1,
+                "amount": 450.0,
+                "category": "Rent",
+                "description": "Rent for April",
+                "user_id": 7,
+                "date": "2025-04-01"
             }
         ]
     },
@@ -156,14 +188,22 @@
             "category_id": 8,
             "name": "New Test",
             "user_id": 1
+        },
+        "9": {
+            "name": "Test",
+            "user_id": 1
         }
     },
     "budgets": {
         "1": {
-            "2025-03": 1000.0
+            "2025-03": 1000.0,
+            "2025-04": 1000.0
         },
         "3": {
             "2025-03": 100.0
+        },
+        "7": {
+            "2025-04": 800.0
         }
     }
 }
