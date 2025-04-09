@@ -47,6 +47,12 @@
             "username": "richard",
             "password": "f883daa16a84769ab403ceb327a7c90b22a331d0447a935f6238b9d6b212ff61",
             "role": "user"
+        },
+        {
+            "user_id": 8,
+            "username": "richie",
+            "password": "fba3dc1f1e72f71e93db4c73d6d1619e843d88ff5818a3dded344be1fe81043f",
+            "role": "user"
         }
     ],
     "expenses": {
@@ -81,7 +87,7 @@
                 "date": "2025-03-01",
                 "amount": 350.0,
                 "category": "Rent",
-                "description": "Rent for month of MARCH",
+                "description": "Rent for month of March",
                 "user_id": 1,
                 "expense_id": 3
             },
@@ -196,7 +202,7 @@
     },
     "budgets": {
         "1": {
-            "2025-03": 1000.0,
+            "2025-03": 1500.0,
             "2025-04": 1000.0
         },
         "3": {
