@@ -8,6 +8,9 @@ from tkcalendar import DateEntry
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import csv
+from landing import build_landing_content
+
+
 
 class BaseDashboard(ttk.Frame):
     def __init__(self, parent, controller):
@@ -45,17 +48,18 @@ class BaseDashboard(ttk.Frame):
             widget.destroy()
 
     def show_profile(self):
-        self.clear_content()
-        ttk.Label(self.content_frame, text=f"User Profile - {self.controller.auth.get_current_user().username}",
-                  font=("Segoe UI", 16)).pack(pady=20)
+        self.load_landing()
 
     def logout(self):
         self.controller.auth.logout()
         self.controller.show_frame(type(self.controller.frames[list(self.controller.frames.keys())[0]]))  # Redirect to HomePage
 
+
+
 class AdminDashboard(BaseDashboard):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
+        self.nav_actions = {}
 
         def create_nav_item(icon, text, command):
             full_text = f"{icon}  {text}"
@@ -71,53 +75,204 @@ class AdminDashboard(BaseDashboard):
         # ttk.Button(self.nav_frame, text="Create Category", command=self.create_category).pack(pady=5, fill="x")
         # ttk.Button(self.nav_frame, text="Delete Category", command=self.delete_category).pack(pady=5, fill="x")
 
-        create_nav_item("➕", "Create Category", self.create_category)
-        create_nav_item("🗑️", "Delete Category", self.delete_category)
+        # create_nav_item("➕", "Create Category", self.create_category)
+        # create_nav_item("🗑️", "Delete Category", self.delete_category)
+        self.nav_actions["Categories"] = create_nav_item("📁", "Categories", self.manage_categories)
 
-        ttk.Label(self.content_frame, text="Category Manager", font=("Segoe UI", 16)).pack(pady=10)
 
-        self.cat_name = ttk.Entry(self.content_frame)
-        self.cat_name.pack(pady=10)
+    def manage_categories(self):
+        import logging
+        logger = logging.getLogger(__name__)
 
-        self.cat_list = ttk.Combobox(self.content_frame)
-        self.cat_list.pack(pady=10)
-
-        self.refresh_categories()
-
-    def refresh_categories(self):
+        # Clear current content in the right-side frame
+        self.clear_content()
+        user = self.controller.auth.get_current_user()
         data = load_data()
-        cats = data.get("categories", {})
-        items = [f"{k}: {v['name']}" for k, v in cats.items()]
-        self.cat_list["values"] = items
 
-    def create_category(self):
-        name = self.cat_name.get().strip()
-        if not name:
-            messagebox.showerror("Error", "Category name cannot be empty.")
-            return
-        data = load_data()
-        new_id = max(map(int, data.get("categories", {}).keys()), default=0) + 1
-        data["categories"][new_id] = {"name": name, "user_id": 1}
-        save_data(data)
-        messagebox.showinfo("Success", "Category created.")
-        self.refresh_categories()
+        logger.info(f"[{user.username}] opened Category Management dashboard.")
 
-    def delete_category(self):
-        selected = self.cat_list.get()
-        if ":" not in selected:
-            return
-        cat_id = int(selected.split(":")[0])
-        data = load_data()
-        if cat_id in data["categories"]:
-            del data["categories"][cat_id]
+        # Wrapper frame for the full category management UI
+        wrapper = ttk.Frame(self.content_frame)
+        wrapper.pack(fill="both", expand=True, padx=40, pady=30)
+        wrapper.columnconfigure(0, weight=1)
+
+        # Page heading
+        ttk.Label(wrapper, text="📁 Manage Categories", font=("Segoe UI", 20, "bold")).grid(row=0, column=0,
+                                                                                           pady=(0, 20), sticky="w")
+
+        categories = data.get("categories", {})
+
+        # --- Treeview Table for Categories ---
+        table_frame = ttk.Frame(wrapper)
+        table_frame.grid(row=1, column=0, sticky="nsew")
+
+        columns = ("ID", "Name")
+        tree = ttk.Treeview(table_frame, columns=columns, show="headings", height=10)
+        tree.heading("ID", text="ID")
+        tree.heading("Name", text="Category Name")
+        tree.column("ID", width=80, anchor="center")
+        tree.column("Name", width=250)
+        tree.pack(side="left", fill="both", expand=True)
+
+        scrollbar = ttk.Scrollbar(table_frame, orient="vertical", command=tree.yview)
+        tree.configure(yscroll=scrollbar.set)
+        scrollbar.pack(side="right", fill="y")
+
+        # --- Edit/Delete Buttons ---
+        button_frame = ttk.Frame(wrapper)
+        button_frame.grid(row=2, column=0, pady=(10, 0), sticky="w")
+
+        def refresh_table():
+            for row in tree.get_children():
+                tree.delete(row)
+            for cid in sorted(categories, key=int):
+                cat = categories[cid]
+                tree.insert("", "end", iid=cid, values=(cid, cat['name']))
+
+        def on_edit():
+            selected = tree.selection()
+            if not selected:
+                logger.warning(f"[{user.username}] attempted to edit without selecting a category.")
+                messagebox.showwarning("Select", "Please select a category to edit.")
+                return
+            cid = selected[0]
+            old_name = categories[cid]['name']
+
+            # --- Edit Category Modal (Toplevel Window) ---
+            edit_win = tk.Toplevel(self)
+            edit_win.title("Edit Category")
+            edit_win.geometry("320x180")
+            edit_win.configure(bg="#2e2e2e")  # Match dark theme
+
+            # Label for input
+            ttk.Label(edit_win, text="Edit Category Name:", font=("Segoe UI", 12)).pack(pady=10)
+
+            # Input field
+            name_var = tk.StringVar(value=old_name)
+            entry = ttk.Entry(edit_win, textvariable=name_var, font=("Segoe UI", 11), width=30)
+            entry.pack(pady=5)
+
+            # Save Button
+            button_frame = ttk.Frame(edit_win)
+            button_frame.pack(pady=15)
+
+            def save():
+                new_name = name_var.get().strip()
+                if not new_name:
+                    logger.warning(f"[{user.username}] attempted to rename category ID {cid} with an empty name.")
+                    messagebox.showerror("Error", "Name cannot be empty.")
+                    return
+                if any(cat['name'].lower() == new_name.lower() for k, cat in categories.items() if k != cid):
+                    logger.warning(
+                        f"[{user.username}] attempted to rename category ID {cid} to a duplicate name: '{new_name}'")
+                    messagebox.showerror("Error", "Category already exists.")
+                    return
+
+                # ✅ Rename in category list
+                categories[cid]['name'] = new_name
+
+                # 🔁 Update all expenses using the old category name
+                for user_id, expenses_list in data.get("expenses", {}).items():
+                    for exp in expenses_list:
+                        if exp["category"] == old_name:
+                            exp["category"] = new_name
+
+                save_data(data)
+                refresh_table()
+                logger.info(
+                    f"[{user.username}] renamed category '{old_name}' to '{new_name}' and updated matching expenses.")
+                messagebox.showinfo("Updated", "Category updated successfully.")
+                edit_win.destroy()
+
+            ttk.Button(button_frame, text="💾 Save", style="Accent.TButton", command=save).pack()
+
+        def on_delete():
+            selected = tree.selection()
+            if not selected:
+                logger.warning(f"[{user.username}] attempted to delete without selecting a category.")
+                messagebox.showwarning("Select", "Please select a category to delete.")
+                return
+
+            cid = selected[0]
+            cat_name = categories[cid]["name"]
+
+            # 🔍 Check if category is used in any expense
+            used_in_expenses = any(
+                exp["category"] == cat_name
+                for user_exp in data.get("expenses", {}).values()
+                for exp in user_exp
+            )
+            if used_in_expenses:
+                logger.warning(f"[{user.username}] attempted to delete category '{cat_name}' that is in use.")
+                messagebox.showerror("Blocked", f"Category '{cat_name}' is used in expenses and cannot be deleted.")
+                return
+
+            confirm = messagebox.askyesno("Confirm", f"Delete category '{cat_name}'?")
+            if confirm:
+                logger.info(f"[{user.username}] deleted category ID {cid}: '{cat_name}'")
+                del categories[cid]
+                save_data(data)
+                refresh_table()
+                messagebox.showinfo("Deleted", "Category deleted.")
+
+        ttk.Button(button_frame, text="✏️ Edit", style="Accent.TButton", command=on_edit).pack(side="left", padx=5)
+        ttk.Button(button_frame, text="🗑️ Delete", style="Danger.TButton", command=on_delete).pack(side="left", padx=5)
+
+        # --- Create New Category Form ---
+        create_frame = ttk.Frame(wrapper)
+        create_frame.grid(row=3, column=0, pady=(30, 0), sticky="w")
+
+        ttk.Label(create_frame, text="➕ Create New Category:", font=("Segoe UI", 12)).grid(row=0, column=0, sticky="w")
+        new_cat_var = tk.StringVar()
+        new_cat_entry = ttk.Entry(create_frame, textvariable=new_cat_var, font=("Segoe UI", 11), width=30)
+        new_cat_entry.grid(row=1, column=0, pady=(0, 5), sticky="w")
+
+        def create_category():
+            name = new_cat_var.get().strip()
+            if not name:
+                logger.warning(f"[{user.username}] attempted to create a category with empty name.")
+                messagebox.showerror("Error", "Category name cannot be empty.")
+                return
+            if any(cat['name'].lower() == name.lower() for cat in categories.values()):
+                logger.warning(f"[{user.username}] attempted to create duplicate category: '{name}'")
+                messagebox.showerror("Error", "Category already exists.")
+                return
+
+            new_id = max(map(int, categories.keys()), default=0) + 1
+            categories[str(new_id)] = {
+                "category_id": new_id,
+                "name": name,
+                "user_id": user.user_id
+            }
             save_data(data)
-            messagebox.showinfo("Deleted", "Category deleted.")
-            self.refresh_categories()
+            categories.clear()
+            categories.update(load_data().get("categories", {}))
+            new_cat_var.set("")
+            refresh_table()
+            logger.info(f"[{user.username}] created new category ID {new_id}: '{name}'")
+            messagebox.showinfo("Created", f"Category '{name}' created.")
+
+        ttk.Button(create_frame, text="Create", style="Accent.TButton", command=create_category).grid(row=1, column=1,
+                                                                                                      padx=10)
+
+        refresh_table()
+
+
+
+    def load_landing(self):
+        self.clear_content()
+        build_landing_content(self.content_frame, self.controller)
+
+    def trigger_nav(self, name):
+        if name in self.nav_actions:
+            self.nav_actions[name].event_generate("<Button-1>")
+
 
 class UserDashboard(BaseDashboard):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
         self.active_nav_item = None  # Track currently selected nav label
+        self.nav_actions = {}
 
         def create_nav_item(icon, text, command):
             full_text = f"{icon}  {text}"
@@ -138,10 +293,10 @@ class UserDashboard(BaseDashboard):
 
             return btn
 
-        create_nav_item("💸", "Add Expense", self.add_expense)
-        create_nav_item("📋", "View Expenses", self.view_expenses)
-        create_nav_item("📊", "View Summary", self.view_summary)
-        create_nav_item("💼", "Set Budget", self.set_budget)
+        self.nav_actions["Add Expense"] = create_nav_item("💸", "Add Expense", self.add_expense)
+        self.nav_actions["View Expenses"] = create_nav_item("📋", "View Expenses", self.view_expenses)
+        self.nav_actions["View Summary"] = create_nav_item("📊", "View Summary", self.view_summary)
+        self.nav_actions["Set Budget"] = create_nav_item("💼", "Set Budget", self.set_budget)
 
         # Prevent the entire dashboard frame from shrinking
         self.config(width=1000, height=1000)
@@ -556,7 +711,7 @@ class UserDashboard(BaseDashboard):
                 labels = ["Expenses", "Budget"]
                 values = [total_spent, budget if budget else 0]
                 bars = ax1.bar(labels, values, color=["#f54242", "#42a1f5"], width=0.4)
-                ax1.set_ylim(0, max(values) * 1.2)
+                ax1.set_ylim(0, max(max(values), 1) * 1.2)
                 ax1.set_title("Expenses vs Budget", fontsize=14, fontweight="bold", pad=20)
                 ax1.set_ylabel("Amount ($)", fontsize=12)
                 ax1.grid(True, axis='y', linestyle='--', alpha=0.7)
@@ -640,5 +795,13 @@ class UserDashboard(BaseDashboard):
         ttk.Button(wrapper, text="💾 Save Budget", style="Accent.TButton", command=submit_budget).grid(
             row=5, column=0, sticky="e", pady=10
         )
+
+    def load_landing(self):
+        self.clear_content()
+        build_landing_content(self.content_frame, self.controller)
+
+    def trigger_nav(self, name):
+        if name in self.nav_actions:
+            self.nav_actions[name].event_generate("<Button-1>")
 
 #

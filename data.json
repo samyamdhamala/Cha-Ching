@@ -53,6 +53,12 @@
             "username": "richie",
             "password": "fba3dc1f1e72f71e93db4c73d6d1619e843d88ff5818a3dded344be1fe81043f",
             "role": "user"
+        },
+        {
+            "user_id": 9,
+            "username": "testuser",
+            "password": "d79aeec77b3b6e6ec5f45ae5e040173380262e1ea51b38747195c3cf09a02f16",
+            "role": "user"
         }
     ],
     "expenses": {
@@ -170,11 +176,6 @@
             "name": "Rent",
             "user_id": 1
         },
-        "3": {
-            "category_id": 3,
-            "name": "Utilities",
-            "user_id": 1
-        },
         "4": {
             "category_id": 4,
             "name": "Transport",
@@ -187,17 +188,13 @@
         },
         "6": {
             "category_id": 6,
-            "name": "Miscellaneous",
+            "name": "Other",
             "user_id": 1
         },
-        "8": {
-            "category_id": 8,
-            "name": "New Test",
-            "user_id": 1
-        },
-        "9": {
-            "name": "Test",
-            "user_id": 1
+        "10": {
+            "category_id": 10,
+            "name": "Utilities",
+            "user_id": 0
         }
     },
     "budgets": {
