@@ -1,10 +1,19 @@
 # app.py - Main Application Entry Point with File-Based Storage
 import sys
+import logging
+
+# Configure logging
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 from auth import Authentication
 from expenses import ExpenseTracker
 from file_manager import load_data, save_data
 from models import User, Expense, Category
 from file_manager import hash_password
+from app_gui import AppGUI
 
 
 def create_admin(auth):
@@ -31,6 +40,7 @@ def create_admin(auth):
     data["users"].append(admin_user)
     save_data(data)
     print("[✔] Admin account created with hashed password.")
+    logging.info("Admin account created with hashed password.")
 
 
 def main_menu(auth):
@@ -45,24 +55,26 @@ def main_menu(auth):
             username = input("Enter username: ").strip()
             password = input("Enter password: ").strip()
             auth.register(username, password)
+            logging.info(f"User '{username}' attempted to register.")
         elif choice == "2":
             username = input("Username: ").strip()
             password = input("Password: ").strip()
             if auth.login(username, password):
+                logging.info(f"User '{username}' logged in successfully.")
                 return auth.get_current_user()
         elif choice == "3":
             print("Exiting... Goodbye!")
+            logging.info("Application exiting...")
             sys.exit(0)
         else:
             print("[!] Invalid choice.")
+        logging.warning("Invalid main menu choice selected.")
 
 
 def admin_menu():
     data = load_data()
-
-    # Ensure "categories" exists and is a dictionary
-    if "categories" not in data or not isinstance(data["categories"], dict):
-        data["categories"] = {}
+    # Ensure category keys are integers to avoid key mismatches during access
+    data["categories"] = {int(k): v for k, v in data.get("categories", {}).items()}  # Ensure keys are integers
 
     while True:
         print("\n=== Admin Menu ===")
@@ -76,18 +88,18 @@ def admin_menu():
         if choice == "1":
             name = input("Enter new category name: ").strip()
             if name:
-                category_id = len(data["categories"]) + 1  # Auto-incrementing category ID
-                new_cat = Category(name=name, user_id=1, category_id=category_id)  # Admin ID assumed as 1
-
-                # Store category as a dictionary entry instead of using append()
+                category_id = max(data["categories"].keys(), default=0) + 1  # Ensure unique category IDs
+                new_cat = Category(name=name, user_id=1, category_id=category_id)
                 data["categories"][category_id] = vars(new_cat)
-
                 save_data(data)
                 print("[+] Category created.")
+                logging.info(f"Category '{name}' created by admin.")
+
         elif choice == "2":
             print("\nAvailable Categories:")
             for cat_id, cat in data["categories"].items():
                 print(f"{cat_id}: {cat['name']}")
+
         elif choice == "3":
             print("\nAvailable Categories:")
             for cat_id, cat in data["categories"].items():
@@ -99,10 +111,20 @@ def admin_menu():
                     data["categories"][cat_id]["name"] = new_name
                     save_data(data)
                     print("[+] Category updated.")
+                    logging.info(f"Category ID {cat_id} renamed to '{new_name}' by admin.")
                 else:
                     print("[!] Invalid Category ID.")
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
+                logging.warning("Invalid input while deleting category: expected a number.")
+            except KeyError:
+                print("[!] Category ID not found.")
+                logging.error(f"KeyError while deleting category ID: {cat_id}")
+                logging.warning("Invalid input while editing category: expected a number.")
+            except KeyError:
+                print("[!] Category ID not found.")
+                logging.error(f"KeyError while editing category ID: {cat_id}")
+
         elif choice == "4":
             print("\nAvailable Categories:")
             for cat_id, cat in data["categories"].items():
@@ -113,15 +135,22 @@ def admin_menu():
                     del data["categories"][cat_id]
                     save_data(data)
                     print("[+] Category deleted.")
+                    logging.info(f"Category ID {cat_id} deleted by admin.")
                 else:
                     print("[!] Invalid Category ID.")
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
+                logging.warning("Invalid input while editing category: expected a number.")
+            except KeyError:
+                print("[!] Category ID not found.")
+                logging.error(f"KeyError while editing category ID: {cat_id}")
+
         elif choice == "5":
             print("Logging out...")
             break
         else:
             print("[!] Invalid choice.")
+        logging.warning("Invalid main menu choice selected.")
 
 
 def user_menu(auth, user_trackers):
@@ -134,26 +163,38 @@ def user_menu(auth, user_trackers):
         print("\n=== User Menu ===")
         print("1. Add Expense")
         print("2. View Expenses")
-        print("3. Set Budget")
-        print("4. View Summary")
-        print("5. Logout")
+        print("3. Edit Expense")
+        print("4. Delete Expense")
+        print("5. Set Budget")
+        print("6. View Summary")
+        print("7. Logout")
         choice = input("Enter choice: ").strip()
 
         if choice == "1":
-            # ❌ Removed duplicate category listing from here
-            tracker.add_expense()  # ✅ Let `add_expense()` handle category selection
-
+            tracker.add_expense()
         elif choice == "2":
             tracker.list_expenses()
         elif choice == "3":
-            period = input("Enter budget period (YYYY-MM): ").strip()
-            amount = float(input("Enter budget amount: ").strip())
-            tracker.set_budget(period, amount)
+            tracker.edit_expense()
         elif choice == "4":
-            tracker.view_summary()
+            tracker.delete_expense()
         elif choice == "5":
+            period = input("Enter budget period (YYYY-MM): ").strip()
+            try:
+                amount = float(input("Enter budget amount: ").strip())
+                tracker.set_budget(period, amount)
+            except ValueError:
+                print("[!] Invalid budget amount. Please enter a numeric value.")
+        elif choice == "6":
+            tracker.view_summary()
+        elif choice == "7":
+            print("[-] Logging out...")
+            logging.info(f"User '{user.username}' logged out.")
             auth.logout()
             break
+        else:
+            print("[!] Invalid choice. Please select a valid option.")
+
 
 
 def run_app():
@@ -169,4 +210,6 @@ def run_app():
 
 
 if __name__ == "__main__":
-    run_app()
+    logging.info("Application started.")
+    app = AppGUI()
+    app.mainloop()
