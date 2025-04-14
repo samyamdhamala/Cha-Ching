@@ -330,3 +330,104 @@
 2025-04-08 21:06:21,338 - INFO - User 'admin' logged in successfully.
 2025-04-08 21:06:43,424 - INFO - User 'admin' logged out.
 2025-04-08 21:06:57,357 - INFO - User 'samyam' logged in successfully.
+2025-04-14 03:37:30,283 - INFO - User 'samyam' logged in successfully.
+2025-04-14 03:37:43,322 - INFO - User 'samyam' logged out.
+2025-04-14 03:37:53,319 - INFO - User 'admin' logged in successfully.
+2025-04-14 03:37:59,042 - INFO - User 'admin' logged out.
+2025-04-14 12:25:37,542 - INFO - User 'admin' logged in successfully.
+2025-04-14 12:26:00,884 - INFO - User 'admin' logged out.
+2025-04-14 12:26:03,176 - INFO - User 'admin' logged in successfully.
+2025-04-14 12:26:05,949 - INFO - User 'admin' logged out.
+2025-04-14 12:27:06,426 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 12:27:11,300 - INFO - User 'admin' logged in successfully.
+2025-04-14 12:28:08,108 - INFO - User 'admin' logged in successfully.
+2025-04-14 12:28:23,997 - INFO - Data saved successfully.
+2025-04-14 12:28:46,279 - INFO - Data saved successfully.
+2025-04-14 12:29:27,692 - INFO - Data saved successfully.
+2025-04-14 12:33:00,293 - INFO - User 'samyam' logged in successfully.
+2025-04-14 12:33:10,659 - INFO - User 'samyam' logged out.
+2025-04-14 12:33:17,703 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 12:33:22,899 - INFO - User 'admin' logged in successfully.
+2025-04-14 12:38:28,763 - INFO - User 'admin' logged in successfully.
+2025-04-14 12:38:39,736 - INFO - Data saved successfully.
+2025-04-14 12:38:51,040 - INFO - Data saved successfully.
+2025-04-14 12:39:20,560 - INFO - Data saved successfully.
+2025-04-14 12:56:02,070 - INFO - User 'admin' logged in successfully.
+2025-04-14 12:56:03,497 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 12:56:33,273 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 12:56:34,743 - WARNING - [admin] attempted to edit without selecting a category.
+2025-04-14 12:56:40,594 - INFO - [admin] deleted category ID 3: 'Utilities'
+2025-04-14 12:56:40,598 - INFO - Data saved successfully.
+2025-04-14 12:56:48,548 - INFO - Data saved successfully.
+2025-04-14 12:56:48,551 - INFO - [admin] created new category ID 10: 'Utilities'
+2025-04-14 12:56:55,190 - INFO - User 'admin' logged out.
+2025-04-14 12:57:04,676 - INFO - User 'samyam' logged in successfully.
+2025-04-14 12:57:37,698 - INFO - Data saved successfully.
+2025-04-14 12:59:11,789 - INFO - User 'samyam' logged out.
+2025-04-14 13:05:35,889 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:05:37,023 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:07:43,672 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 13:07:48,758 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:07:50,129 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:07:53,294 - WARNING - [admin] attempted to delete category 'Rent' that is in use.
+2025-04-14 13:08:16,091 - WARNING - [admin] attempted to delete category 'Utilities' that is in use.
+2025-04-14 13:08:19,791 - INFO - [admin] deleted category ID 9: 'Test'
+2025-04-14 13:08:19,795 - INFO - Data saved successfully.
+2025-04-14 13:13:18,356 - INFO - User 'samyam' logged in successfully.
+2025-04-14 13:13:32,651 - INFO - User 'samyam' logged out.
+2025-04-14 13:13:44,509 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 13:13:50,954 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 13:14:04,771 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:14:06,162 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:14:22,240 - WARNING - [admin] attempted to delete category 'Rent' that is in use.
+2025-04-14 13:19:02,355 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:19:03,216 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:19:09,514 - INFO - Data saved successfully.
+2025-04-14 13:19:09,515 - INFO - [admin] renamed category 'Rent' to 'Renter' and updated matching expenses.
+2025-04-14 13:19:19,761 - INFO - User 'admin' logged out.
+2025-04-14 13:19:27,278 - INFO - User 'samyam' logged in successfully.
+2025-04-14 13:21:24,922 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:21:25,986 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:23:11,663 - INFO - User 'samyam' logged in successfully.
+2025-04-14 13:23:15,728 - INFO - User 'samyam' logged out.
+2025-04-14 13:23:24,085 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:23:25,154 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:25:34,526 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:25:35,641 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:25:41,512 - INFO - Data saved successfully.
+2025-04-14 13:25:41,514 - INFO - [admin] renamed category 'Renter' to 'Rent' and updated matching expenses.
+2025-04-14 13:38:42,294 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 13:38:48,154 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:39:04,825 - INFO - User 'samyam' logged in successfully.
+2025-04-14 13:40:39,437 - INFO - User 'samyam' logged in successfully.
+2025-04-14 13:41:21,578 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:53:45,775 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 13:53:50,377 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:53:59,791 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 13:54:06,498 - INFO - Data saved successfully.
+2025-04-14 13:54:06,500 - INFO - [admin] renamed category 'Food' to 'Foodd' and updated matching expenses.
+2025-04-14 13:54:08,432 - WARNING - [admin] attempted to edit without selecting a category.
+2025-04-14 13:54:14,714 - INFO - Data saved successfully.
+2025-04-14 13:54:14,714 - INFO - [admin] renamed category 'Foodd' to 'Food' and updated matching expenses.
+2025-04-14 13:54:19,472 - INFO - User 'admin' logged out.
+2025-04-14 13:54:21,977 - INFO - User 'admin' logged in successfully.
+2025-04-14 13:54:34,478 - INFO - User 'admin' logged out.
+2025-04-14 13:54:43,793 - INFO - User 'samyam' logged in successfully.
+2025-04-14 14:55:21,432 - INFO - User 'admin' logged in successfully.
+2025-04-14 14:55:27,757 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 14:55:32,590 - INFO - User 'admin' logged out.
+2025-04-14 14:55:39,587 - INFO - User 'samyam' logged in successfully.
+2025-04-14 14:55:59,948 - INFO - User 'samyam' logged out.
+2025-04-14 14:56:02,715 - INFO - User 'samyam' logged in successfully.
+2025-04-14 15:01:48,580 - INFO - User 'admin' logged in successfully.
+2025-04-14 15:01:53,849 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 15:01:56,059 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 15:02:03,120 - INFO - User 'admin' logged out.
+2025-04-14 15:02:15,726 - INFO - User 'samyam' logged in successfully.
+2025-04-14 15:06:23,234 - INFO - User 'admin' logged in successfully.
+2025-04-14 15:06:27,403 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 15:06:33,593 - INFO - User 'admin' logged out.
+2025-04-14 15:06:54,908 - INFO - Data saved successfully.
+2025-04-14 15:06:54,908 - INFO - User 'testuser' registered successfully.
+2025-04-14 15:07:04,265 - INFO - User 'testuser' logged in successfully.
+2025-04-14 15:08:54,379 - INFO - User 'testuser' logged in successfully.

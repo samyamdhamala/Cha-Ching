@@ -4,6 +4,7 @@ from auth import Authentication
 from expenses import ExpenseTracker
 from dashboards import AdminDashboard, UserDashboard
 
+
 class AppGUI(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -115,15 +116,21 @@ class LoginPage(ttk.Frame):
     def login(self):
         user = self.username.get().strip()
         pwd = self.password.get().strip()
+
         if self.controller.auth.login(user, pwd):
             current_user = self.controller.auth.get_current_user()
             self.controller.current_tracker = ExpenseTracker(current_user)
+
+            # Show the correct dashboard and call its landing loader
             if current_user.role == "admin":
                 self.controller.show_frame(AdminDashboard)
+                self.controller.frames[AdminDashboard].load_landing()  # 👈 shows the landing page inside the dashboard
             else:
                 self.controller.show_frame(UserDashboard)
+                self.controller.frames[UserDashboard].load_landing()
         else:
             messagebox.showerror("Login Failed", "Invalid username or password.")
+
 
 class RegisterPage(ttk.Frame):
     def __init__(self, parent, controller):
