@@ -589,26 +589,29 @@ class UserDashboard(BaseDashboard):
         self.clear_content()
         user = self.controller.auth.get_current_user()
 
-        # Wrapper frame for better spacing
-        wrapper = ttk.Frame(self.content_frame)
-        wrapper.pack(fill="both", expand=True, padx=40, pady=30)
-        wrapper.columnconfigure(0, weight=1)
+        # === Top section with title ===
+        wrapper_top = ttk.Frame(self.content_frame)
+        wrapper_top.pack(fill="x", pady=(30, 10))
 
-        # --- Title ---
-        ttk.Label(wrapper, text="💼 Set Monthly Budget", font=("Segoe UI", 20, "bold")).grid(row=0, column=0,
-                                                                                            pady=(0, 20))
+        ttk.Label(wrapper_top, text="💼 Set Monthly Budget", font=("Segoe UI", 20, "bold")).pack(anchor="center")
 
-        # --- Month Entry ---
-        ttk.Label(wrapper, text="📅 Month (YYYY-MM):", font=("Segoe UI", 12)).grid(row=1, column=0, sticky="w")
-        month_entry = ttk.Entry(wrapper, font=("Segoe UI", 11), width=20)
+        # --- Form wrapper (centered) ---
+        wrapper_center = ttk.Frame(self.content_frame)
+        wrapper_center.pack(pady=(20, 0))  # ⬅️ Space below title only
+        wrapper_center.columnconfigure(0, weight=1)
+
+        # --- Month Row ---
+        ttk.Label(wrapper_center, text="📅 Month (YYYY-MM):", font=("Segoe UI", 12)).grid(row=0, column=0, sticky="e",
+                                                                                         padx=(0, 10), pady=5)
+        month_entry = ttk.Entry(wrapper_center, font=("Segoe UI", 11), width=20)
         month_entry.insert(0, datetime.datetime.now().strftime("%Y-%m"))
-        month_entry.grid(row=2, column=0, pady=(0, 15), sticky="w")
+        month_entry.grid(row=0, column=1, pady=5, sticky="w")
 
-        # --- Budget Amount Entry ---
-        ttk.Label(wrapper, text="💵 Budget Amount:", font=("Segoe UI", 12)).grid(row=3, column=0, sticky="w")
-        amount_entry = ttk.Entry(wrapper, font=("Segoe UI", 11), width=20)
-        amount_entry.grid(row=4, column=0, pady=(0, 20), sticky="w")
-
+        # --- Budget Amount Row ---
+        ttk.Label(wrapper_center, text="💵 Budget Amount:", font=("Segoe UI", 12)).grid(row=1, column=0, sticky="e",
+                                                                                       padx=(0, 10), pady=5)
+        amount_entry = ttk.Entry(wrapper_center, font=("Segoe UI", 11), width=20)
+        amount_entry.grid(row=1, column=1, pady=5, sticky="w")
         # --- Save Budget Logic ---
         def submit_budget():
             try:
@@ -633,9 +636,10 @@ class UserDashboard(BaseDashboard):
                 logging.error(f"[User {user.user_id}] failed to set budget: {e}")
                 messagebox.showerror("Error", f"Could not set budget: {e}")
 
-        # --- Action Button ---
-        ttk.Button(wrapper, text="💾 Save Budget", style="Accent.TButton", command=submit_budget).grid(
-            row=5, column=0, sticky="e", pady=10
+
+        # --- Save Button Centered Across Columns ---
+        ttk.Button(wrapper_center, text="💾 Save Budget", style="Accent.TButton", command=submit_budget).grid(
+            row=4, column=0, pady=10, sticky="e"
         )
 
     def load_landing(self):
