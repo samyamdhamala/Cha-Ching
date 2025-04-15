@@ -1,0 +1,153 @@
+{
+    "users": [
+        {
+            "user_id": 1,
+            "username": "admin",
+            "password": "713bfda78870bf9d1b261f565286f85e97ee614efe5f0faf7c34e7ca4f65baca",
+            "role": "admin"
+        },
+        {
+            "user_id": 2,
+            "username": "sam",
+            "password": "e3e9fc033c2647b79bac54f75d0965c0715c6856e662fd02da8742100e5cda22",
+            "role": "user"
+        },
+        {
+            "user_id": 3,
+            "username": "cha-ching",
+            "password": "dcd1117c840e0582394f4150f1fb79841d57a4ca1a5251c426a52921525bbcc3",
+            "role": "user"
+        },
+        {
+            "user_id": 4,
+            "username": "samyam",
+            "password": "c03ed1b0ba1e57a84c86a4853e8ddb05c7ad458af9fb7017461672b6e011424a",
+            "role": "user"
+        },
+        {
+            "user_id": 5,
+            "username": "test",
+            "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+            "role": "user"
+        }
+    ],
+    "expenses": {
+        "2": [
+            {
+                "expense_id": 1,
+                "amount": 350.0,
+                "category": "Rent",
+                "description": "March Rent",
+                "user_id": 2,
+                "date": "2025-03-01"
+            },
+            {
+                "expense_id": 2,
+                "amount": 75.0,
+                "category": "Groceries",
+                "description": "First week grocery run ( ifm, shoprite)",
+                "user_id": 2,
+                "date": "2025-03-05"
+            },
+            {
+                "expense_id": 3,
+                "amount": 45.0,
+                "category": "Dining",
+                "description": "Dinner with friends at Hook And Reel",
+                "user_id": 2,
+                "date": "2025-03-21"
+            },
+            {
+                "expense_id": 4,
+                "amount": 13.0,
+                "category": "Transport",
+                "description": "Uber Ride to university",
+                "user_id": 2,
+                "date": "2025-03-13"
+            },
+            {
+                "expense_id": 5,
+                "amount": 89.0,
+                "category": "Groceries",
+                "description": "Costco ( eggs, bread, cheese, meat)",
+                "user_id": 2,
+                "date": "2025-03-27"
+            },
+            {
+                "expense_id": 6,
+                "amount": 350.0,
+                "category": "Rent",
+                "description": "Rent for April",
+                "user_id": 2,
+                "date": "2025-04-01"
+            },
+            {
+                "expense_id": 7,
+                "amount": 45.0,
+                "category": "Utilities",
+                "description": "March Utilities (Wifi + Gas + Electricity)",
+                "user_id": 2,
+                "date": "2025-04-01"
+            },
+            {
+                "expense_id": 8,
+                "amount": 25.0,
+                "category": "Utilities",
+                "description": "Phone bill",
+                "user_id": 2,
+                "date": "2025-04-11"
+            },
+            {
+                "expense_id": 9,
+                "amount": 80.0,
+                "category": "Groceries",
+                "description": "Shoprite + Target + Costco ( Milk, bread, veggies, cheese, rice, spices)",
+                "user_id": 2,
+                "date": "2025-04-12"
+            }
+        ]
+    },
+    "categories": {
+        "1": {
+            "category_id": 1,
+            "name": "Rent",
+            "user_id": 1
+        },
+        "2": {
+            "category_id": 2,
+            "name": "Groceries",
+            "user_id": 1
+        },
+        "3": {
+            "category_id": 3,
+            "name": "Dining",
+            "user_id": 1
+        },
+        "4": {
+            "category_id": 4,
+            "name": "Utilities",
+            "user_id": 1
+        },
+        "5": {
+            "category_id": 5,
+            "name": "Transport",
+            "user_id": 1
+        },
+        "6": {
+            "category_id": 6,
+            "name": "Other",
+            "user_id": 1
+        },
+        "7": {
+            "category_id": 7,
+            "name": "Hehehe",
+            "user_id": 1
+        }
+    },
+    "budgets": {
+        "2": {
+            "2025-03": 500.0,
+            "2025-04": 700.0
+        }
+    }
+}

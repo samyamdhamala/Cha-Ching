@@ -1,0 +1,233 @@
+2025-04-14 16:34:11,956 - INFO - Application started.
+2025-04-14 16:34:25,374 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 16:34:25,374 - WARNING - [GUI] Failed login attempt with username: 'admin'
+2025-04-14 16:35:15,675 - INFO - Application started.
+2025-04-14 16:35:30,476 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 16:35:30,476 - WARNING - [GUI] Failed login attempt with username: 'admin'
+2025-04-14 16:36:59,856 - INFO - Application started.
+2025-04-14 16:36:59,858 - INFO - Data saved successfully.
+2025-04-14 16:36:59,858 - INFO - Admin account created and stored securely.
+2025-04-14 16:37:09,362 - INFO - User 'admin' logged in successfully.
+2025-04-14 16:37:09,362 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-14 16:37:29,590 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 16:37:36,527 - INFO - Data saved successfully.
+2025-04-14 16:37:36,528 - INFO - [admin] created new category ID 1: 'Rent'
+2025-04-14 16:37:51,416 - INFO - Data saved successfully.
+2025-04-14 16:37:51,418 - INFO - [admin] created new category ID 2: 'Groceries'
+2025-04-14 16:38:05,117 - INFO - Data saved successfully.
+2025-04-14 16:38:05,118 - INFO - [admin] created new category ID 3: 'Dining'
+2025-04-14 16:39:42,167 - INFO - Data saved successfully.
+2025-04-14 16:39:42,169 - INFO - [admin] created new category ID 4: 'Monthly Utilities'
+2025-04-14 16:39:48,653 - INFO - Data saved successfully.
+2025-04-14 16:39:48,654 - INFO - [admin] created new category ID 5: 'Transport'
+2025-04-14 16:40:14,569 - INFO - Data saved successfully.
+2025-04-14 16:40:14,570 - INFO - [admin] created new category ID 6: 'Travel'
+2025-04-14 16:40:40,555 - INFO - Data saved successfully.
+2025-04-14 16:40:40,556 - INFO - [admin] renamed category 'Travel' to 'Other' and updated matching expenses.
+2025-04-14 16:40:47,149 - INFO - Data saved successfully.
+2025-04-14 16:40:47,149 - INFO - [admin] renamed category 'Monthly Utilities' to 'Utilities' and updated matching expenses.
+2025-04-14 16:40:52,704 - INFO - User 'admin' logged out.
+2025-04-14 16:41:06,465 - INFO - Data saved successfully.
+2025-04-14 16:41:06,466 - INFO - User 'sam' registered successfully.
+2025-04-14 16:41:13,074 - INFO - User 'sam' logged in successfully.
+2025-04-14 16:41:13,074 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 16:41:54,218 - INFO - Data saved successfully.
+2025-04-14 16:41:54,218 - INFO - [User 2] added expense: 350.00, Rent, March Rent, 2025-03-01
+2025-04-14 16:42:29,063 - INFO - Data saved successfully.
+2025-04-14 16:42:29,063 - INFO - [User 2] added expense: 75.00, Groceries, First week grocery run ( ifm, , 2025-03-05
+2025-04-14 16:43:09,816 - ERROR - [User 2] failed to add expense: could not convert string to float: '45s'
+2025-04-14 16:43:22,417 - INFO - Data saved successfully.
+2025-04-14 16:43:22,417 - INFO - [User 2] added expense: 45.00, Dining, Dinner with friends at Hook An, 2025-03-21
+2025-04-14 16:44:00,034 - INFO - Data saved successfully.
+2025-04-14 16:44:00,034 - INFO - [User 2] added expense: 13.00, Transport, Uber Ride to university, 2025-03-13
+2025-04-14 16:51:12,631 - INFO - Data saved successfully.
+2025-04-14 16:51:12,632 - INFO - [User 2] set budget for 2025-03: $500.00
+2025-04-14 16:52:45,835 - INFO - Data saved successfully.
+2025-04-14 16:52:45,835 - INFO - [User 2] added expense: 89.00, Groceries, Costco ( eggs, bread, cheese, , 2025-03-27
+2025-04-14 16:53:11,915 - INFO - Data saved successfully.
+2025-04-14 16:53:11,916 - INFO - [User 2] set budget for 2025-04: $500.00
+2025-04-14 16:57:20,065 - INFO - Data saved successfully.
+2025-04-14 16:57:20,065 - INFO - [User 2] added expense: 350.00, Rent, Rent for April, 2025-04-01
+2025-04-14 16:58:07,977 - INFO - Data saved successfully.
+2025-04-14 16:58:07,978 - INFO - [User 2] added expense: 45.00, Utilities, March Utilities (Wifi + Gas + , 2025-04-01
+2025-04-14 16:58:30,296 - INFO - Data saved successfully.
+2025-04-14 16:58:30,297 - INFO - [User 2] added expense: 25.00, Utilities, Phone bill, 2025-04-12
+2025-04-14 16:59:48,411 - ERROR - [User 2] failed to add expense: Amount must be a positive number.
+2025-04-14 16:59:56,432 - INFO - Data saved successfully.
+2025-04-14 16:59:56,432 - INFO - [User 2] added expense: 80.00, Groceries, Shoprite + Target + Costco ( M, 2025-04-13
+2025-04-14 17:00:12,957 - INFO - Data saved successfully.
+2025-04-14 17:00:12,957 - INFO - [User 2] set budget for 2025-04: $700.00
+2025-04-14 17:02:00,645 - INFO - Data saved successfully.
+2025-04-14 17:02:01,832 - INFO - [User 2] edited expense ID 9
+2025-04-14 17:02:13,334 - INFO - Data saved successfully.
+2025-04-14 17:02:14,401 - INFO - [User 2] edited expense ID 8
+2025-04-14 17:02:27,953 - INFO - Data saved successfully.
+2025-04-14 17:02:27,953 - INFO - [User 2] added expense: 5.00, Transport, Uber, 2025-04-14
+2025-04-14 17:02:34,568 - INFO - Data saved successfully.
+2025-04-14 17:02:35,583 - INFO - [User 2] deleted expense ID 10
+2025-04-14 17:03:09,528 - INFO - User 'sam' logged out.
+2025-04-14 17:12:50,282 - INFO - Application started.
+2025-04-14 18:17:51,921 - INFO - Application started.
+2025-04-14 18:18:22,083 - WARNING - Failed login attempt for username 'samyam'
+2025-04-14 18:18:22,083 - WARNING - [GUI] Failed login attempt with username: 'samyam'
+2025-04-14 18:18:34,635 - INFO - User 'sam' logged in successfully.
+2025-04-14 18:18:34,635 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 18:18:56,864 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:19:03,676 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:19:07,765 - INFO - User 'sam' logged out.
+2025-04-14 18:19:17,632 - INFO - User 'admin' logged in successfully.
+2025-04-14 18:19:17,632 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-14 18:19:19,128 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 18:19:25,697 - WARNING - [admin] tried deleting category in use: Rent
+2025-04-14 18:20:53,981 - INFO - User 'admin' logged out.
+2025-04-14 18:21:04,748 - WARNING - Failed login attempt for username 'samyam'
+2025-04-14 18:21:04,748 - WARNING - [GUI] Failed login attempt with username: 'samyam'
+2025-04-14 18:21:10,796 - INFO - User 'sam' logged in successfully.
+2025-04-14 18:21:10,797 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 18:21:22,177 - INFO - Data saved successfully.
+2025-04-14 18:21:23,725 - INFO - [User 2] edited expense ID 7
+2025-04-14 18:27:30,435 - INFO - Application started.
+2025-04-14 18:27:44,908 - WARNING - Failed login attempt for username 'admin'
+2025-04-14 18:27:44,908 - WARNING - [GUI] Failed login attempt with username: 'admin'
+2025-04-14 18:27:50,018 - INFO - User 'admin' logged in successfully.
+2025-04-14 18:27:50,018 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-14 18:27:52,217 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 18:27:57,987 - INFO - Data saved successfully.
+2025-04-14 18:27:57,987 - INFO - [admin] renamed category 'Rent' to 'Renter'
+2025-04-14 18:28:03,397 - INFO - User 'admin' logged out.
+2025-04-14 18:28:09,278 - INFO - User 'sam' logged in successfully.
+2025-04-14 18:28:09,279 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 18:28:27,551 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:29:25,534 - INFO - User 'sam' logged out.
+2025-04-14 18:42:07,573 - INFO - Application started.
+2025-04-14 18:42:24,923 - INFO - User 'admin' logged in successfully.
+2025-04-14 18:42:24,923 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-14 18:42:27,911 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 18:42:35,517 - INFO - Data saved successfully.
+2025-04-14 18:42:35,517 - INFO - [admin] renamed category 'Renter' to 'Rent'
+2025-04-14 18:42:39,367 - WARNING - [admin] tried deleting category in use: Groceries
+2025-04-14 18:42:48,592 - INFO - Data saved successfully.
+2025-04-14 18:42:48,593 - INFO - [admin] created new category ID 7: 'Miscella'
+2025-04-14 18:42:53,720 - INFO - Data saved successfully.
+2025-04-14 18:42:53,720 - INFO - [admin] deleted category ID 7: 'Miscella'
+2025-04-14 18:43:29,142 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 18:43:29,336 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 18:43:34,648 - INFO - User 'admin' logged out.
+2025-04-14 18:43:46,910 - INFO - User 'sam' logged in successfully.
+2025-04-14 18:43:46,910 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 18:43:49,979 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:44:10,576 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:44:13,258 - INFO - [User 2] downloaded chart(s): both
+2025-04-14 18:44:33,495 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:48:34,130 - INFO - User 'sam' logged out.
+2025-04-14 18:51:54,416 - INFO - Application started.
+2025-04-14 18:52:01,949 - INFO - User 'sam' logged in successfully.
+2025-04-14 18:52:01,950 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 18:52:17,614 - INFO - [User 2] exported expenses to CSV for month: 2025-04
+2025-04-14 18:52:30,817 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:52:35,237 - INFO - [User 2] downloaded chart(s): both
+2025-04-14 18:56:41,272 - INFO - User 'sam' logged out.
+2025-04-14 18:56:48,772 - INFO - Application started.
+2025-04-14 18:56:56,302 - INFO - User 'sam' logged in successfully.
+2025-04-14 18:56:56,303 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 18:57:04,618 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 18:57:09,520 - INFO - [User 2] downloaded chart(s): both
+2025-04-14 19:03:09,035 - INFO - Application started.
+2025-04-14 19:03:31,938 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:03:31,939 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:03:37,564 - INFO - User 'sam' logged out.
+2025-04-14 19:08:37,024 - INFO - Application started.
+2025-04-14 19:08:45,954 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:08:45,954 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:08:48,712 - INFO - User 'sam' logged out.
+2025-04-14 19:14:54,685 - INFO - Application started.
+2025-04-14 19:15:01,839 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:15:01,839 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:15:16,141 - INFO - User 'sam' logged out.
+2025-04-14 19:23:36,466 - INFO - Application started.
+2025-04-14 19:23:44,457 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:23:44,457 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:23:47,854 - INFO - User 'sam' logged out.
+2025-04-14 19:25:18,158 - INFO - Application started.
+2025-04-14 19:25:23,964 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:25:23,964 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:25:26,306 - INFO - User 'sam' logged out.
+2025-04-14 19:25:39,152 - INFO - User 'admin' logged in successfully.
+2025-04-14 19:25:39,152 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-14 19:25:41,490 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 19:25:51,125 - INFO - Data saved successfully.
+2025-04-14 19:25:51,126 - INFO - [admin] created new category ID 7: 'Hehe'
+2025-04-14 19:25:57,130 - INFO - Data saved successfully.
+2025-04-14 19:25:57,131 - INFO - [admin] renamed category 'Hehe' to 'Hehehe'
+2025-04-14 19:26:05,055 - INFO - User 'admin' logged out.
+2025-04-14 19:29:14,490 - INFO - Application started.
+2025-04-14 19:30:03,137 - INFO - Data saved successfully.
+2025-04-14 19:30:03,137 - INFO - User 'cha-ching' registered successfully.
+2025-04-14 19:30:25,601 - WARNING - Failed login attempt for username 'cha-ching'
+2025-04-14 19:30:25,602 - WARNING - [GUI] Failed login attempt with username: 'cha-ching'
+2025-04-14 19:30:32,471 - INFO - User 'cha-ching' logged in successfully.
+2025-04-14 19:30:32,471 - INFO - [GUI] User 'cha-ching' logged in successfully.
+2025-04-14 19:30:50,265 - INFO - [User 3] viewed summary for month: 2025-04
+2025-04-14 19:33:57,882 - INFO - Application started.
+2025-04-14 19:34:29,876 - INFO - Data saved successfully.
+2025-04-14 19:34:29,876 - INFO - User 'samyam' registered successfully.
+2025-04-14 19:34:54,568 - WARNING - Registration failed: Username 'samyam' already exists.
+2025-04-14 19:35:51,622 - INFO - Application started.
+2025-04-14 19:35:58,842 - INFO - User 'samyam' logged in successfully.
+2025-04-14 19:35:58,842 - INFO - [GUI] User 'samyam' logged in successfully.
+2025-04-14 19:36:01,779 - INFO - User 'samyam' logged out.
+2025-04-14 19:39:46,375 - INFO - Application started.
+2025-04-14 19:40:00,768 - INFO - Data saved successfully.
+2025-04-14 19:40:00,768 - INFO - User 'test' registered successfully.
+2025-04-14 19:40:11,787 - WARNING - Failed login attempt for username 'ts'
+2025-04-14 19:40:11,788 - WARNING - [GUI] Failed login attempt with username: 'ts'
+2025-04-14 19:40:15,758 - INFO - User 'test' logged in successfully.
+2025-04-14 19:40:15,758 - INFO - [GUI] User 'test' logged in successfully.
+2025-04-14 19:40:20,253 - INFO - User 'test' logged out.
+2025-04-14 19:45:13,734 - INFO - Application started.
+2025-04-14 19:45:23,194 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:45:23,195 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:45:25,146 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 19:51:11,416 - INFO - Application started.
+2025-04-14 19:51:17,914 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:51:17,914 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:51:19,670 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 19:53:08,088 - INFO - Application started.
+2025-04-14 19:53:14,452 - INFO - User 'sam' logged in successfully.
+2025-04-14 19:53:14,453 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 19:53:15,883 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 19:54:05,512 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 19:54:10,996 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 19:54:13,453 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:01:10,678 - INFO - Application started.
+2025-04-14 20:01:43,703 - INFO - Application started.
+2025-04-14 20:01:54,910 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:01:54,910 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:01:56,499 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:03:43,140 - INFO - Application started.
+2025-04-14 20:03:50,420 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:03:50,420 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:03:53,029 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:10:08,049 - INFO - Application started.
+2025-04-14 20:10:20,345 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:10:20,345 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:10:24,899 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:10:33,059 - INFO - User 'sam' logged out.
+2025-04-14 20:10:40,346 - INFO - Application started.
+2025-04-14 20:11:31,857 - INFO - Application started.
+2025-04-14 20:11:58,534 - INFO - Application started.
+2025-04-14 20:15:53,974 - INFO - Application started.
+2025-04-14 20:15:59,907 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:15:59,907 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:16:01,557 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:16:07,299 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:16:10,533 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:16:14,695 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:16:26,956 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:16:30,187 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:16:33,766 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:16:46,531 - INFO - [User 2] viewed summary for month: 2025-03
+2025-04-14 20:17:05,975 - INFO - User 'sam' logged out.
+2025-04-14 20:21:15,491 - INFO - Application started.
+2025-04-14 20:21:25,920 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:21:25,921 - INFO - [GUI] User 'sam' logged in successfully.
