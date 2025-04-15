@@ -1,280 +1,43 @@
-import logging
 import tkinter as tk
+import os
 from tkinter import ttk, messagebox
-from file_manager import load_data, save_data
-from expenses import ExpenseTracker
 import datetime
+import logging
+import csv
 from tkcalendar import DateEntry
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import csv
-from landing import build_landing_content
+from core.file_manager import load_data, save_data
+from core.expenses import ExpenseTracker
+from ui.landing import build_landing_content
+from dashboards.base_dashboard import BaseDashboard
 
-
-
-class BaseDashboard(ttk.Frame):
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.controller = controller
-
-        self.columnconfigure(1, weight=1)
-        self.rowconfigure(1, weight=1)
-
-        # Top user menu
-        top_bar = ttk.Frame(self)
-        top_bar.grid(row=0, column=0, columnspan=2, sticky="ew")
-
-        user = self.controller.auth.get_current_user()
-        user_menu = ttk.Menubutton(top_bar, text=f"\U0001F464 {user.username}")
-        menu = tk.Menu(user_menu, tearoff=0)
-        menu.add_command(label=f"👤 Profile ({user.username})", command=self.show_profile)
-        menu.add_command(label="🚪 Logout", command=self.logout)
-        user_menu["menu"] = menu
-        user_menu.pack(side="right", padx=10, pady=5)
-
-        # Left navigation panel
-        self.nav_frame = tk.Frame(self, bg="#1f1f2e", width=150)
-        self.nav_frame.grid(row=1, column=0, sticky="ns")
-        self.nav_frame.grid_propagate(False)
-
-        # Content frame
-        self.content_frame = ttk.Frame(self, width=800, height=600)
-        self.content_frame.grid(row=1, column=1, sticky="nsew")
-        self.content_frame.grid_propagate(False)
-
-
-    def clear_content(self):
-        for widget in self.content_frame.winfo_children():
-            widget.destroy()
-
-    def show_profile(self):
-        self.load_landing()
-
-    def logout(self):
-        self.controller.auth.logout()
-        self.controller.show_frame(type(self.controller.frames[list(self.controller.frames.keys())[0]]))  # Redirect to HomePage
-
-
-
-class AdminDashboard(BaseDashboard):
-    def __init__(self, parent, controller):
-        super().__init__(parent, controller)
-        self.nav_actions = {}
-
-        def create_nav_item(icon, text, command):
-            full_text = f"{icon}  {text}"
-            btn = tk.Label(self.nav_frame, text=full_text, bg="#1f1f2e", fg="white",
-                           font=("Segoe UI", 11), anchor="w", padx=20)
-            btn.pack(fill="x", pady=2)
-            btn.bind("<Enter>", lambda e: btn.config(bg="#333354"))
-            btn.bind("<Leave>", lambda e: btn.config(bg="#1f1f2e"))
-            btn.bind("<Button-1>", lambda e: command())
-            return btn
-
-
-        # ttk.Button(self.nav_frame, text="Create Category", command=self.create_category).pack(pady=5, fill="x")
-        # ttk.Button(self.nav_frame, text="Delete Category", command=self.delete_category).pack(pady=5, fill="x")
-
-        # create_nav_item("➕", "Create Category", self.create_category)
-        # create_nav_item("🗑️", "Delete Category", self.delete_category)
-        self.nav_actions["Categories"] = create_nav_item("📁", "Categories", self.manage_categories)
-
-
-    def manage_categories(self):
-        import logging
-        logger = logging.getLogger(__name__)
-
-        # Clear current content in the right-side frame
-        self.clear_content()
-        user = self.controller.auth.get_current_user()
-        data = load_data()
-
-        logger.info(f"[{user.username}] opened Category Management dashboard.")
-
-        # Wrapper frame for the full category management UI
-        wrapper = ttk.Frame(self.content_frame)
-        wrapper.pack(fill="both", expand=True, padx=40, pady=30)
-        wrapper.columnconfigure(0, weight=1)
-
-        # Page heading
-        ttk.Label(wrapper, text="📁 Manage Categories", font=("Segoe UI", 20, "bold")).grid(row=0, column=0,
-                                                                                           pady=(0, 20), sticky="w")
-
-        categories = data.get("categories", {})
-
-        # --- Treeview Table for Categories ---
-        table_frame = ttk.Frame(wrapper)
-        table_frame.grid(row=1, column=0, sticky="nsew")
-
-        columns = ("ID", "Name")
-        tree = ttk.Treeview(table_frame, columns=columns, show="headings", height=10)
-        tree.heading("ID", text="ID")
-        tree.heading("Name", text="Category Name")
-        tree.column("ID", width=80, anchor="center")
-        tree.column("Name", width=250)
-        tree.pack(side="left", fill="both", expand=True)
-
-        scrollbar = ttk.Scrollbar(table_frame, orient="vertical", command=tree.yview)
-        tree.configure(yscroll=scrollbar.set)
-        scrollbar.pack(side="right", fill="y")
-
-        # --- Edit/Delete Buttons ---
-        button_frame = ttk.Frame(wrapper)
-        button_frame.grid(row=2, column=0, pady=(10, 0), sticky="w")
-
-        def refresh_table():
-            for row in tree.get_children():
-                tree.delete(row)
-            for cid in sorted(categories, key=int):
-                cat = categories[cid]
-                tree.insert("", "end", iid=cid, values=(cid, cat['name']))
-
-        def on_edit():
-            selected = tree.selection()
-            if not selected:
-                logger.warning(f"[{user.username}] attempted to edit without selecting a category.")
-                messagebox.showwarning("Select", "Please select a category to edit.")
-                return
-            cid = selected[0]
-            old_name = categories[cid]['name']
-
-            # --- Edit Category Modal (Toplevel Window) ---
-            edit_win = tk.Toplevel(self)
-            edit_win.title("Edit Category")
-            edit_win.geometry("320x180")
-            edit_win.configure(bg="#2e2e2e")  # Match dark theme
-
-            # Label for input
-            ttk.Label(edit_win, text="Edit Category Name:", font=("Segoe UI", 12)).pack(pady=10)
-
-            # Input field
-            name_var = tk.StringVar(value=old_name)
-            entry = ttk.Entry(edit_win, textvariable=name_var, font=("Segoe UI", 11), width=30)
-            entry.pack(pady=5)
-
-            # Save Button
-            button_frame = ttk.Frame(edit_win)
-            button_frame.pack(pady=15)
-
-            def save():
-                new_name = name_var.get().strip()
-                if not new_name:
-                    logger.warning(f"[{user.username}] attempted to rename category ID {cid} with an empty name.")
-                    messagebox.showerror("Error", "Name cannot be empty.")
-                    return
-                if any(cat['name'].lower() == new_name.lower() for k, cat in categories.items() if k != cid):
-                    logger.warning(
-                        f"[{user.username}] attempted to rename category ID {cid} to a duplicate name: '{new_name}'")
-                    messagebox.showerror("Error", "Category already exists.")
-                    return
-
-                # ✅ Rename in category list
-                categories[cid]['name'] = new_name
-
-                # 🔁 Update all expenses using the old category name
-                for user_id, expenses_list in data.get("expenses", {}).items():
-                    for exp in expenses_list:
-                        if exp["category"] == old_name:
-                            exp["category"] = new_name
-
-                save_data(data)
-                refresh_table()
-                logger.info(
-                    f"[{user.username}] renamed category '{old_name}' to '{new_name}' and updated matching expenses.")
-                messagebox.showinfo("Updated", "Category updated successfully.")
-                edit_win.destroy()
-
-            ttk.Button(button_frame, text="💾 Save", style="Accent.TButton", command=save).pack()
-
-        def on_delete():
-            selected = tree.selection()
-            if not selected:
-                logger.warning(f"[{user.username}] attempted to delete without selecting a category.")
-                messagebox.showwarning("Select", "Please select a category to delete.")
-                return
-
-            cid = selected[0]
-            cat_name = categories[cid]["name"]
-
-            # 🔍 Check if category is used in any expense
-            used_in_expenses = any(
-                exp["category"] == cat_name
-                for user_exp in data.get("expenses", {}).values()
-                for exp in user_exp
-            )
-            if used_in_expenses:
-                logger.warning(f"[{user.username}] attempted to delete category '{cat_name}' that is in use.")
-                messagebox.showerror("Blocked", f"Category '{cat_name}' is used in expenses and cannot be deleted.")
-                return
-
-            confirm = messagebox.askyesno("Confirm", f"Delete category '{cat_name}'?")
-            if confirm:
-                logger.info(f"[{user.username}] deleted category ID {cid}: '{cat_name}'")
-                del categories[cid]
-                save_data(data)
-                refresh_table()
-                messagebox.showinfo("Deleted", "Category deleted.")
-
-        ttk.Button(button_frame, text="✏️ Edit", style="Accent.TButton", command=on_edit).pack(side="left", padx=5)
-        ttk.Button(button_frame, text="🗑️ Delete", style="Danger.TButton", command=on_delete).pack(side="left", padx=5)
-
-        # --- Create New Category Form ---
-        create_frame = ttk.Frame(wrapper)
-        create_frame.grid(row=3, column=0, pady=(30, 0), sticky="w")
-
-        ttk.Label(create_frame, text="➕ Create New Category:", font=("Segoe UI", 12)).grid(row=0, column=0, sticky="w")
-        new_cat_var = tk.StringVar()
-        new_cat_entry = ttk.Entry(create_frame, textvariable=new_cat_var, font=("Segoe UI", 11), width=30)
-        new_cat_entry.grid(row=1, column=0, pady=(0, 5), sticky="w")
-
-        def create_category():
-            name = new_cat_var.get().strip()
-            if not name:
-                logger.warning(f"[{user.username}] attempted to create a category with empty name.")
-                messagebox.showerror("Error", "Category name cannot be empty.")
-                return
-            if any(cat['name'].lower() == name.lower() for cat in categories.values()):
-                logger.warning(f"[{user.username}] attempted to create duplicate category: '{name}'")
-                messagebox.showerror("Error", "Category already exists.")
-                return
-
-            new_id = max(map(int, categories.keys()), default=0) + 1
-            categories[str(new_id)] = {
-                "category_id": new_id,
-                "name": name,
-                "user_id": user.user_id
-            }
-            save_data(data)
-            categories.clear()
-            categories.update(load_data().get("categories", {}))
-            new_cat_var.set("")
-            refresh_table()
-            logger.info(f"[{user.username}] created new category ID {new_id}: '{name}'")
-            messagebox.showinfo("Created", f"Category '{name}' created.")
-
-        ttk.Button(create_frame, text="Create", style="Accent.TButton", command=create_category).grid(row=1, column=1,
-                                                                                                      padx=10)
-
-        refresh_table()
-
-
-
-    def load_landing(self):
-        self.clear_content()
-        build_landing_content(self.content_frame, self.controller)
-
-    def trigger_nav(self, name):
-        if name in self.nav_actions:
-            self.nav_actions[name].event_generate("<Button-1>")
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 class UserDashboard(BaseDashboard):
+    """
+    Provides the main dashboard interface for regular users. Users can:
+    - Add new expenses
+    - View and filter expense history
+    - Edit or delete existing records
+    - Visualize monthly summaries with bar and pie charts
+    - Set monthly budget limits
+    """
+
     def __init__(self, parent, controller):
+        """
+               Initializes the dashboard layout and navigation menu.
+               Sets up sidebar options and tracks selected state.
+               """
+
         super().__init__(parent, controller)
         self.active_nav_item = None  # Track currently selected nav label
         self.nav_actions = {}
 
         def create_nav_item(icon, text, command):
+            """Creates a styled navigation button for the sidebar."""
+
             full_text = f"{icon}  {text}"
             btn = tk.Label(self.nav_frame, text=full_text, bg="#1f1f2e", fg="white",
                            font=("Segoe UI", 11), anchor="w", padx=20)
@@ -293,6 +56,7 @@ class UserDashboard(BaseDashboard):
 
             return btn
 
+        # Sidebar navigation items
         self.nav_actions["Add Expense"] = create_nav_item("💸", "Add Expense", self.add_expense)
         self.nav_actions["View Expenses"] = create_nav_item("📋", "View Expenses", self.view_expenses)
         self.nav_actions["View Summary"] = create_nav_item("📊", "View Summary", self.view_summary)
@@ -303,39 +67,52 @@ class UserDashboard(BaseDashboard):
         self.grid_propagate(False)
 
     def add_expense(self):
+        """
+        Displays a form for the user to input a new expense, including:
+        - Dropdown for selecting category
+        - Text area for description
+         - Entry for amount
+        - Date picker for date
+        - On submit, validates data and saves the expense.
+        """
         self.clear_content()
         user = self.controller.auth.get_current_user()
         data = load_data()
         categories = data.get("categories", {})
         cat_options = [(cid, cat["name"]) for cid, cat in categories.items()]
 
+        # Layout wrapper
         wrapper = ttk.Frame(self.content_frame)
         wrapper.pack(fill="both", expand=True, padx=40, pady=30)
         wrapper.columnconfigure(0, weight=1)
 
         ttk.Label(wrapper, text="\U0001F4B0 Add New Expense", font=("Segoe UI", 20, "bold")).grid(row=0, column=0,
                                                                                                   pady=(0, 20))
-
+        # Category dropdown
         ttk.Label(wrapper, text="📂 Category", font=("Segoe UI", 12)).grid(row=1, column=0, sticky="w")
         category_var = tk.StringVar()
-        cat_dropdown = ttk.Combobox(wrapper, textvariable=category_var, font=("Segoe UI", 11), width = 18)
+        cat_dropdown = ttk.Combobox(wrapper, textvariable=category_var, font=("Segoe UI", 11), width = 18, state="readonly")
         cat_dropdown["values"] = [f"{cid}: {name}" for cid, name in cat_options]
         cat_dropdown.grid(row=2, column=0, pady=(0, 15), sticky="ew")
 
+        # Description field
         ttk.Label(wrapper, text="📝 Description", font=("Segoe UI", 12)).grid(row=3, column=0, sticky="w")
         desc_entry = tk.Text(wrapper, height=4, font=("Segoe UI", 11), wrap="word")
         desc_entry.grid(row=4, column=0, pady=(0, 15), sticky="ew")
 
+        # Amount field
         ttk.Label(wrapper, text="💵 Amount", font=("Segoe UI", 12)).grid(row=5, column=0, sticky="w")
         amt_entry = ttk.Entry(wrapper, font=("Segoe UI", 11), width=50)
         amt_entry.grid(row=6, column=0, pady=(0, 15), sticky="ew")
         amt_entry.insert(0, "0.00")
 
+        # Date picker
         ttk.Label(wrapper, text="📅 Date", font=("Segoe UI", 12)).grid(row=7, column=0, sticky="w")
         date_picker = DateEntry(wrapper, width=18, background="darkgreen", foreground="white", borderwidth=2,
                                 date_pattern='yyyy-mm-dd', font=("Segoe UI", 11))
         date_picker.grid(row=8, column=0, pady=(0, 20), sticky="w")
 
+        # Handle submission
         def submit_expense():
             try:
                 selected = category_var.get()
@@ -367,10 +144,11 @@ class UserDashboard(BaseDashboard):
                     data["expenses"][str(user.user_id)] = []
                 data["expenses"][str(user.user_id)].append(expense)
                 save_data(data)
-
+                logging.info(f"[User {user.user_id}] added expense: {amount:.2f}, {cat_name}, {desc[:30]}, {date}")
                 messagebox.showinfo("Success", "Expense added successfully.")
                 self.add_expense()
             except Exception as e:
+                logging.error(f"[User {user.user_id}] failed to add expense: {e}")
                 messagebox.showerror("Error", f"Failed to add expense: {e}")
 
         def reset_form():
@@ -463,6 +241,7 @@ class UserDashboard(BaseDashboard):
         # Validates and applies filter
         def filter_by_month():
             month = month_var.get().strip()
+            logging.info(f"[User {user.user_id}] viewed summary for month: {month}")
             if not month or len(month) != 7 or "-" not in month:
                 messagebox.showerror("Invalid Input", "Enter a valid month in YYYY-MM format.")
                 return
@@ -475,7 +254,7 @@ class UserDashboard(BaseDashboard):
                 messagebox.showinfo("No Data", "No expenses to export for the selected month.")
                 return
 
-            file_path = f"expenses_{user.username}_{month}.csv"
+            file_path = os.path.join(DATA_DIR, f"expenses_{user.username}_{month}.csv")
             try:
                 with open(file_path, "w", newline="", encoding="utf-8") as csvfile:
                     writer = csv.writer(csvfile)
@@ -483,8 +262,11 @@ class UserDashboard(BaseDashboard):
                     for exp in filtered_expenses:
                         writer.writerow([exp["date"], exp["category"], f"{exp['amount']:.2f}", exp["description"]])
                 messagebox.showinfo("Export Successful", f"Expenses exported to '{file_path}'")
+                logging.info(f"[User {user.user_id}] exported expenses to CSV for month: {month}")
+
             except Exception as e:
                 messagebox.showerror("Export Failed", f"Error: {e}")
+
 
         # Deletes selected expense
         def delete_expense():
@@ -502,6 +284,7 @@ class UserDashboard(BaseDashboard):
             save_data(data)
             tree.delete(tree_id)
             messagebox.showinfo("Deleted", "Expense deleted successfully.")
+            logging.info(f"[User {user.user_id}] deleted expense ID {expense_id}")
 
         # Opens the edit window for selected expense
         def edit_expense():
@@ -590,6 +373,7 @@ class UserDashboard(BaseDashboard):
                     # Update Treeview row
                     tree.item(tree_id, values=(new_date, cat_name, f"{new_amt:.2f}", new_desc))
                     messagebox.showinfo("Success", "Expense updated.")
+                    logging.info(f"[User {user.user_id}] edited expense ID {expense['expense_id']}")
                     ewin.destroy()
                 except Exception as e:
                     messagebox.showerror("Error", f"Could not update expense: {e}")
@@ -651,12 +435,22 @@ class UserDashboard(BaseDashboard):
 
         def download_charts():
             username = user.username
-            if self.chart_type.get().lower() in ["bar", "both"] and self.fig1:
-                self.fig1.savefig(f"{username}_bar_chart.png")
-            if self.chart_type.get().lower() in ["pie", "both"] and self.fig2:
-                self.fig2.savefig(f"{username}_pie_chart.png")
-            messagebox.showinfo("Saved", "Chart(s) saved to current directory.")
+            saved_paths = []
 
+            if self.chart_type.get().lower() in ["bar", "both"] and self.fig1:
+                bar_path = os.path.join(DATA_DIR, f"{username}_bar_chart.png")
+                self.fig1.savefig(bar_path)
+                saved_paths.append(bar_path)
+
+            if self.chart_type.get().lower() in ["pie", "both"] and self.fig2:
+                pie_path = os.path.join(DATA_DIR, f"{username}_pie_chart.png")
+                self.fig2.savefig(pie_path)
+                saved_paths.append(pie_path)
+
+            if saved_paths:
+                file_list = "\n".join(saved_paths)
+                messagebox.showinfo("Saved", f"Chart(s) saved to:\n{file_list}")
+                logging.info(f"[User {user.user_id}] downloaded chart(s): {self.chart_type.get().lower()}")
 
         ttk.Button(chart_control, text="📥 Download Chart(s)", style="Accent.TButton", command=download_charts).grid(
             row=0, column=2, padx=10)
@@ -668,15 +462,23 @@ class UserDashboard(BaseDashboard):
         result_frame.grid_columnconfigure(0, weight=1)
 
         def update_summary():
+            # Close previous figures
+            if self.fig1:
+                plt.close(self.fig1)
+            if self.fig2:
+                plt.close(self.fig2)
+
             for widget in result_frame.winfo_children():
                 widget.destroy()
 
             current_month = month_var.get().strip()
+            logging.info(f"[User {user.user_id}] viewed summary for month: {current_month}")
             month_expenses = [e for e in expenses if e["date"].startswith(current_month)]
             total_spent = sum(e["amount"] for e in month_expenses)
             budget = budget_data.get(current_month)
             remaining = (budget - total_spent) if budget else None
 
+            # --- Summary Section ---
             summary = ttk.Frame(result_frame)
             summary.grid(row=0, column=0, pady=10)
             ttk.Label(summary, text=f"Total Expenses: ${total_spent:.2f}", font=("Segoe UI", 13, "bold"),
@@ -693,10 +495,13 @@ class UserDashboard(BaseDashboard):
                 ttk.Label(summary, text="No budget set for this month.", foreground="orange",
                           font=("Segoe UI", 12)).pack()
 
+            # --- Chart Frame ---
             chart_frame = ttk.Frame(result_frame)
             chart_frame.grid(row=1, column=0, sticky="nsew", padx=10)
+            chart_frame.grid_propagate(False)
+            chart_frame.config(width=1100, height=500)
             chart_frame.grid_columnconfigure(0, weight=1)
-            chart_frame.grid_columnconfigure(1, weight=1)
+            chart_frame.grid_columnconfigure(1, weight=2)
             chart_frame.grid_rowconfigure(0, weight=1)
 
             from collections import defaultdict
@@ -719,27 +524,62 @@ class UserDashboard(BaseDashboard):
                     yval = bar.get_height()
                     ax1.text(bar.get_x() + bar.get_width() / 2, yval + 10, f"${yval:.2f}", ha='center', va='bottom',
                              fontsize=11, fontweight='bold')
-                canvas1 = FigureCanvasTkAgg(self.fig1, master=chart_frame)
+
+                canvas_wrapper = ttk.Frame(chart_frame)
+                canvas_wrapper.grid(row=0, column=0, sticky="nsew")
+                canvas_wrapper.grid_propagate(False)
+                canvas_wrapper.config(width=500, height=450)
+
+                canvas1 = FigureCanvasTkAgg(self.fig1, master=canvas_wrapper)
                 canvas1.draw()
-                canvas1.get_tk_widget().grid(row=0, column=0 if chart_type == "both" else 0, padx=20, pady=10,
-                                             sticky="nsew")
+                canvas1.get_tk_widget().pack(fill="both", expand=True)
 
             if chart_type in ["pie", "both"] and category_totals:
                 self.fig2, ax2 = plt.subplots(figsize=(7.5, 5.5), dpi=100)
                 pie_labels = list(category_totals.keys())
                 pie_sizes = list(category_totals.values())
-                total = sum(pie_sizes)
-                pie_colors = ["#ff4d4d" if size / total >= 0.3 else "#a3d2ca" for size in pie_sizes]
-                wedges, texts, autotexts = ax2.pie(pie_sizes, labels=pie_labels, autopct='%1.1f%%', startangle=140,
-                                                   colors=pie_colors, wedgeprops=dict(edgecolor='white'))
+                pie_colors = [
+                    "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854",
+                    "#ffd92f", "#e5c494", "#b3b3b3", "#f781bf", "#999999"
+                ]
+
+                wedges, _, autotexts = ax2.pie(
+                    pie_sizes,
+                    labels=None,
+                    autopct='%1.1f%%',
+                    startangle=140,
+                    colors=pie_colors[:len(pie_labels)],
+                    wedgeprops=dict(edgecolor='white')
+                )
+
                 for autotext in autotexts:
-                    autotext.set_color('white')
-                    autotext.set_fontweight('bold')
+                    autotext.set_color("black")
+                    autotext.set_fontsize(12)
+
+                ax2.legend(
+                    wedges,
+                    pie_labels,
+                    title="Categories",
+                    loc="center left",
+                    bbox_to_anchor=(1, 0.5),
+                    fontsize=11,
+                    title_fontsize=12
+                )
+
                 ax2.set_title("Expenses by Category", fontsize=14, fontweight="bold")
-                canvas2 = FigureCanvasTkAgg(self.fig2, master=chart_frame)
+                self.fig2.tight_layout(rect=[0, 0, 0.85, 1])
+
+                canvas_wrapper = ttk.Frame(chart_frame)
+                canvas_wrapper.grid(row=0, column=1, sticky="nsew")
+                canvas_wrapper.grid_propagate(False)
+                canvas_wrapper.config(width=600, height=450)
+
+                canvas2 = FigureCanvasTkAgg(self.fig2, master=canvas_wrapper)
                 canvas2.draw()
-                canvas2.get_tk_widget().grid(row=0, column=1 if chart_type == "both" else 0, padx=20, pady=10,
-                                             sticky="nsew")
+                canvas2.get_tk_widget().pack(fill="both", expand=True)
+
+            # ✅ Force re-layout after all chart rendering
+            self.update_idletasks()
 
         update_summary()
 
@@ -786,9 +626,11 @@ class UserDashboard(BaseDashboard):
                 data["budgets"][str(user.user_id)][month] = amount
                 save_data(data)
 
+                logging.info(f"[User {user.user_id}] set budget for {month}: ${amount:.2f}")
                 messagebox.showinfo("Success", f"Budget of ${amount:.2f} set for {month}")
                 self.set_budget()
             except Exception as e:
+                logging.error(f"[User {user.user_id}] failed to set budget: {e}")
                 messagebox.showerror("Error", f"Could not set budget: {e}")
 
         # --- Action Button ---
@@ -797,11 +639,15 @@ class UserDashboard(BaseDashboard):
         )
 
     def load_landing(self):
+        """
+        Displays the landing content (profile/overview section).
+        """
         self.clear_content()
         build_landing_content(self.content_frame, self.controller)
 
     def trigger_nav(self, name):
+        """
+             Programmatically triggers a sidebar button (used after login or routing).
+        """
         if name in self.nav_actions:
             self.nav_actions[name].event_generate("<Button-1>")
-
-#

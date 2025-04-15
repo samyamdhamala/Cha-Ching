@@ -1,13 +1,9 @@
 import logging
-from file_manager import load_data, save_data
-from models import Expense
+from core.file_manager import load_data, save_data
+from core.models import Expense
 import itertools
 import datetime
 import re
-
-logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-
 class ExpenseTracker:
     expense_id_counter = itertools.count(1)  # Ensures unique expense IDs
 
@@ -52,7 +48,7 @@ class ExpenseTracker:
                     raise ValueError("Amount must be a positive number.")
                 break
             except ValueError as e:
-                logging.warning(f"Invalid amount entered: {e}")
+                logging.warning(f"[User {self.user.user_id}] Invalid amount input: {e}")
                 print(f"[!] Invalid amount. Please enter a valid positive number.")
 
         while True:
@@ -73,8 +69,10 @@ class ExpenseTracker:
                     break
                 except ValueError:
                     print("[!] Invalid date. Please enter a valid date in YYYY-MM-DD format.")
+                    logging.warning(f"[User {self.user.user_id}] Entered invalid date: {date}")
             else:
                 print("[!] Invalid date format. Please enter in YYYY-MM-DD format.")
+                logging.warning(f"[User {self.user.user_id}] Entered invalid date: {date}")
 
         expense_id = next(ExpenseTracker.expense_id_counter)  # Assign unique ID
         expense = Expense(amount, category_name, description, self.user.user_id, date, expense_id)
@@ -83,11 +81,11 @@ class ExpenseTracker:
             data["expenses"][str(self.user.user_id)] = []
         data["expenses"][str(self.user.user_id)].append(vars(expense))
         save_data(data)
-
         logging.info(
             f"Expense added: {expense.amount}, {expense.category}, {expense.description}, {expense.date}, ID: {expense.expense_id} by user {self.user.user_id}."
         )
         print(f"[+] Expense added successfully with ID: {expense.expense_id}.")
+
 
     def list_expenses(self):
         """Lists all expenses for the user."""
@@ -148,6 +146,7 @@ class ExpenseTracker:
             expense_id = int(input("Enter Expense ID to edit: "))
         except ValueError:
             print("[!] Invalid Expense ID.")
+            logging.warning(f"[User {self.user.user_id}] Entered non-integer Expense ID for editing.")
             return
 
         data = load_data()
@@ -159,13 +158,19 @@ class ExpenseTracker:
                     new_description = input("Enter new description: ").strip()
                     expense["amount"] = new_amount
                     expense["description"] = new_description
-                    save_data(data)
+                    try:
+                        save_data(data)
+                    except Exception as e:
+                        logging.error(f"Failed to save updated expenses: {e}")
+                        print("[!] Failed to save changes. Please try again.")
+
                     print("[+] Expense updated successfully.")
                     return
                 except ValueError:
                     print("[!] Invalid input.")
                     return
         print("[!] Expense ID not found.")
+        logging.warning(f"[User {self.user.user_id}] Tried editing non-existent Expense ID: {expense_id}")
 
     def delete_expense(self):
         """Allows the user to delete an expense."""
@@ -174,6 +179,7 @@ class ExpenseTracker:
             expense_id = int(input("Enter Expense ID to delete: "))
         except ValueError:
             print("[!] Invalid Expense ID.")
+            logging.warning(f"[User {self.user.user_id}] Entered invalid Expense ID for deletion.")
             return
 
         data = load_data()
@@ -181,8 +187,14 @@ class ExpenseTracker:
         updated_expenses = [exp for exp in user_expenses if exp["expense_id"] != expense_id]
         if len(updated_expenses) == len(user_expenses):
             print("[!] Expense ID not found.")
+            logging.warning(f"[User {self.user.user_id}] Tried deleting non-existent Expense ID: {expense_id}")
             return
 
         data["expenses"][str(self.user.user_id)] = updated_expenses
-        save_data(data)
+        try:
+            save_data(data)
+        except Exception as e:
+            logging.error(f"Failed to save updated expenses: {e}")
+            print("[!] Failed to save changes. Please try again.")
+
         print("[+] Expense deleted successfully.")

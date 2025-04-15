@@ -4,15 +4,16 @@ import logging
 
 # Configure logging
 logging.basicConfig(
-    filename="app.log",
+    filename="data/app.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
-from auth import Authentication
-from expenses import ExpenseTracker
-from file_manager import load_data, save_data
-from models import User, Expense, Category
-from file_manager import hash_password
+
+from core.auth import Authentication
+from core.expenses import ExpenseTracker
+from core.file_manager import load_data, save_data
+from core.models import Category
+from core.file_manager import hash_password
 from app_gui import AppGUI
 
 
@@ -40,7 +41,7 @@ def create_admin(auth):
     data["users"].append(admin_user)
     save_data(data)
     print("[✔] Admin account created with hashed password.")
-    logging.info("Admin account created with hashed password.")
+    logging.info("Admin account created and stored securely.")
 
 
 def main_menu(auth):
@@ -68,7 +69,7 @@ def main_menu(auth):
             sys.exit(0)
         else:
             print("[!] Invalid choice.")
-        logging.warning("Invalid main menu choice selected.")
+            logging.warning("Invalid main menu choice selected.")
 
 
 def admin_menu():
@@ -114,16 +115,14 @@ def admin_menu():
                     logging.info(f"Category ID {cat_id} renamed to '{new_name}' by admin.")
                 else:
                     print("[!] Invalid Category ID.")
+                    logging.warning("Admin entered invalid category ID.")
+
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
-                logging.warning("Invalid input while deleting category: expected a number.")
+                logging.warning("Admin entered invalid input (non-integer) for category ID.")
             except KeyError:
                 print("[!] Category ID not found.")
-                logging.error(f"KeyError while deleting category ID: {cat_id}")
-                logging.warning("Invalid input while editing category: expected a number.")
-            except KeyError:
-                print("[!] Category ID not found.")
-                logging.error(f"KeyError while editing category ID: {cat_id}")
+                logging.error(f"Category ID not found during admin edit/delete: {cat_id}")
 
         elif choice == "4":
             print("\nAvailable Categories:")
@@ -138,9 +137,10 @@ def admin_menu():
                     logging.info(f"Category ID {cat_id} deleted by admin.")
                 else:
                     print("[!] Invalid Category ID.")
+                    logging.warning("Admin entered non-integer input for category ID.")
             except ValueError:
                 print("[!] Invalid input. Please enter a number.")
-                logging.warning("Invalid input while editing category: expected a number.")
+                logging.warning("Admin entered non-integer category ID during delete.")
             except KeyError:
                 print("[!] Category ID not found.")
                 logging.error(f"KeyError while editing category ID: {cat_id}")
@@ -194,7 +194,7 @@ def user_menu(auth, user_trackers):
             break
         else:
             print("[!] Invalid choice. Please select a valid option.")
-
+            logging.warning(f"Invalid user menu choice entered by '{user.username}'")
 
 
 def run_app():
@@ -211,5 +211,9 @@ def run_app():
 
 if __name__ == "__main__":
     logging.info("Application started.")
+
+    auth = Authentication()
+    create_admin(auth)  # <--- This ensures admin gets created
     app = AppGUI()
     app.mainloop()
+

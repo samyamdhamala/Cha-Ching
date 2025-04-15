@@ -2,8 +2,8 @@
 import itertools
 import logging
 import datetime
-from models import User
-from file_manager import load_data, save_data, hash_password, verify_password
+from core.models import User
+from core.file_manager import load_data, save_data, hash_password, verify_password
 
 class Authentication:
     def __init__(self):
