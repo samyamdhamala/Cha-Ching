@@ -4,12 +4,10 @@ import os
 import logging
 from hashlib import sha256
 
-DATA_FILE = "data.json"
-LOG_FILE = "app.log"
 
-# Initialize logging
-logging.basicConfig(filename=LOG_FILE, level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_FILE = os.path.join(BASE_DIR, 'data', 'data.json')
+LOG_FILE = os.path.join(BASE_DIR, 'data', 'app.log')
 
 # Ensure data file exists
 if not os.path.exists(DATA_FILE):
@@ -21,9 +19,13 @@ def load_data():
     try:
         with open(DATA_FILE, "r") as f:
             return json.load(f)
+    except FileNotFoundError:
+        logging.error("Data file not found. Returning empty structure.")
+    except json.JSONDecodeError:
+        logging.error("Data file is corrupted. Returning empty structure.")
     except Exception as e:
-        logging.error(f"Error loading data: {e}")
-        return {"users": [], "expenses": {}, "categories": {}, "budgets": {}}
+        logging.exception("Unexpected error while loading data:")
+    return {"users": [], "expenses": {}, "categories": {}, "budgets": {}}
 
 def save_data(data):
     """Saves data to the JSON file. Logs success or failure."""
@@ -31,8 +33,11 @@ def save_data(data):
         with open(DATA_FILE, "w") as f:
             json.dump(data, f, indent=4)
         logging.info("Data saved successfully.")
-    except Exception as e:
-        logging.error(f"Error saving data: {e}")
+    except IOError as e:
+        logging.error(f"I/O error while saving data: {e}")
+    except Exception:
+        logging.exception("Unexpected error while saving data.")
+
 
 def hash_password(password):
     """Encrypts the password using SHA-256."""

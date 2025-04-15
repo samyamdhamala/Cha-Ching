@@ -1,7 +1,6 @@
 # landing.py
-import tkinter as tk
 from tkinter import ttk
-from file_manager import load_data
+from core.file_manager import load_data
 import datetime
 
 
