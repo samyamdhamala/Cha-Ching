@@ -666,3 +666,111 @@
 2025-05-12 21:13:38,033 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-05-12 21:13:38,035 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-05-12 21:13:38,036 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:29:48,498 - INFO - Application started.
+2025-05-12 21:29:56,092 - INFO - User 'sam' logged in.
+2025-05-12 21:29:56,092 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 21:29:57,886 - INFO - User 'sam' initiated the Spending Trend view.
+2025-05-12 21:29:57,907 - INFO - Available months for user 'sam': ['2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
+2025-05-12 21:29:57,920 - INFO - Plot button created and ready.
+2025-05-12 21:30:00,456 - INFO - Month selection popup opened.
+2025-05-12 21:30:00,462 - INFO - Month selection listbox created.
+2025-05-12 21:30:04,821 - INFO - User 'sam' selected months: ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05']
+2025-05-12 21:30:06,103 - INFO - User 'sam' plotting spending trend for months: ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05']
+2025-05-12 21:30:06,104 - INFO - Total for 2025-01: $583.10
+2025-05-12 21:30:06,104 - INFO - Total for 2025-02: $575.79
+2025-05-12 21:30:06,104 - INFO - Total for 2025-03: $572.00
+2025-05-12 21:30:06,104 - INFO - Total for 2025-04: $715.00
+2025-05-12 21:30:06,104 - INFO - Total for 2025-05: $543.05
+2025-05-12 21:30:06,104 - INFO - Plotting data for user 'sam': Months - ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05'], Totals - [583.1, 575.79, 572.0, 715.0, 543.05]
+2025-05-12 21:30:06,226 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:30:06,228 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:30:06,229 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:30:06,233 - INFO - Added label for 2025-01: $583.10
+2025-05-12 21:30:06,233 - INFO - Added label for 2025-02: $575.79
+2025-05-12 21:30:06,234 - INFO - Added label for 2025-03: $572.00
+2025-05-12 21:30:06,234 - INFO - Added label for 2025-04: $715.00
+2025-05-12 21:30:06,235 - INFO - Added label for 2025-05: $543.05
+2025-05-12 21:30:06,394 - INFO - Spending trend chart rendered.
+2025-05-12 21:32:48,936 - INFO - Application started.
+2025-05-12 21:32:57,227 - INFO - User 'sam' logged in.
+2025-05-12 21:32:57,227 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 21:32:59,281 - INFO - User 'sam' initiated the Spending Trend view.
+2025-05-12 21:32:59,303 - INFO - Available months for user 'sam': ['2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
+2025-05-12 21:32:59,315 - INFO - Plot button created and ready.
+2025-05-12 21:33:00,997 - INFO - User 'sam' plotting spending trend for months: ['Select Months']
+2025-05-12 21:33:00,997 - INFO - Total for Select Months: $0.00
+2025-05-12 21:33:00,997 - INFO - Plotting data for user 'sam': Months - ['Select Months'], Totals - [0]
+2025-05-12 21:33:01,220 - INFO - Spending trend chart rendered.
+2025-05-12 21:33:22,129 - INFO - Month selection popup opened.
+2025-05-12 21:33:22,136 - INFO - Month selection listbox created.
+2025-05-12 21:33:27,286 - INFO - User 'sam' selected months: ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05']
+2025-05-12 21:33:28,777 - INFO - User 'sam' plotting spending trend for months: ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05']
+2025-05-12 21:33:28,783 - INFO - Previous chart canvas cleared.
+2025-05-12 21:33:28,783 - INFO - Total for 2025-01: $583.10
+2025-05-12 21:33:28,783 - INFO - Total for 2025-02: $575.79
+2025-05-12 21:33:28,783 - INFO - Total for 2025-03: $572.00
+2025-05-12 21:33:28,784 - INFO - Total for 2025-04: $715.00
+2025-05-12 21:33:28,784 - INFO - Total for 2025-05: $543.05
+2025-05-12 21:33:28,784 - INFO - Plotting data for user 'sam': Months - ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05'], Totals - [583.1, 575.79, 572.0, 715.0, 543.05]
+2025-05-12 21:33:28,824 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:33:28,826 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:33:28,827 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:33:28,972 - INFO - Spending trend chart rendered.
+2025-05-12 21:36:50,253 - INFO - Application started.
+2025-05-12 21:37:01,710 - INFO - User 'testuser' logged in.
+2025-05-12 21:37:01,710 - INFO - [GUI] User 'testuser' logged in successfully.
+2025-05-12 21:38:33,672 - INFO - Data saved successfully.
+2025-05-12 21:38:38,038 - INFO - [User 8] imported 10 expenses from CSV.
+2025-05-12 21:40:09,638 - INFO - [User 8] viewed summary for month: 2025-01
+2025-05-12 21:41:03,629 - INFO - User 'testuser' initiated the Spending Trend view.
+2025-05-12 21:41:03,661 - INFO - Available months for user 'testuser': ['2025-05', '2025-02', '2025-01']
+2025-05-12 21:41:03,661 - INFO - Plot button created and ready.
+2025-05-12 21:41:14,023 - INFO - Month selection popup opened.
+2025-05-12 21:41:14,023 - INFO - Month selection listbox created.
+2025-05-12 21:41:40,719 - INFO - User 'testuser' logged out.
+2025-05-12 21:41:47,141 - INFO - User 'sam' logged in.
+2025-05-12 21:41:47,141 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 21:41:48,270 - INFO - User 'sam' initiated the Spending Trend view.
+2025-05-12 21:41:48,286 - INFO - Available months for user 'sam': ['2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
+2025-05-12 21:41:48,286 - INFO - Plot button created and ready.
+2025-05-12 21:41:49,517 - INFO - User 'sam' initiated the Spending Trend view.
+2025-05-12 21:41:49,533 - INFO - Available months for user 'sam': ['2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
+2025-05-12 21:41:49,533 - INFO - Plot button created and ready.
+2025-05-12 21:41:51,825 - INFO - User 'sam' initiated the Spending Trend view.
+2025-05-12 21:41:51,841 - INFO - Available months for user 'sam': ['2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
+2025-05-12 21:41:51,841 - INFO - Plot button created and ready.
+2025-05-12 21:41:53,891 - INFO - Month selection popup opened.
+2025-05-12 21:41:53,907 - INFO - Month selection listbox created.
+2025-05-12 21:42:12,265 - INFO - Month selection popup opened.
+2025-05-12 21:42:12,266 - INFO - Month selection listbox created.
+2025-05-12 21:42:53,078 - INFO - User 'sam' selected months: ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05']
+2025-05-12 21:43:03,927 - INFO - Month selection popup opened.
+2025-05-12 21:43:03,943 - INFO - Month selection listbox created.
+2025-05-12 21:43:10,318 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 21:43:11,546 - INFO - User 'sam' initiated the Spending Trend view.
+2025-05-12 21:43:11,546 - INFO - Available months for user 'sam': ['2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
+2025-05-12 21:43:11,546 - INFO - Plot button created and ready.
+2025-05-12 21:43:19,934 - INFO - Month selection popup opened.
+2025-05-12 21:43:19,936 - INFO - Month selection listbox created.
+2025-05-12 21:43:31,995 - INFO - User 'sam' selected months: []
+2025-05-12 21:43:34,860 - INFO - User 'sam' logged out.
+2025-05-12 21:43:41,094 - INFO - Application started.
+2025-05-12 21:43:47,448 - INFO - User 'sam' logged in.
+2025-05-12 21:43:47,448 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 21:43:49,181 - INFO - User 'sam' initiated the Spending Trend view.
+2025-05-12 21:43:49,203 - INFO - Available months for user 'sam': ['2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
+2025-05-12 21:43:49,215 - INFO - Plot button created and ready.
+2025-05-12 21:43:50,509 - INFO - Month selection popup opened.
+2025-05-12 21:43:50,514 - INFO - Month selection listbox created.
+2025-05-12 21:44:17,043 - INFO - User 'sam' selected months: ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05']
+2025-05-12 21:44:18,074 - INFO - User 'sam' plotting spending trend for months: ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05']
+2025-05-12 21:44:18,074 - INFO - Total for 2025-01: $583.10
+2025-05-12 21:44:18,074 - INFO - Total for 2025-02: $575.79
+2025-05-12 21:44:18,074 - INFO - Total for 2025-03: $572.00
+2025-05-12 21:44:18,075 - INFO - Total for 2025-04: $715.00
+2025-05-12 21:44:18,075 - INFO - Total for 2025-05: $543.05
+2025-05-12 21:44:18,075 - INFO - Plotting data for user 'sam': Months - ['2025-01', '2025-02', '2025-03', '2025-04', '2025-05'], Totals - [583.1, 575.79, 572.0, 715.0, 543.05]
+2025-05-12 21:44:18,183 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:44:18,185 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:44:18,187 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:44:18,350 - INFO - Spending trend chart rendered.

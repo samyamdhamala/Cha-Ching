@@ -713,11 +713,14 @@ class UserDashboard(BaseDashboard):
         self.clear_content()
         user = self.controller.auth.get_current_user()
 
+        # Logging the start of the spending trend view
+        logging.info(f"User '{user.username}' initiated the Spending Trend view.")
+
         # Frame for the trend UI
         frame = ttk.Frame(self.content_frame)
         frame.pack(fill="both", expand=True, padx=20, pady=20)
 
-        # Title
+        # Title of the Spending Trend view
         ttk.Label(frame, text="📈 Spending Trend", font=("Segoe UI", 18, "bold")).pack(pady=10)
 
         # --- Month Selection ---
@@ -731,6 +734,9 @@ class UserDashboard(BaseDashboard):
         expenses = data.get("expenses", {}).get(str(user.user_id), [])
         available_months = sorted(set(exp["date"][:7] for exp in expenses), reverse=True)
 
+        # Log the available months for debugging
+        logging.info(f"Available months for user '{user.username}': {available_months}")
+
         # Multi-Select Dropdown
         month_var = tk.StringVar(value="Select Months")
         month_entry = ttk.Entry(month_selection_frame, textvariable=month_var, state="readonly", width=25)
@@ -741,55 +747,75 @@ class UserDashboard(BaseDashboard):
 
         # Function to open the multi-select month selector
         def open_month_selector():
+            """Opens a popup to select multiple months."""
+
             def update_selection():
+                """Updates the month selection from the listbox."""
                 selected = sorted([month_listbox.get(i) for i in month_listbox.curselection()])
                 month_var.set(", ".join(selected))
                 selector.destroy()
+                logging.info(f"User '{user.username}' selected months: {selected}")
 
+            # Create a popup window for month selection
             selector = tk.Toplevel(self)
             selector.title("Select Months")
             selector.geometry("250x300")
             selector.configure(bg="#2e2e2e")
             selector.grab_set()
+            logging.info("Month selection popup opened.")
 
+            # Wrapper for the listbox
             wrapper = ttk.Frame(selector, padding=10)
             wrapper.pack(fill="both", expand=True)
 
+            # Listbox for selecting multiple months
             month_listbox = tk.Listbox(wrapper, selectmode="multiple", height=10, width=20)
             month_listbox.pack(pady=10)
 
+            # Populate the listbox with available months
             for month in available_months:
                 month_listbox.insert("end", month)
 
+            # Button to confirm selection
             ttk.Button(wrapper, text="Select", style="Accent.TButton", command=update_selection).pack()
+            logging.info("Month selection listbox created.")
 
-        # Open month selection on click
+        # Open month selection on button click
         ttk.Button(month_selection_frame, text="🔽", style="Accent.TButton", command=open_month_selector).pack(
             side="left", padx=5)
 
         # Function to plot the spending trend
         def plot_spending_trend():
+            """Plots the spending trend based on selected months."""
             selected_months = month_var.get().split(", ")
             if len(selected_months) < 1:
                 messagebox.showwarning("Selection Error", "Please select at least one month.")
+                logging.warning(f"User '{user.username}' attempted to plot without selecting any month.")
                 return
 
-            # Clear the previous chart if it exists
+            # Log the months being plotted
+            logging.info(f"User '{user.username}' plotting spending trend for months: {selected_months}")
+
+            # Clear the previous chart if it exists to avoid overlapping
             if self.chart_canvas:
                 self.chart_canvas.get_tk_widget().destroy()
+                logging.info("Previous chart canvas cleared.")
 
-            # Calculate expenses for the selected months
+            # Calculate total expenses for the selected months
             month_totals = {}
             for month in selected_months:
                 total = sum(exp["amount"] for exp in expenses if exp["date"].startswith(month))
                 month_totals[month] = total
+                logging.info(f"Total for {month}: ${total:.2f}")
 
             # Prepare data for the line graph
             months = list(month_totals.keys())
             totals = list(month_totals.values())
 
-            # Create the line graph
+            # Log the data to be plotted
+            logging.info(f"Plotting data for user '{user.username}': Months - {months}, Totals - {totals}")
 
+            # Create the line graph
             fig, ax = plt.subplots(figsize=(8, 5))
             ax.plot(months, totals, marker='o', linestyle='-', color='#d62728', linewidth=2, markersize=8)
             ax.fill_between(months, totals, color='#ff9999', alpha=0.4)
@@ -802,15 +828,18 @@ class UserDashboard(BaseDashboard):
             for i, value in enumerate(totals):
                 ax.text(i, value + 20, f"${value:.2f}", ha='center', va='bottom')
 
-            # Embed the plot in Tkinter and track the canvas
+            # Embed the plot in Tkinter and track the canvas to prevent overlapping
             self.chart_canvas = FigureCanvasTkAgg(fig, master=frame)
             self.chart_canvas.draw()
             self.chart_canvas.get_tk_widget().pack(fill="both", expand=True)
+            logging.info("Spending trend chart rendered.")
 
-        # Plot Button
+        # Plot Button to generate the trend graph
         plot_button = ttk.Button(month_selection_frame, text="Show Trend", style="Accent.TButton",
                                  command=plot_spending_trend)
         plot_button.pack(side="left", padx=10)
+        logging.info("Plot button created and ready.")
+
 
 
 
