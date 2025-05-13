@@ -834,7 +834,7 @@ class UserDashboard(BaseDashboard):
             self.chart_canvas.get_tk_widget().pack(fill="both", expand=True)
             logging.info("Spending trend chart rendered.")
 
-        # Plot Button to generate the trend graph
+        # Plot Button to generate the trend grap h
         plot_button = ttk.Button(month_selection_frame, text="Show Trend", style="Accent.TButton",
                                  command=plot_spending_trend)
         plot_button.pack(side="left", padx=10)
