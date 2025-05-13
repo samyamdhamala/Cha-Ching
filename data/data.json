@@ -29,6 +29,24 @@
             "username": "test",
             "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
             "role": "user"
+        },
+        {
+            "user_id": 6,
+            "username": "alvi",
+            "password": "4d32c8efc89f2a5e4c7c4bac5e1a995eb337163d8ac5e59b5457e35783ab4713",
+            "role": "user"
+        },
+        {
+            "user_id": 7,
+            "username": "thomas",
+            "password": "11a4a60b518bf24989d481468076e5d5982884626aed9faeb35b8576fcd223e1",
+            "role": "user"
+        },
+        {
+            "user_id": 8,
+            "username": "testuser",
+            "password": "d79aeec77b3b6e6ec5f45ae5e040173380262e1ea51b38747195c3cf09a02f16",
+            "role": "user"
         }
     ],
     "expenses": {
@@ -104,6 +122,258 @@
                 "description": "Shoprite + Target + Costco ( Milk, bread, veggies, cheese, rice, spices)",
                 "user_id": 2,
                 "date": "2025-04-12"
+            },
+            {
+                "expense_id": 10,
+                "amount": 10.0,
+                "category": "Transport",
+                "description": "Uber to Home. CHeck",
+                "user_id": 2,
+                "date": "2025-04-15"
+            },
+            {
+                "expense_id": 18,
+                "amount": 350.0,
+                "category": "Rent",
+                "description": "Rent for May",
+                "user_id": 2,
+                "date": "2025-05-01"
+            },
+            {
+                "expense_id": 19,
+                "amount": 50.0,
+                "category": "Utilities",
+                "description": "May Utlities",
+                "user_id": 2,
+                "date": "2025-05-01"
+            },
+            {
+                "expense_id": 21,
+                "amount": 25.0,
+                "category": "Utilities",
+                "description": "Phone bill",
+                "user_id": 2,
+                "date": "2025-05-06"
+            },
+            {
+                "expense_id": 22,
+                "amount": 80.0,
+                "category": "Groceries",
+                "description": "IFM+SHoprite",
+                "user_id": 2,
+                "date": "2025-05-07"
+            },
+            {
+                "expense_id": 23,
+                "amount": 5.75,
+                "category": "Transport",
+                "description": "Bus fare",
+                "user_id": 2,
+                "date": "2025-05-07"
+            },
+            {
+                "expense_id": 24,
+                "amount": 22.3,
+                "category": "Groceries",
+                "description": "Weekly groceries",
+                "user_id": 2,
+                "date": "2025-05-08"
+            },
+            {
+                "expense_id": 25,
+                "amount": 10.0,
+                "category": "Other",
+                "description": "Test",
+                "user_id": 2,
+                "date": "2025-05-09"
+            },
+            {
+                "expense_id": 32,
+                "amount": 60.0,
+                "category": "Groceries",
+                "description": "Weekly groceries from Walmart",
+                "user_id": 2,
+                "date": "2025-04-10"
+            },
+            {
+                "expense_id": 34,
+                "amount": 50.0,
+                "category": "Dining",
+                "description": "Lunch at the Italian Bistro",
+                "user_id": 2,
+                "date": "2025-04-20"
+            },
+            {
+                "expense_id": 35,
+                "amount": 95.0,
+                "category": "Groceries",
+                "description": "Costco (fruits, veggies, dairy)",
+                "user_id": 2,
+                "date": "2025-04-28"
+            },
+            {
+                "expense_id": 36,
+                "amount": 86.55,
+                "category": "Dining",
+                "description": "Dinner at a local restaurant",
+                "user_id": 2,
+                "date": "2025-01-03"
+            },
+            {
+                "expense_id": 37,
+                "amount": 55.76,
+                "category": "Groceries",
+                "description": "Grocery run at Walmart",
+                "user_id": 2,
+                "date": "2025-01-08"
+            },
+            {
+                "expense_id": 38,
+                "amount": 21.47,
+                "category": "Transport",
+                "description": "Bus fare to city center",
+                "user_id": 2,
+                "date": "2025-01-15"
+            },
+            {
+                "expense_id": 39,
+                "amount": 73.34,
+                "category": "Groceries",
+                "description": "Monthly Costco run",
+                "user_id": 2,
+                "date": "2025-01-20"
+            },
+            {
+                "expense_id": 40,
+                "amount": 345.98,
+                "category": "Rent",
+                "description": "Rent payment",
+                "user_id": 2,
+                "date": "2025-01-28"
+            },
+            {
+                "expense_id": 41,
+                "amount": 45.21,
+                "category": "Dining",
+                "description": "Dinner with colleagues",
+                "user_id": 2,
+                "date": "2025-02-02"
+            },
+            {
+                "expense_id": 42,
+                "amount": 19.8,
+                "category": "Transport",
+                "description": "Train ticket to downtown",
+                "user_id": 2,
+                "date": "2025-02-11"
+            },
+            {
+                "expense_id": 43,
+                "amount": 88.63,
+                "category": "Groceries",
+                "description": "Food delivery from Grubhub",
+                "user_id": 2,
+                "date": "2025-02-16"
+            },
+            {
+                "expense_id": 44,
+                "amount": 354.72,
+                "category": "Rent",
+                "description": "Rent payment",
+                "user_id": 2,
+                "date": "2025-02-22"
+            },
+            {
+                "expense_id": 45,
+                "amount": 67.43,
+                "category": "Groceries",
+                "description": "Weekly grocery shopping",
+                "user_id": 2,
+                "date": "2025-02-27"
+            }
+        ],
+        "7": [
+            {
+                "expense_id": 1,
+                "amount": 450.0,
+                "category": "Rent",
+                "description": "Rent for April",
+                "user_id": 7,
+                "date": "2025-04-01"
+            },
+            {
+                "expense_id": 2,
+                "amount": 150.0,
+                "category": "Groceries",
+                "description": "Costcco",
+                "user_id": 7,
+                "date": "2025-04-15"
+            }
+        ],
+        "8": [
+            {
+                "expense_id": 18,
+                "amount": 350.0,
+                "category": "Rent",
+                "description": "Rent for May",
+                "user_id": 8,
+                "date": "2025-05-01"
+            },
+            {
+                "expense_id": 19,
+                "amount": 50.0,
+                "category": "Utilities",
+                "description": "March Utilities (Wifi + Gas + Electricity)",
+                "user_id": 8,
+                "date": "2025-05-01"
+            },
+            {
+                "expense_id": 20,
+                "amount": 12.5,
+                "category": "Food",
+                "description": "Lunch",
+                "user_id": 8,
+                "date": "2025-05-05"
+            },
+            {
+                "expense_id": 21,
+                "amount": 25.0,
+                "category": "Utilities",
+                "description": "Phone bill",
+                "user_id": 8,
+                "date": "2025-05-06"
+            },
+            {
+                "expense_id": 22,
+                "amount": 80.0,
+                "category": "Groceries",
+                "description": "IFM+SHoprite",
+                "user_id": 8,
+                "date": "2025-05-07"
+            },
+            {
+                "expense_id": 23,
+                "amount": 5.75,
+                "category": "Transport",
+                "description": "Bus fare",
+                "user_id": 8,
+                "date": "2025-05-07"
+            },
+            {
+                "expense_id": 24,
+                "amount": 22.3,
+                "category": "Groceries",
+                "description": "Weekly groceries",
+                "user_id": 8,
+                "date": "2025-05-08"
+            },
+            {
+                "expense_id": 25,
+                "amount": 10.0,
+                "category": "Other",
+                "description": "Test",
+                "user_id": 8,
+                "date": "2025-05-09"
             }
         ]
     },
@@ -140,14 +410,17 @@
         },
         "7": {
             "category_id": 7,
-            "name": "Hehehe",
+            "name": "Test",
             "user_id": 1
         }
     },
     "budgets": {
         "2": {
             "2025-03": 500.0,
-            "2025-04": 700.0
+            "2025-04": 800.0
+        },
+        "7": {
+            "2025-04": 500.0
         }
     }
 }

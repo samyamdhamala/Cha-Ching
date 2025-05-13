@@ -67,11 +67,11 @@ class AppGUI(tk.Tk):
                 self.frames[frame_class] = UserDashboard(self, self)
             self.frames[frame_class].grid(row=0, column=0, sticky="nsew")
 
-        # ✅ Clear login fields when navigating to LoginPage
+        #  Clear login fields when navigating to LoginPage
         if frame_class.__name__ == "LoginPage":
             self.frames[frame_class].reset_fields()
 
-        # ✅ Clear register fields when navigating to RegisterPage
+        # Clear register fields when navigating to RegisterPage
         if frame_class.__name__ == "RegisterPage":
             self.frames[frame_class].reset_fields()
 
@@ -181,12 +181,17 @@ class LoginPage(ttk.Frame):
             current_user = self.controller.auth.get_current_user()
             logging.info(f"[GUI] User '{current_user.username}' logged in successfully.")
 
+            # Update the tracker for the current user
             self.controller.current_tracker = ExpenseTracker(current_user)
+
+            # Update the user menu after successful login
             if current_user.role == "admin":
                 self.controller.show_frame(AdminDashboard)
+                self.controller.frames[AdminDashboard].update_user_menu()
                 self.controller.frames[AdminDashboard].load_landing()
             else:
                 self.controller.show_frame(UserDashboard)
+                self.controller.frames[UserDashboard].update_user_menu()
                 self.controller.frames[UserDashboard].load_landing()
         else:
             logging.warning(f"[GUI] Failed login attempt with username: '{user}'")
