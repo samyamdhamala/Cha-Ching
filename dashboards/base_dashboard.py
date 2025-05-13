@@ -22,13 +22,14 @@ class BaseDashboard(ttk.Frame):
         top_bar = ttk.Frame(self)
         top_bar.grid(row=0, column=0, columnspan=2, sticky="ew")
 
-        user = self.controller.auth.get_current_user()
-        user_menu = ttk.Menubutton(top_bar, text=f"\U0001F464 {user.username}")
-        menu = tk.Menu(user_menu, tearoff=0)
-        menu.add_command(label=f"\U0001F464 Profile ({user.username})", command=self.show_profile)
-        menu.add_command(label="\U0001F6AA Logout", command=self.logout)
-        user_menu["menu"] = menu
-        user_menu.pack(side="right", padx=10, pady=5)
+        # Initialize the user menu as instance variables for dynamic updates
+        self.user_menu = ttk.Menubutton(top_bar, text="\U0001F464 User")
+        self.menu = tk.Menu(self.user_menu, tearoff=0)
+        self.user_menu["menu"] = self.menu
+        self.user_menu.pack(side="right", padx=10, pady=5)
+
+        # Initial call to set the correct username after the dashboard is loaded
+        self.update_user_menu()
 
         # ------------------ LEFT NAVIGATION PANEL ------------------
         self.nav_frame = tk.Frame(self, bg="#1f1f2e", width=150)
@@ -60,5 +61,17 @@ class BaseDashboard(ttk.Frame):
             if frame_class.__name__ == "HomePage":
                 self.controller.show_frame(frame_class)
                 break
+
+    def update_user_menu(self):
+        """Updates the user profile button with the current username."""
+        user = self.controller.auth.get_current_user()
+
+        # Clear the old user menu
+        self.user_menu.config(text=f"\U0001F464 {user.username}")
+
+        # Recreate the menu with the updated username
+        self.menu.delete(0, "end")
+        self.menu.add_command(label=f"\U0001F464 Profile ({user.username})", command=self.show_profile)
+        self.menu.add_command(label="\U0001F6AA Logout", command=self.logout)
 
 

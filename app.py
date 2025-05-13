@@ -72,85 +72,72 @@ def main_menu(auth):
             logging.warning("Invalid main menu choice selected.")
 
 
-def admin_menu():
-    data = load_data()
-    # Ensure category keys are integers to avoid key mismatches during access
-    data["categories"] = {int(k): v for k, v in data.get("categories", {}).items()}  # Ensure keys are integers
+def create_category(data):
+    # Prompt the admin to enter a new category name
+    name = input("Enter new category name: ").strip()
+    if name:
+        # Generate a unique category ID
+        category_id = max(data["categories"].keys(), default=0) + 1
+        # Create a new category object and add it to the data
+        new_cat = Category(name=name, user_id=1, category_id=category_id)
+        data["categories"][category_id] = vars(new_cat)
+        save_data(data)
+        print("[+] Category created.")
+        logging.info(f"Category '{name}' created by admin.")
 
-    while True:
-        print("\n=== Admin Menu ===")
-        print("1. Create Category")
-        print("2. View Categories")
-        print("3. Edit Category")
-        print("4. Delete Category")
-        print("5. Logout")
-        choice = input("Enter choice: ").strip()
 
-        if choice == "1":
-            name = input("Enter new category name: ").strip()
-            if name:
-                category_id = max(data["categories"].keys(), default=0) + 1  # Ensure unique category IDs
-                new_cat = Category(name=name, user_id=1, category_id=category_id)
-                data["categories"][category_id] = vars(new_cat)
-                save_data(data)
-                print("[+] Category created.")
-                logging.info(f"Category '{name}' created by admin.")
+def view_categories(data):
+    # Display all available categories
+    print("\nAvailable Categories:")
+    for cat_id, cat in data["categories"].items():
+        print(f"{cat_id}: {cat['name']}")
 
-        elif choice == "2":
-            print("\nAvailable Categories:")
-            for cat_id, cat in data["categories"].items():
-                print(f"{cat_id}: {cat['name']}")
 
-        elif choice == "3":
-            print("\nAvailable Categories:")
-            for cat_id, cat in data["categories"].items():
-                print(f"{cat_id}: {cat['name']}")
-            try:
-                cat_id = int(input("Enter category ID to edit: ").strip())
-                if cat_id in data["categories"]:
-                    new_name = input("Enter new category name: ").strip()
-                    data["categories"][cat_id]["name"] = new_name
-                    save_data(data)
-                    print("[+] Category updated.")
-                    logging.info(f"Category ID {cat_id} renamed to '{new_name}' by admin.")
-                else:
-                    print("[!] Invalid Category ID.")
-                    logging.warning("Admin entered invalid category ID.")
-
-            except ValueError:
-                print("[!] Invalid input. Please enter a number.")
-                logging.warning("Admin entered invalid input (non-integer) for category ID.")
-            except KeyError:
-                print("[!] Category ID not found.")
-                logging.error(f"Category ID not found during admin edit/delete: {cat_id}")
-
-        elif choice == "4":
-            print("\nAvailable Categories:")
-            for cat_id, cat in data["categories"].items():
-                print(f"{cat_id}: {cat['name']}")
-            try:
-                cat_id = int(input("Enter category ID to delete: ").strip())
-                if cat_id in data["categories"]:
-                    del data["categories"][cat_id]
-                    save_data(data)
-                    print("[+] Category deleted.")
-                    logging.info(f"Category ID {cat_id} deleted by admin.")
-                else:
-                    print("[!] Invalid Category ID.")
-                    logging.warning("Admin entered non-integer input for category ID.")
-            except ValueError:
-                print("[!] Invalid input. Please enter a number.")
-                logging.warning("Admin entered non-integer category ID during delete.")
-            except KeyError:
-                print("[!] Category ID not found.")
-                logging.error(f"KeyError while editing category ID: {cat_id}")
-
-        elif choice == "5":
-            print("Logging out...")
-            break
+def edit_category(data):
+    # Show the current list of categories before editing
+    view_categories(data)
+    try:
+        # Prompt for the category ID to edit
+        cat_id = int(input("Enter category ID to edit: ").strip())
+        if cat_id in data["categories"]:
+            # Prompt for the new category name and update it
+            new_name = input("Enter new category name: ").strip()
+            data["categories"][cat_id]["name"] = new_name
+            save_data(data)
+            print("[+] Category updated.")
+            logging.info(f"Category ID {cat_id} renamed to '{new_name}' by admin.")
         else:
-            print("[!] Invalid choice.")
-        logging.warning("Invalid main menu choice selected.")
+            print("[!] Invalid Category ID.")
+    except ValueError:
+        print("[!] Invalid input. Please enter a number.")
+
+
+def delete_category(data):
+    # Display current categories before deletion
+    view_categories(data)
+    try:
+        # Prompt for the category ID to delete
+        cat_id = int(input("Enter category ID to delete: ").strip())
+        if cat_id in data["categories"]:
+            # Remove the selected category from data
+            del data["categories"][cat_id]
+            save_data(data)
+            print("[+] Category deleted.")
+            logging.info(f"Category ID {cat_id} deleted by admin.")
+        else:
+            print("[!] Invalid Category ID.")
+    except ValueError:
+        print("[!] Invalid input. Please enter a number.")
+
+
+def display_admin_menu():
+    # Display the admin menu options
+    print("\n=== Admin Menu ===")
+    print("1. Create Category")
+    print("2. View Categories")
+    print("3. Edit Category")
+    print("4. Delete Category")
+    print("5. Logout")
 
 
 def user_menu(auth, user_trackers):
@@ -204,7 +191,7 @@ def run_app():
     while True:
         user = main_menu(auth)
         if user.role == "admin":
-            admin_menu()
+            display_admin_menu()
         else:
             user_menu(auth, user_trackers)
 

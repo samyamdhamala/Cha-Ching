@@ -1,12 +1,13 @@
 import tkinter as tk
 import os
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 import datetime
 import logging
 import csv
 from tkcalendar import DateEntry
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.cm import get_cmap
 from core.file_manager import load_data, save_data
 from core.expenses import ExpenseTracker
 from ui.landing import build_landing_content
@@ -59,8 +60,9 @@ class UserDashboard(BaseDashboard):
         # Sidebar navigation items
         self.nav_actions["Add Expense"] = create_nav_item("💸", "Add Expense", self.add_expense)
         self.nav_actions["View Expenses"] = create_nav_item("📋", "View Expenses", self.view_expenses)
-        self.nav_actions["View Summary"] = create_nav_item("📊", "View Summary", self.view_summary)
         self.nav_actions["Set Budget"] = create_nav_item("💼", "Set Budget", self.set_budget)
+        self.nav_actions["View Summary"] = create_nav_item("📊", "View Summary", self.view_summary)
+        self.nav_actions["Spending Trend"] = create_nav_item("📈", "Spending Trend", self.view_spending_trend)
 
         # Prevent the entire dashboard frame from shrinking
         self.config(width=1000, height=1000)
@@ -149,7 +151,7 @@ class UserDashboard(BaseDashboard):
                 self.add_expense()
             except Exception as e:
                 logging.error(f"[User {user.user_id}] failed to add expense: {e}")
-                messagebox.showerror("Error", f"Failed to add expense: {e}")
+                messagebox.showerror("Error", f"Failed to add expense. Please enter a valid amount.")
 
         def reset_form():
             category_var.set("")
@@ -194,11 +196,14 @@ class UserDashboard(BaseDashboard):
         month_entry = ttk.Entry(filter_frame, textvariable=month_var, width=10)
         month_entry.pack(side="left", padx=5, pady=10)
 
-        # Filter + Export Buttons
+        # Filter + Import + Export Buttons
         ttk.Button(filter_frame, text="Filter", style="Outlined.TButton", command=lambda: filter_by_month()).pack(
             side="left", padx=10)
-        ttk.Button(filter_frame, text="📤 Export to CSV", command=lambda: export_to_csv(month_var.get())).pack(side="left",
-                                                                                                            padx=5)
+        ttk.Button(filter_frame, text="📥 Import Expenses", style="Outlined.TButton",  command=self.import_expenses_from_csv).pack(
+            side="left", padx=5)
+        ttk.Button(filter_frame, text="📤 Export to CSV", style="Outlined.TButton", command=lambda: export_to_csv(month_var.get())).pack(
+            side="left", padx=5)
+
 
         # --- EXPENSE TABLE FRAME ---
         table_frame = ttk.Frame(self.content_frame)
@@ -266,7 +271,6 @@ class UserDashboard(BaseDashboard):
 
             except Exception as e:
                 messagebox.showerror("Export Failed", f"Error: {e}")
-
 
         # Deletes selected expense
         def delete_expense():
@@ -634,7 +638,7 @@ class UserDashboard(BaseDashboard):
                 self.set_budget()
             except Exception as e:
                 logging.error(f"[User {user.user_id}] failed to set budget: {e}")
-                messagebox.showerror("Error", f"Could not set budget: {e}")
+                messagebox.showerror("Error", f"Could not set budget. Please ensure valid date/amount.")
 
 
         # --- Save Button Centered Across Columns ---
@@ -655,3 +659,158 @@ class UserDashboard(BaseDashboard):
         """
         if name in self.nav_actions:
             self.nav_actions[name].event_generate("<Button-1>")
+
+    def import_expenses_from_csv(self):
+        """Imports expenses from a selected CSV file."""
+        user = self.controller.auth.get_current_user()
+        file_path = filedialog.askopenfilename(
+            title="Select CSV File",
+            filetypes=[("CSV files", "*.csv"), ("All files", "*.*")]
+        )
+        if not file_path:
+            return
+
+        try:
+            with open(file_path, newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                data = load_data()
+
+                # Ensure the user has an expense list
+                if str(user.user_id) not in data["expenses"]:
+                    data["expenses"][str(user.user_id)] = []
+
+                imported_count = 0
+                for row in reader:
+                    try:
+                        amount = float(row["Amount"])
+                        date = datetime.datetime.strptime(row["Date"], "%Y-%m-%d").strftime("%Y-%m-%d")
+                        category = row["Category"]
+                        description = row["Description"]
+
+                        expense = {
+                            "expense_id": next(ExpenseTracker.expense_id_counter),
+                            "amount": amount,
+                            "category": category,
+                            "description": description,
+                            "user_id": user.user_id,
+                            "date": date
+                        }
+                        data["expenses"][str(user.user_id)].append(expense)
+                        imported_count += 1
+                    except Exception as e:
+                        logging.warning(f"Failed to import row {row}: {e}")
+
+                save_data(data)
+                messagebox.showinfo("Success", f"Successfully imported {imported_count} expenses from CSV.")
+                logging.info(f"[User {user.user_id}] imported {imported_count} expenses from CSV.")
+                self.view_expenses()  # Refresh expenses view
+        except Exception as e:
+            logging.error(f"Error importing CSV: {e}")
+            messagebox.showerror("Error", f"Failed to import expenses from CSV: {e}")
+
+    def view_spending_trend(self):
+        """Displays a spending trend line graph for selected months."""
+        self.clear_content()
+        user = self.controller.auth.get_current_user()
+
+        # Frame for the trend UI
+        frame = ttk.Frame(self.content_frame)
+        frame.pack(fill="both", expand=True, padx=20, pady=20)
+
+        # Title
+        ttk.Label(frame, text="📈 Spending Trend", font=("Segoe UI", 18, "bold")).pack(pady=10)
+
+        # --- Month Selection ---
+        month_selection_frame = ttk.Frame(frame)
+        month_selection_frame.pack(pady=10)
+
+        ttk.Label(month_selection_frame, text="Select Months:", font=("Segoe UI", 12)).pack(side="left", padx=5)
+
+        # Generate a list of months from the data
+        data = load_data()
+        expenses = data.get("expenses", {}).get(str(user.user_id), [])
+        available_months = sorted(set(exp["date"][:7] for exp in expenses), reverse=True)
+
+        # Multi-Select Dropdown
+        month_var = tk.StringVar(value="Select Months")
+        month_entry = ttk.Entry(month_selection_frame, textvariable=month_var, state="readonly", width=25)
+        month_entry.pack(side="left", padx=5)
+
+        # Track the chart canvas to prevent overlapping
+        self.chart_canvas = None
+
+        # Function to open the multi-select month selector
+        def open_month_selector():
+            def update_selection():
+                selected = sorted([month_listbox.get(i) for i in month_listbox.curselection()])
+                month_var.set(", ".join(selected))
+                selector.destroy()
+
+            selector = tk.Toplevel(self)
+            selector.title("Select Months")
+            selector.geometry("250x300")
+            selector.configure(bg="#2e2e2e")
+            selector.grab_set()
+
+            wrapper = ttk.Frame(selector, padding=10)
+            wrapper.pack(fill="both", expand=True)
+
+            month_listbox = tk.Listbox(wrapper, selectmode="multiple", height=10, width=20)
+            month_listbox.pack(pady=10)
+
+            for month in available_months:
+                month_listbox.insert("end", month)
+
+            ttk.Button(wrapper, text="Select", style="Accent.TButton", command=update_selection).pack()
+
+        # Open month selection on click
+        ttk.Button(month_selection_frame, text="🔽", style="Accent.TButton", command=open_month_selector).pack(
+            side="left", padx=5)
+
+        # Function to plot the spending trend
+        def plot_spending_trend():
+            selected_months = month_var.get().split(", ")
+            if len(selected_months) < 1:
+                messagebox.showwarning("Selection Error", "Please select at least one month.")
+                return
+
+            # Clear the previous chart if it exists
+            if self.chart_canvas:
+                self.chart_canvas.get_tk_widget().destroy()
+
+            # Calculate expenses for the selected months
+            month_totals = {}
+            for month in selected_months:
+                total = sum(exp["amount"] for exp in expenses if exp["date"].startswith(month))
+                month_totals[month] = total
+
+            # Prepare data for the line graph
+            months = list(month_totals.keys())
+            totals = list(month_totals.values())
+
+            # Create the line graph
+
+            fig, ax = plt.subplots(figsize=(8, 5))
+            ax.plot(months, totals, marker='o', linestyle='-', color='#d62728', linewidth=2, markersize=8)
+            ax.fill_between(months, totals, color='#ff9999', alpha=0.4)
+            ax.set_title("Spending Trend Over Selected Months")
+            ax.set_ylabel("Total Expense ($)")
+            ax.set_xlabel("Months")
+            ax.grid(True, linestyle='--', alpha=0.5)
+
+            # Add value labels on points
+            for i, value in enumerate(totals):
+                ax.text(i, value + 20, f"${value:.2f}", ha='center', va='bottom')
+
+            # Embed the plot in Tkinter and track the canvas
+            self.chart_canvas = FigureCanvasTkAgg(fig, master=frame)
+            self.chart_canvas.draw()
+            self.chart_canvas.get_tk_widget().pack(fill="both", expand=True)
+
+        # Plot Button
+        plot_button = ttk.Button(month_selection_frame, text="Show Trend", style="Accent.TButton",
+                                 command=plot_spending_trend)
+        plot_button.pack(side="left", padx=10)
+
+
+

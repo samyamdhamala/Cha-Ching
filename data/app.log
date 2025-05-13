@@ -231,3 +231,438 @@
 2025-04-14 20:21:15,491 - INFO - Application started.
 2025-04-14 20:21:25,920 - INFO - User 'sam' logged in successfully.
 2025-04-14 20:21:25,921 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:31:03,784 - INFO - User 'sam' logged out.
+2025-04-14 20:31:10,767 - INFO - Application started.
+2025-04-14 20:34:22,977 - WARNING - Registration failed: Username 'sam' already exists.
+2025-04-14 20:35:18,910 - INFO - Data saved successfully.
+2025-04-14 20:35:18,910 - INFO - User 'alvi' registered successfully.
+2025-04-14 20:36:07,468 - INFO - User 'alvi' logged in successfully.
+2025-04-14 20:36:07,468 - INFO - [GUI] User 'alvi' logged in successfully.
+2025-04-14 20:37:32,560 - INFO - User 'alvi' logged out.
+2025-04-14 20:37:40,969 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:37:40,969 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:37:51,656 - INFO - User 'sam' logged out.
+2025-04-14 20:37:57,409 - INFO - Application started.
+2025-04-14 20:38:05,807 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:38:05,807 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:38:26,736 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:40:01,411 - INFO - Data saved successfully.
+2025-04-14 20:40:01,411 - INFO - [User 2] added expense: 10.00, Other, Test Category, 2025-04-14
+2025-04-14 20:42:00,752 - INFO - Data saved successfully.
+2025-04-14 20:42:03,653 - INFO - [User 2] edited expense ID 10
+2025-04-14 20:42:23,214 - INFO - Data saved successfully.
+2025-04-14 20:43:20,797 - INFO - [User 2] deleted expense ID 10
+2025-04-14 20:44:05,756 - INFO - [User 2] viewed summary for month: 2025-03
+2025-04-14 20:44:46,785 - INFO - [User 2] exported expenses to CSV for month: 2025-03
+2025-04-14 20:45:50,613 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:46:54,439 - INFO - [User 2] viewed summary for month: 2025-03
+2025-04-14 20:49:39,251 - INFO - [User 2] downloaded chart(s): both
+2025-04-14 20:52:24,756 - INFO - Application started.
+2025-04-14 20:52:31,037 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:52:31,037 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:52:35,324 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:52:39,131 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 20:54:37,787 - INFO - Application started.
+2025-04-14 20:54:45,145 - INFO - User 'sam' logged in successfully.
+2025-04-14 20:54:45,145 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 20:54:47,754 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 21:02:30,662 - INFO - Application started.
+2025-04-14 21:02:38,954 - INFO - User 'sam' logged in successfully.
+2025-04-14 21:02:38,954 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 21:04:29,447 - INFO - Application started.
+2025-04-14 21:04:36,037 - INFO - User 'sam' logged in successfully.
+2025-04-14 21:04:36,037 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 21:05:00,364 - INFO - Application started.
+2025-04-14 21:05:06,789 - INFO - User 'sam' logged in successfully.
+2025-04-14 21:05:06,789 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 21:05:19,074 - INFO - Data saved successfully.
+2025-04-14 21:05:19,074 - INFO - [User 2] set budget for 2025-04: $800.00
+2025-04-14 21:05:30,932 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-14 21:06:31,841 - INFO - User 'sam' logged out.
+2025-04-14 21:06:41,122 - INFO - User 'admin' logged in successfully.
+2025-04-14 21:06:41,122 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-14 21:07:18,026 - INFO - [admin] opened Category Management dashboard.
+2025-04-14 21:07:49,550 - INFO - Data saved successfully.
+2025-04-14 21:07:49,552 - INFO - [admin] created new category ID 8: 'New Category'
+2025-04-14 21:08:36,212 - INFO - Data saved successfully.
+2025-04-14 21:08:36,212 - INFO - [admin] renamed category 'New Category' to 'New Category Edited'
+2025-04-14 21:09:39,831 - WARNING - [admin] tried deleting category in use: Rent
+2025-04-14 21:10:21,328 - INFO - Data saved successfully.
+2025-04-14 21:10:21,328 - INFO - [admin] deleted category ID 8: 'New Category Edited'
+2025-04-14 21:11:14,997 - INFO - Application started.
+2025-04-14 21:11:23,118 - INFO - User 'sam' logged in successfully.
+2025-04-14 21:11:23,118 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-14 21:11:35,124 - INFO - User 'sam' logged out.
+2025-04-15 18:31:42,992 - INFO - Application started.
+2025-04-15 18:32:33,869 - INFO - User 'sam' logged in successfully.
+2025-04-15 18:32:33,870 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 18:32:53,362 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-15 18:33:04,138 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-15 18:33:27,041 - INFO - [User 2] viewed summary for month: 2025-03
+2025-04-15 18:33:48,931 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-15 18:33:55,026 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-15 18:34:28,914 - ERROR - [User 2] failed to add expense: could not convert string to float: '0.00dfdf'
+2025-04-15 18:36:08,644 - INFO - Application started.
+2025-04-15 18:36:16,840 - INFO - User 'sam' logged in successfully.
+2025-04-15 18:36:16,840 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 18:36:59,307 - ERROR - [User 2] failed to add expense: could not convert string to float: 'sdsdsds'
+2025-04-15 18:42:40,258 - INFO - Data saved successfully.
+2025-04-15 18:42:40,260 - INFO - [User 2] added expense: 13.00, Dining, Campus DIning ( Code completio, 2025-04-15
+2025-04-15 18:42:56,504 - INFO - User 'sam' logged out.
+2025-04-15 18:43:17,497 - WARNING - Registration failed: Username 'sam' already exists.
+2025-04-15 18:44:07,748 - INFO - User 'admin' logged in successfully.
+2025-04-15 18:44:07,748 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-15 18:44:21,242 - INFO - [admin] opened Category Management dashboard.
+2025-04-15 18:44:28,134 - WARNING - [admin] tried deleting category in use: Rent
+2025-04-15 18:44:54,643 - WARNING - [admin] tried creating duplicate category: RENT
+2025-04-15 18:45:23,618 - INFO - [admin] opened Category Management dashboard.
+2025-04-15 18:45:38,135 - INFO - User 'admin' logged out.
+2025-04-15 18:45:46,766 - INFO - User 'sam' logged in successfully.
+2025-04-15 18:45:46,766 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 18:45:58,418 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-15 18:46:12,207 - ERROR - [User 2] failed to set budget: could not convert string to float: 'ssss'
+2025-04-15 18:47:11,764 - INFO - User 'sam' logged out.
+2025-04-15 18:47:19,318 - INFO - Application started.
+2025-04-15 18:47:27,125 - INFO - User 'sam' logged in successfully.
+2025-04-15 18:47:27,126 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 18:48:02,963 - ERROR - [User 2] failed to set budget: could not convert string to float: 'SSS'
+2025-04-15 18:48:55,506 - ERROR - [User 2] failed to set budget: could not convert string to float: 'SSS'
+2025-04-15 18:48:59,784 - ERROR - [User 2] failed to set budget: Please enter a valid month in YYYY-MM format.
+2025-04-15 19:20:47,909 - INFO - Application started.
+2025-04-15 19:21:03,986 - INFO - User 'sam' logged in successfully.
+2025-04-15 19:21:03,986 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 19:21:09,981 - ERROR - [User 2] failed to add expense: Amount must be a positive number.
+2025-04-15 19:21:21,913 - INFO - User 'sam' logged out.
+2025-04-15 19:23:00,289 - INFO - Application started.
+2025-04-15 19:58:11,651 - INFO - Application started.
+2025-04-15 19:58:37,613 - INFO - Data saved successfully.
+2025-04-15 19:58:37,614 - INFO - User 'thomas' registered successfully.
+2025-04-15 19:58:46,132 - INFO - User 'thomas' logged in successfully.
+2025-04-15 19:58:46,133 - INFO - [GUI] User 'thomas' logged in successfully.
+2025-04-15 19:58:59,812 - INFO - [User 7] viewed summary for month: 2025-04
+2025-04-15 19:59:31,850 - INFO - Data saved successfully.
+2025-04-15 19:59:31,851 - INFO - [User 7] added expense: 450.00, Rent, Rent for APril, 2025-04-01
+2025-04-15 19:59:44,662 - INFO - Data saved successfully.
+2025-04-15 19:59:48,059 - INFO - [User 7] edited expense ID 1
+2025-04-15 19:59:48,996 - INFO - [User 7] viewed summary for month: 2025-04
+2025-04-15 20:00:09,338 - INFO - Data saved successfully.
+2025-04-15 20:00:09,338 - INFO - [User 7] set budget for 2025-04: $500.00
+2025-04-15 20:00:13,303 - INFO - [User 7] viewed summary for month: 2025-04
+2025-04-15 20:00:36,056 - INFO - Data saved successfully.
+2025-04-15 20:00:36,057 - INFO - [User 7] added expense: 150.00, Groceries, Costcco, 2025-04-15
+2025-04-15 20:00:38,465 - INFO - [User 7] viewed summary for month: 2025-04
+2025-04-15 20:01:01,267 - INFO - User 'thomas' logged out.
+2025-04-15 20:01:10,823 - INFO - User 'sam' logged in successfully.
+2025-04-15 20:01:10,823 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 20:01:42,528 - INFO - [User 2] viewed summary for month: 2025-03
+2025-04-15 20:01:47,968 - INFO - [User 2] viewed summary for month: 2025-04
+2025-04-15 20:01:52,627 - INFO - [User 2] viewed summary for month: 2025-03
+2025-04-15 20:02:14,592 - INFO - Data saved successfully.
+2025-04-15 20:02:16,203 - INFO - [User 2] edited expense ID 10
+2025-04-15 20:02:22,223 - INFO - Data saved successfully.
+2025-04-15 20:02:23,208 - INFO - [User 2] deleted expense ID 10
+2025-04-15 20:02:32,955 - INFO - [User 2] exported expenses to CSV for month: 2025-04
+2025-04-15 20:02:57,153 - INFO - Application started.
+2025-04-15 20:03:40,795 - INFO - User 'admin' logged in successfully.
+2025-04-15 20:03:40,796 - INFO - [GUI] User 'admin' logged in successfully.
+2025-04-15 20:03:59,472 - INFO - [admin] opened Category Management dashboard.
+2025-04-15 20:04:08,718 - INFO - Data saved successfully.
+2025-04-15 20:04:08,719 - INFO - [admin] deleted category ID 7: 'Hehehe'
+2025-04-15 20:04:14,864 - WARNING - [admin] tried deleting category in use: Rent
+2025-04-15 20:04:29,113 - INFO - Data saved successfully.
+2025-04-15 20:04:29,114 - INFO - [admin] created new category ID 7: 'Popcorn'
+2025-04-15 20:07:05,862 - INFO - User 'admin' logged out.
+2025-04-15 20:52:53,095 - INFO - Application started.
+2025-04-15 20:53:03,758 - WARNING - Login failed for username 'sam'.
+2025-04-15 20:53:03,759 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-04-15 20:53:16,831 - WARNING - Login failed for username 'sam'.
+2025-04-15 20:53:16,831 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-04-15 20:53:28,420 - WARNING - Login failed for username 'sam'.
+2025-04-15 20:53:28,420 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-04-15 20:53:35,679 - WARNING - Login failed for username 'sam'.
+2025-04-15 20:53:35,680 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-04-15 20:53:51,214 - WARNING - Login failed for username 'thomas'.
+2025-04-15 20:53:51,214 - WARNING - [GUI] Failed login attempt with username: 'thomas'
+2025-04-15 20:54:16,397 - INFO - Application started.
+2025-04-15 20:54:23,368 - WARNING - Login failed for username 'sam'.
+2025-04-15 20:54:23,368 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-04-15 20:57:04,604 - INFO - Application started.
+2025-04-15 20:57:11,969 - INFO - User 'sam' logged in successfully.
+2025-04-15 20:57:11,970 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 20:57:14,889 - INFO - User 'sam' logged out.
+2025-04-15 20:58:35,526 - INFO - Application started.
+2025-04-15 20:58:42,580 - WARNING - Login failed for username 'SAM'.
+2025-04-15 20:58:42,581 - WARNING - [GUI] Failed login attempt with username: 'SAM'
+2025-04-15 20:58:48,041 - INFO - User 'sam' logged in.
+2025-04-15 20:58:48,041 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 20:58:54,654 - INFO - User 'sam' logged out.
+2025-04-15 20:59:02,464 - WARNING - Login failed for username 'ssam'.
+2025-04-15 20:59:02,465 - WARNING - [GUI] Failed login attempt with username: 'ssam'
+2025-04-15 20:59:05,945 - WARNING - Login failed for username 'sam'.
+2025-04-15 20:59:05,946 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-04-15 20:59:23,723 - INFO - User 'sam' logged in.
+2025-04-15 20:59:23,724 - INFO - [GUI] User 'sam' logged in successfully.
+2025-04-15 20:59:37,726 - INFO - Data saved successfully.
+2025-04-15 20:59:37,726 - INFO - [User 2] added expense: 10.00, Transport, Uber to Home, 2025-04-15
+2025-04-15 20:59:57,228 - INFO - Data saved successfully.
+2025-04-15 20:59:58,225 - INFO - [User 2] edited expense ID 10
+2025-05-09 21:37:46,351 - INFO - Application started.
+2025-05-09 21:37:55,416 - INFO - User 'sam' logged in.
+2025-05-09 21:37:55,416 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-09 21:38:05,068 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-09 21:38:15,461 - INFO - [User 2] viewed summary for month: 2025-04
+2025-05-09 21:38:24,223 - INFO - [User 2] viewed summary for month: 2025-04
+2025-05-09 21:41:17,656 - INFO - Application started.
+2025-05-09 21:41:23,992 - INFO - Application started.
+2025-05-09 21:41:43,410 - INFO - Data saved successfully.
+2025-05-09 21:41:43,411 - INFO - User 'testuser' registered successfully.
+2025-05-09 21:41:59,984 - INFO - User 'admin' logged in.
+2025-05-09 21:41:59,985 - INFO - [GUI] User 'admin' logged in successfully.
+2025-05-09 21:42:02,604 - INFO - [admin] opened Category Management dashboard.
+2025-05-09 21:42:11,698 - INFO - Data saved successfully.
+2025-05-09 21:42:11,698 - INFO - [admin] renamed category 'Popcorn' to 'Test'
+2025-05-09 21:42:23,253 - INFO - Data saved successfully.
+2025-05-09 21:42:23,254 - INFO - [admin] created new category ID 8: 'New Category'
+2025-05-09 21:42:50,660 - INFO - Data saved successfully.
+2025-05-09 21:42:50,660 - INFO - [admin] deleted category ID 8: 'New Category'
+2025-05-09 21:42:53,834 - WARNING - [admin] tried deleting category in use: Rent
+2025-05-09 21:42:57,586 - INFO - [admin] opened Category Management dashboard.
+2025-05-09 21:43:01,160 - INFO - User 'admin' logged out.
+2025-05-09 21:43:11,187 - INFO - User 'testuser' logged in.
+2025-05-09 21:43:11,187 - INFO - [GUI] User 'testuser' logged in successfully.
+2025-05-09 21:43:18,391 - INFO - User 'testuser' logged out.
+2025-05-09 21:43:23,898 - INFO - User 'sam' logged in.
+2025-05-09 21:43:23,898 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-09 21:43:28,438 - INFO - User 'sam' logged out.
+2025-05-09 21:50:23,985 - INFO - Application started.
+2025-05-09 21:50:41,998 - INFO - Application started.
+2025-05-09 21:50:55,205 - INFO - User 'testuser' logged in.
+2025-05-09 21:50:55,205 - INFO - [GUI] User 'testuser' logged in successfully.
+2025-05-09 21:50:58,556 - INFO - User 'testuser' logged out.
+2025-05-09 21:51:03,861 - INFO - User 'sam' logged in.
+2025-05-09 21:51:03,861 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-09 21:51:08,808 - INFO - User 'sam' logged out.
+2025-05-09 21:58:02,569 - INFO - Application started.
+2025-05-09 21:58:15,278 - INFO - User 'testuser' logged in.
+2025-05-09 21:58:15,278 - INFO - [GUI] User 'testuser' logged in successfully.
+2025-05-09 21:58:18,109 - INFO - User 'testuser' logged out.
+2025-05-09 21:58:26,903 - WARNING - Login failed for username 'sam'.
+2025-05-09 21:58:26,903 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-05-09 21:58:31,877 - INFO - User 'sam' logged in.
+2025-05-09 21:58:31,877 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-09 21:58:34,719 - INFO - User 'sam' logged out.
+2025-05-09 21:58:41,019 - INFO - User 'admin' logged in.
+2025-05-09 21:58:41,019 - INFO - [GUI] User 'admin' logged in successfully.
+2025-05-09 21:58:44,189 - INFO - User 'admin' logged out.
+2025-05-09 23:38:40,403 - INFO - Application started.
+2025-05-09 23:38:48,168 - INFO - User 'sam' logged in.
+2025-05-09 23:38:48,168 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-09 23:39:39,798 - INFO - Data saved successfully.
+2025-05-09 23:39:41,098 - INFO - [User 2] imported 7 expenses from CSV.
+2025-05-09 23:39:41,141 - ERROR - Error importing CSV: local variable 'download_charts' referenced before assignment
+2025-05-09 23:44:30,287 - INFO - Application started.
+2025-05-09 23:44:37,627 - INFO - User 'sam' logged in.
+2025-05-09 23:44:37,628 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-09 23:44:50,303 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-09 23:45:05,859 - INFO - User 'sam' logged out.
+2025-05-09 23:45:15,232 - INFO - User 'testuser' logged in.
+2025-05-09 23:45:15,233 - INFO - [GUI] User 'testuser' logged in successfully.
+2025-05-09 23:45:19,062 - INFO - [User 8] viewed summary for month: 2025-05
+2025-05-09 23:45:35,626 - INFO - Data saved successfully.
+2025-05-09 23:45:38,302 - INFO - [User 8] imported 7 expenses from CSV.
+2025-05-09 23:45:53,658 - INFO - Data saved successfully.
+2025-05-09 23:45:53,658 - INFO - [User 8] added expense: 10.00, Other, Test, 2025-05-09
+2025-05-09 23:45:59,259 - INFO - [User 8] exported expenses to CSV for month: 2025-05
+2025-05-09 23:51:31,918 - INFO - Application started.
+2025-05-09 23:51:40,517 - INFO - User 'sam' logged in.
+2025-05-09 23:51:40,517 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-09 23:51:58,403 - INFO - Data saved successfully.
+2025-05-09 23:51:59,695 - INFO - [User 2] deleted expense ID 11
+2025-05-09 23:52:09,517 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-09 23:52:36,071 - INFO - Data saved successfully.
+2025-05-09 23:52:37,152 - INFO - [User 2] deleted expense ID 17
+2025-05-09 23:52:40,255 - INFO - Data saved successfully.
+2025-05-09 23:52:41,469 - INFO - [User 2] deleted expense ID 16
+2025-05-09 23:52:44,117 - INFO - Data saved successfully.
+2025-05-09 23:52:45,279 - INFO - [User 2] deleted expense ID 15
+2025-05-09 23:52:48,084 - INFO - Data saved successfully.
+2025-05-09 23:52:50,087 - INFO - [User 2] deleted expense ID 14
+2025-05-09 23:52:53,245 - INFO - Data saved successfully.
+2025-05-09 23:52:54,424 - INFO - [User 2] deleted expense ID 13
+2025-05-09 23:52:56,970 - INFO - Data saved successfully.
+2025-05-09 23:52:58,649 - INFO - [User 2] deleted expense ID 12
+2025-05-09 23:53:03,704 - INFO - Data saved successfully.
+2025-05-09 23:53:05,054 - INFO - [User 2] imported 8 expenses from CSV.
+2025-05-09 23:53:10,880 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-09 23:53:21,481 - INFO - [User 2] viewed summary for month: 2025-04
+2025-05-09 23:53:30,091 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-09 23:53:33,067 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-09 23:53:51,946 - INFO - User 'sam' logged out.
+2025-05-12 19:42:45,685 - INFO - Application started.
+2025-05-12 19:42:52,136 - INFO - User 'sam' logged in.
+2025-05-12 19:42:52,136 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 19:56:53,510 - INFO - Application started.
+2025-05-12 19:56:58,376 - INFO - Application started.
+2025-05-12 19:57:04,477 - INFO - User 'sam' logged in.
+2025-05-12 19:57:04,477 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 19:57:46,153 - INFO - Application started.
+2025-05-12 19:57:52,521 - INFO - User 'sam' logged in.
+2025-05-12 19:57:52,522 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 19:57:56,440 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 19:57:56,442 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 19:58:24,452 - INFO - Data saved successfully.
+2025-05-12 19:58:25,525 - INFO - [User 2] edited expense ID 19
+2025-05-12 19:58:40,178 - INFO - Data saved successfully.
+2025-05-12 19:58:41,582 - INFO - [User 2] edited expense ID 19
+2025-05-12 19:58:46,476 - INFO - Data saved successfully.
+2025-05-12 19:58:47,543 - INFO - [User 2] deleted expense ID 20
+2025-05-12 19:58:52,715 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 19:58:52,717 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 19:59:58,915 - INFO - Application started.
+2025-05-12 20:00:04,974 - INFO - User 'sam' logged in.
+2025-05-12 20:00:04,974 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:00:06,995 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:00:06,996 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:03:36,003 - INFO - Application started.
+2025-05-12 20:03:44,154 - INFO - User 'sam' logged in.
+2025-05-12 20:03:44,154 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:03:56,740 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:03:56,741 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:06:07,206 - INFO - Application started.
+2025-05-12 20:06:12,962 - INFO - Application started.
+2025-05-12 20:06:19,488 - INFO - User 'sam' logged in.
+2025-05-12 20:06:19,488 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:07:27,402 - INFO - Application started.
+2025-05-12 20:07:34,059 - INFO - User 'sam' logged in.
+2025-05-12 20:07:34,059 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:09:04,668 - INFO - Application started.
+2025-05-12 20:09:10,940 - INFO - User 'sam' logged in.
+2025-05-12 20:09:10,940 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:09:19,382 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:09:19,384 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:10:54,521 - INFO - Application started.
+2025-05-12 20:11:01,040 - INFO - User 'sam' logged in.
+2025-05-12 20:11:01,040 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:11:06,932 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:11:06,934 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:12:36,788 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 20:13:21,397 - INFO - Application started.
+2025-05-12 20:13:29,360 - INFO - User 'sam' logged in.
+2025-05-12 20:13:29,360 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:13:35,693 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 20:13:41,638 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 20:17:23,320 - INFO - Application started.
+2025-05-12 20:17:31,131 - WARNING - Login failed for username 'SAM'.
+2025-05-12 20:17:31,132 - WARNING - [GUI] Failed login attempt with username: 'SAM'
+2025-05-12 20:17:34,423 - INFO - User 'sam' logged in.
+2025-05-12 20:17:34,423 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:17:36,650 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 20:17:53,522 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:17:53,524 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:17:53,525 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:20:43,404 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 20:23:24,449 - INFO - Application started.
+2025-05-12 20:23:30,296 - WARNING - Login failed for username 'sam'.
+2025-05-12 20:23:30,296 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-05-12 20:23:35,432 - INFO - User 'sam' logged in.
+2025-05-12 20:23:35,433 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:23:45,426 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:23:45,428 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:23:45,429 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:24:04,006 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:24:04,008 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:24:04,009 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:24:08,527 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 20:26:08,656 - INFO - Application started.
+2025-05-12 20:26:20,796 - INFO - User 'sam' logged in.
+2025-05-12 20:26:20,796 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:26:34,346 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:26:34,349 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:26:34,350 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:42:07,456 - INFO - Application started.
+2025-05-12 20:42:14,927 - INFO - User 'sam' logged in.
+2025-05-12 20:42:14,927 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:43:03,027 - INFO - Application started.
+2025-05-12 20:43:09,601 - INFO - User 'sam' logged in.
+2025-05-12 20:43:09,601 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:46:27,311 - INFO - Application started.
+2025-05-12 20:46:33,754 - INFO - User 'sam' logged in.
+2025-05-12 20:46:33,754 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:51:34,335 - INFO - Application started.
+2025-05-12 20:51:39,984 - INFO - User 'sam' logged in.
+2025-05-12 20:51:39,984 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:52:23,676 - INFO - Application started.
+2025-05-12 20:52:29,516 - INFO - User 'sam' logged in.
+2025-05-12 20:52:29,516 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:52:38,055 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:52:38,057 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:52:38,059 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:53:13,360 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:53:13,361 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:53:13,362 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:53:17,308 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 20:53:25,570 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:53:25,572 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:53:25,573 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:55:06,804 - INFO - Application started.
+2025-05-12 20:55:12,727 - INFO - User 'sam' logged in.
+2025-05-12 20:55:12,727 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:55:23,336 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:55:23,338 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:55:23,339 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:55:30,310 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:55:30,312 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:55:30,313 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:57:26,922 - INFO - Application started.
+2025-05-12 20:57:33,855 - WARNING - Login failed for username 'sam'.
+2025-05-12 20:57:33,855 - WARNING - [GUI] Failed login attempt with username: 'sam'
+2025-05-12 20:57:38,213 - INFO - User 'sam' logged in.
+2025-05-12 20:57:38,213 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:57:47,424 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:57:47,426 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:57:47,427 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:58:39,867 - INFO - Application started.
+2025-05-12 20:58:50,789 - INFO - User 'sam' logged in.
+2025-05-12 20:58:50,789 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 20:59:02,921 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:59:02,923 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 20:59:02,924 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:02:39,199 - INFO - Application started.
+2025-05-12 21:02:45,636 - INFO - User 'sam' logged in.
+2025-05-12 21:02:45,637 - INFO - [GUI] User 'sam' logged in successfully.
+2025-05-12 21:02:56,910 - INFO - Data saved successfully.
+2025-05-12 21:02:58,119 - INFO - [User 2] imported 10 expenses from CSV.
+2025-05-12 21:03:03,406 - INFO - [User 2] viewed summary for month: 2025-01
+2025-05-12 21:03:08,311 - INFO - [User 2] viewed summary for month: 2025-02
+2025-05-12 21:03:09,262 - INFO - [User 2] viewed summary for month: 2025-02
+2025-05-12 21:03:14,667 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 21:03:58,565 - INFO - [User 2] viewed summary for month: 2025-03
+2025-05-12 21:04:15,630 - INFO - Data saved successfully.
+2025-05-12 21:04:16,672 - INFO - [User 2] deleted expense ID 26
+2025-05-12 21:04:19,329 - INFO - Data saved successfully.
+2025-05-12 21:04:20,194 - INFO - [User 2] deleted expense ID 30
+2025-05-12 21:04:22,691 - INFO - Data saved successfully.
+2025-05-12 21:04:23,830 - INFO - [User 2] deleted expense ID 29
+2025-05-12 21:04:33,476 - INFO - Data saved successfully.
+2025-05-12 21:04:34,923 - INFO - [User 2] deleted expense ID 28
+2025-05-12 21:04:37,832 - INFO - Data saved successfully.
+2025-05-12 21:04:38,981 - INFO - [User 2] deleted expense ID 27
+2025-05-12 21:04:43,058 - INFO - [User 2] viewed summary for month: 2025-04
+2025-05-12 21:04:48,243 - INFO - Data saved successfully.
+2025-05-12 21:04:49,804 - INFO - [User 2] deleted expense ID 31
+2025-05-12 21:05:03,745 - INFO - Data saved successfully.
+2025-05-12 21:05:04,731 - INFO - [User 2] deleted expense ID 33
+2025-05-12 21:05:17,409 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 21:05:25,229 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 21:05:27,355 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 21:05:32,728 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 21:05:41,806 - INFO - [User 2] viewed summary for month: 2025-05
+2025-05-12 21:05:50,510 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:05:50,512 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:05:50,513 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:13:20,436 - INFO - Data saved successfully.
+2025-05-12 21:13:21,562 - INFO - [User 2] imported 10 expenses from CSV.
+2025-05-12 21:13:25,661 - INFO - [User 2] viewed summary for month: 2025-01
+2025-05-12 21:13:38,033 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:13:38,035 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-05-12 21:13:38,036 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
